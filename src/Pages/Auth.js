@@ -10,7 +10,6 @@ class AuthPage extends Component {
     this.setState((prevState) => {
       return { createAccount: !prevState.createAccount };
     });
-    // this.setState({ createAccount: true });
   };
   render() {
     let Auth_form = this.state.createAccount ? (
@@ -20,10 +19,17 @@ class AuthPage extends Component {
             The best online library in the world
           </p>
           <div className={classes.form_item}>
-            <input type="name" placeholder="Enter Name" />
-            <input type="surname" placeholder="Enter Surname" />
+            <div className={classes.form_input}>
+              <i class="fas fa-user"></i>
+              <input type="name" placeholder="Enter Name" />
+            </div>
+            <div className={classes.form_input}>
+              <i class="fas fa-user"></i>
+              <input type="surname" placeholder="Enter Surname" />
+            </div>
           </div>
           <div className={classes.form_input}>
+            <i class="fas fa-envelope"></i>
             <input
               type="email"
               className={classes.email}
@@ -50,6 +56,7 @@ class AuthPage extends Component {
             The best online library in the world
           </p>
           <div className={classes.form_input}>
+            <i class="fas fa-envelope"></i>
             <input
               type="email"
               className={classes.email}
@@ -57,6 +64,7 @@ class AuthPage extends Component {
             />
           </div>
           <div className={classes.form_input}>
+            <i class="fas fa-lock"></i>
             <input
               type="password"
               className={classes.password}
@@ -64,7 +72,9 @@ class AuthPage extends Component {
             />
           </div>
           <button className={classes.login}>LOG IN</button>
-          <button className={classes.admin}>ADMIN LOG IN</button>
+          <button className={classes.admin}>
+            <i class="fas fa-users-cog"></i>ADMIN LOG IN
+          </button>
         </form>
         <p onClick={this.formTypeHandler}>
           Not a member yet? create an <u>account</u>
