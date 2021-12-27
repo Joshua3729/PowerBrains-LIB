@@ -6,6 +6,7 @@ class AuthPage extends Component {
   state = {
     createAccount: false,
     adminlogin: false,
+    showPassword: false,
   };
   formTypeHandler = () => {
     this.setState((prevState) => {
@@ -20,6 +21,14 @@ class AuthPage extends Component {
       };
     });
   };
+  showPasswordhandler = (e) => {
+    e.preventDefault();
+    this.setState((prevState) => {
+      return {
+        showPassword: !prevState.showPassword,
+      };
+    });
+  };
   render() {
     let Auth_form = (
       <Fragment>
@@ -28,7 +37,7 @@ class AuthPage extends Component {
             The best online library in the world
           </p>
           <div className={classes.form_input}>
-            <i class="fas fa-envelope"></i>
+            <i className="fas fa-envelope"></i>
             <input
               type="email"
               className={classes.email}
@@ -36,16 +45,28 @@ class AuthPage extends Component {
             />
           </div>
           <div className={classes.form_input}>
-            <i class="fas fa-lock"></i>
+            <i className="fas fa-lock"></i>
             <input
-              type="password"
+              type={this.state.showPassword ? "text" : "password"}
               className={classes.password}
               placeholder="Enter your password"
             />
+            {this.state.showPassword ? (
+              <i
+                className="fas fa-eye-slash"
+                onClick={this.showPasswordhandler}
+              ></i>
+            ) : (
+              <i className="fas fa-eye" onClick={this.showPasswordhandler}></i>
+            )}
+          </div>
+          <div className={classes.checkBox_Wrapper}>
+            <input type="checkbox" id="keepLogedin" />
+            <label htmlFor="#keepLogedin">Keep me logged in</label>
           </div>
           <button className={classes.login}>LOG IN</button>
           <button className={classes.admin} onClick={this.adminLoginHandler}>
-            <i class="fas fa-users-cog"></i>ADMIN LOG IN
+            <i className="fas fa-users-cog"></i>ADMIN LOG IN
           </button>
         </form>
         <div className={classes.question}>
@@ -66,16 +87,16 @@ class AuthPage extends Component {
             </p>
             <div className={classes.form_item}>
               <div className={classes.form_input}>
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
                 <input type="name" placeholder="Enter Name" />
               </div>
               <div className={classes.form_input}>
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
                 <input type="surname" placeholder="Enter Surname" />
               </div>
             </div>
             <div className={classes.form_input}>
-              <i class="fas fa-envelope"></i>
+              <i className="fas fa-envelope"></i>
               <input
                 type="email"
                 className={classes.email}
@@ -83,6 +104,7 @@ class AuthPage extends Component {
               />
             </div>
             <div className={classes.form_input}>
+              <i class="fas fa-lock"></i>
               <input
                 type="password"
                 className={classes.password}
@@ -121,10 +143,21 @@ class AuthPage extends Component {
             <div className={classes.form_input}>
               <i class="fas fa-lock"></i>
               <input
-                type="password"
+                type={this.state.showPassword ? "text" : "password"}
                 className={classes.password}
                 placeholder="Enter your password"
               />
+              {this.state.showPassword ? (
+                <i
+                  className="fas fa-eye-slash"
+                  onClick={this.showPasswordhandler}
+                ></i>
+              ) : (
+                <i
+                  className="fas fa-eye"
+                  onClick={this.showPasswordhandler}
+                ></i>
+              )}
             </div>
             <button className={classes.login}>LOG IN</button>
             <button className={classes.admin} onClick={this.adminLoginHandler}>
@@ -214,13 +247,7 @@ class AuthPage extends Component {
     }
     const slides = slideData.map((data, i) => {
       return (
-        <div
-          className={classes.slide}
-          style={{
-            backgroundImage: `url(${data.imgUrl})`,
-          }}
-          key={i}
-        >
+        <div className={classes.slide} key={i}>
           <div className={classes.content}>
             <p>{data.quote}</p>
             <p>{data.author}</p>
