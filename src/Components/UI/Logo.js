@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Logo.module.css";
 
 const logo = (props) => {
-  const logoText = props.isAdmin ? "PowerBrains Admin" : "PowerBrains Lib";
+  const logoText = props.adminLogin ? "PowerBrains Admin" : "PowerBrains Lib";
   return (
     <div className={classes.Logo}>
       <div className={classes.Logo_wrapper}>
