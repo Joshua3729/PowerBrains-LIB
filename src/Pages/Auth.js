@@ -1,13 +1,90 @@
 import React, { Component, Fragment } from "react";
 import classes from "./Auth.module.css";
 import Logo from "../Components/UI/Logo";
+import { required, length, email } from "../Util/validators";
 
 class AuthPage extends Component {
   state = {
     createAccount: false,
     adminlogin: false,
     showPassword: false,
+    loginForm: {
+      email: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required, email],
+      },
+      password: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required, length({ min: 5 })],
+      },
+    },
+    signupForm: {
+      email: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required, email],
+      },
+      password: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required, length({ min: 5 })],
+      },
+      name: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required],
+      },
+    },
+    formIsValid: false,
   };
+  inputChangeHandler = (input, value) => {
+    this.setState((prevState) => {
+      let isValid = true;
+      for (const validator of prevState.loginForm[input].validators) {
+        isValid = isValid && validator(value);
+      }
+      const updatedForm = {
+        ...prevState.loginForm,
+        [input]: {
+          ...prevState.loginForm[input],
+          valid: isValid,
+          value: value,
+        },
+      };
+      let formIsValid = true;
+      for (const inputName in updatedForm) {
+        if (inputName !== "formIsValid") {
+          formIsValid = formIsValid && updatedForm[inputName].valid;
+        }
+      }
+      return {
+        loginForm: updatedForm,
+        formIsValid: formIsValid,
+      };
+    });
+  };
+
+  inputBlurHandler = (input) => {
+    this.setState((prevState) => {
+      return {
+        loginForm: {
+          ...prevState.loginForm,
+          [input]: {
+            ...prevState.loginForm[input],
+            touched: true,
+          },
+        },
+      };
+    });
+  };
+
   formTypeHandler = () => {
     this.setState((prevState) => {
       return { createAccount: !prevState.createAccount };
@@ -32,7 +109,16 @@ class AuthPage extends Component {
   render() {
     let Auth_form = (
       <Fragment>
-        <form classes={classes.Auth_form}>
+        <form
+          classes={classes.Auth_form}
+          onSubmit={(e) =>
+            this.props.onLogin(e, {
+              email: this.state.loginForm.email.value,
+              password: this.state.loginForm.password.value,
+              formIsValid: this.state.formIsValid,
+            })
+          }
+        >
           <p className={classes.siteDescription}>
             The best online library in the world
           </p>
@@ -42,6 +128,7 @@ class AuthPage extends Component {
               type="email"
               className={classes.email}
               placeholder="Enter your email address"
+              onChange={(e) => this.inputChangeHandler("email", e.target.value)}
             />
           </div>
           <div className={classes.form_input}>
@@ -50,6 +137,9 @@ class AuthPage extends Component {
               type={this.state.showPassword ? "text" : "password"}
               className={classes.password}
               placeholder="Enter your password"
+              onChange={(e) =>
+                this.inputChangeHandler("password", e.target.value)
+              }
             />
             {this.state.showPassword ? (
               <i
