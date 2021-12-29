@@ -83,7 +83,7 @@ class App extends Component {
             new Date().getTime() + remainingMilliseconds
           );
           localStorage.setItem("expiryDate", expiryDate.toISOString());
-          // this.setAutoLogout(remainingMilliseconds);
+          this.setAutoLogout(remainingMilliseconds);
         })
         .catch((err) => {
           console.log(err);
@@ -102,6 +102,19 @@ class App extends Component {
         authLoading: false,
       });
     }
+  };
+  logoutHandler = () => {
+    this.setState({ isAuth: false, token: null, isAdmin: false });
+    localStorage.removeItem("token");
+    localStorage.removeItem("expiryDate");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("adminId");
+    localStorage.removeItem("adminToken");
+  };
+  setAutoLogout = (milliseconds) => {
+    setTimeout(() => {
+      this.logoutHandler();
+    }, milliseconds);
   };
   render() {
     console.log(this.state.isAuth);
