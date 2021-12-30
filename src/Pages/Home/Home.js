@@ -1,6 +1,6 @@
 import React from "react";
 
 const home = (props) => {
-  return <h1>Hello world</h1>;
+  return <button onClick={props.onLogout}>Logout</button>;
 };
 export default home;

@@ -1,0 +1,27 @@
+.Modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  z-index: 1500;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-out;
+}
+
+@media only screen and (max-width: 900px) {
+  /*Tablets [601px -> 1200px]*/
+
+  .Modal {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  /*Big smartphones [426px -> 600px]*/
+}
+@media only screen and (max-width: 425px) {
+  /*Small smartphones [325px -> 425px]*/
+  .Modal {
+    width: 98%;
+    height: 450px;
+  }
+}

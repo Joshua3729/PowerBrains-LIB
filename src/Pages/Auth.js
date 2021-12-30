@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import classes from "./Auth.module.css";
 import Logo from "../Components/UI/Logo";
 import { required, length, email } from "../Util/validators";
+import Modal from "../Components/Modal/Modal";
+import Spinner from "../Components/UI/Spinner/Spinner";
 
 class AuthPage extends Component {
   state = {
@@ -126,6 +128,7 @@ class AuthPage extends Component {
             <i className="fas fa-envelope"></i>
             <input
               type="email"
+              name="email"
               className={classes.email}
               placeholder="Enter your email address"
               onChange={(e) => this.inputChangeHandler("email", e.target.value)}
@@ -135,6 +138,7 @@ class AuthPage extends Component {
             <i className="fas fa-lock"></i>
             <input
               type={this.state.showPassword ? "text" : "password"}
+              name="password"
               className={classes.password}
               placeholder="Enter your password"
               onChange={(e) =>
@@ -178,17 +182,22 @@ class AuthPage extends Component {
             <div className={classes.form_item}>
               <div className={classes.form_input}>
                 <i className="fas fa-user"></i>
-                <input type="name" placeholder="Enter Name" />
+                <input type="name" name="name" placeholder="Enter Name" />
               </div>
               <div className={classes.form_input}>
                 <i className="fas fa-user"></i>
-                <input type="surname" placeholder="Enter Surname" />
+                <input
+                  type="surname"
+                  name="surname"
+                  placeholder="Enter Surname"
+                />
               </div>
             </div>
             <div className={classes.form_input}>
               <i className="fas fa-envelope"></i>
               <input
                 type="email"
+                name="email"
                 className={classes.email}
                 placeholder="Enter your email address"
               />
@@ -197,6 +206,7 @@ class AuthPage extends Component {
               <i class="fas fa-lock"></i>
               <input
                 type="password"
+                name="password"
                 className={classes.password}
                 placeholder="Enter your password"
               />
@@ -226,6 +236,7 @@ class AuthPage extends Component {
               <i class="fas fa-envelope"></i>
               <input
                 type="email"
+                name="email"
                 className={classes.email}
                 placeholder="Enter your email address"
               />
@@ -234,6 +245,7 @@ class AuthPage extends Component {
               <i class="fas fa-lock"></i>
               <input
                 type={this.state.showPassword ? "text" : "password"}
+                name="password"
                 className={classes.password}
                 placeholder="Enter your password"
               />
@@ -348,24 +360,31 @@ class AuthPage extends Component {
     });
 
     return (
-      <div className={classes.Login}>
-        <div className={classes.left_side}>
-          <Logo adminLogin={this.state.adminlogin} />
-          <div className={classes.Form_wrapper}>
-            <div className={classes.Form}>
-              {this.state.createAccount ? (
-                <h1>Create Account</h1>
-              ) : (
-                <h1>Log in</h1>
-              )}
-              {Auth_form}
+      <Fragment>
+        <Modal show={this.props.loading}>
+          <div className={classes.loading}>
+            <Spinner /> <p>Please wait...</p>
+          </div>
+        </Modal>
+        <div className={classes.Login}>
+          <div className={classes.left_side}>
+            <Logo adminLogin={this.state.adminlogin} />
+            <div className={classes.Form_wrapper}>
+              <div className={classes.Form}>
+                {this.state.createAccount ? (
+                  <h1>Create Account</h1>
+                ) : (
+                  <h1>Log in</h1>
+                )}
+                {Auth_form}
+              </div>
             </div>
           </div>
+          <div className={classes.right_side}>
+            <div className={classes.slider}>{slides}</div>
+          </div>
         </div>
-        <div className={classes.right_side}>
-          <div className={classes.slider}>{slides}</div>
-        </div>
-      </div>
+      </Fragment>
     );
   }
 }

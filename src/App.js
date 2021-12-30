@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
 import { connect } from "react-redux";
@@ -117,20 +117,24 @@ class App extends Component {
     }, milliseconds);
   };
   render() {
-    console.log(this.state.isAuth);
     let route = (
       <Routes>
         <Route
           path="/"
           exact
-          element={<AuthPage onLogin={this.loginHandler} />}
+          element={
+            <AuthPage
+              onLogin={this.loginHandler}
+              loading={this.state.authLoading}
+            />
+          }
         />
       </Routes>
     );
     if (this.state.isAuth) {
       route = (
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home onLogout={this.logoutHandler} />} />
         </Routes>
       );
     }
