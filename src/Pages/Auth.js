@@ -164,7 +164,11 @@ class AuthPage extends Component {
             )}
           </div>
           <div className={classes.checkBox_Wrapper}>
-            <input type="checkbox" id="keepLogedin" />
+            <input
+              type="checkbox"
+              id="keepLogedin"
+              onClick={(e) => this.props.rememberMeHandler(e.target.checked)}
+            />
             <label htmlFor="#keepLogedin">Keep me logged in</label>
           </div>
           <button className={classes.login}>LOG IN</button>

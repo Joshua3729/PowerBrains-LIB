@@ -16,19 +16,25 @@ class App extends Component {
     goToLogin: false,
     serverMessage: null,
     showModal: false,
+    rememberMe: false,
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
-    if (!token || !expiryDate) {
+    const rememberMe = localStorage.getItem("rememberMe");
+    if (!token) {
       return;
     }
-    if (new Date(expiryDate) <= new Date()) {
+    console.log("[first thread]");
+    if (new Date(expiryDate) <= new Date() && !rememberMe) {
       this.logoutHandler();
       return;
     }
+    console.log("[second thread]");
+
     const userId = localStorage.getItem("userId");
     const adminId = localStorage.getItem("adminId");
+
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
     let isAdmin;
@@ -45,7 +51,6 @@ class App extends Component {
       isAuth: isAuth,
       token: token,
       userId: userId,
-      showModal: true,
       adminId: adminId,
     });
   }
@@ -106,7 +111,7 @@ class App extends Component {
   loginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    console.log(authData.formIsValid);
+    // console.log(authData.formIsValid);
     if (authData.formIsValid) {
       fetch("https://power-brains.herokuapp.com/auth/login", {
         method: "POST",
@@ -125,7 +130,10 @@ class App extends Component {
           }
           if (res.status !== 200 && res.status !== 201) {
             // throw new Error("Could not authenticate you!");
-            throw { error: "Could not authenticate you" };
+            throw {
+              error:
+                "Could not authenticate you. Please make sure your email and password are entered correctly.",
+            };
           }
           return res.json();
         })
@@ -138,12 +146,15 @@ class App extends Component {
           });
           localStorage.setItem("token", resData.token);
           localStorage.setItem("userId", resData.userId);
-          const remainingMilliseconds = 60 * 60 * 1000;
-          const expiryDate = new Date(
-            new Date().getTime() + remainingMilliseconds
-          );
-          localStorage.setItem("expiryDate", expiryDate.toISOString());
-          this.setAutoLogout(remainingMilliseconds);
+          localStorage.setItem("rememberMe", this.state.rememberMe);
+          if (!this.state.rememberMe) {
+            const remainingMilliseconds = 60 * 60 * 1000;
+            const expiryDate = new Date(
+              new Date().getTime() + remainingMilliseconds
+            );
+            localStorage.setItem("expiryDate", expiryDate.toISOString());
+            this.setAutoLogout(remainingMilliseconds);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -170,6 +181,7 @@ class App extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("adminId");
     localStorage.removeItem("adminToken");
+    localStorage.removeItem("rememberMe");
   };
   setAutoLogout = (milliseconds) => {
     setTimeout(() => {
@@ -184,7 +196,12 @@ class App extends Component {
       return { createAccount: !prevState.createAccount };
     });
   };
+  rememberMeHandler = (value) => {
+    console.log(value);
+    this.setState({ rememberMe: value });
+  };
   render() {
+    // console.log(this.state.isAuth);
     let route = (
       <Routes>
         <Route
@@ -197,6 +214,7 @@ class App extends Component {
               loading={this.state.authLoading}
               createAccount={this.state.createAccount}
               formTypeHandler={this.formTypeHandler}
+              rememberMeHandler={this.rememberMeHandler}
             />
           }
         />
