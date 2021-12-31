@@ -7,7 +7,6 @@ import Spinner from "../Components/UI/Spinner/Spinner";
 
 class AuthPage extends Component {
   state = {
-    createAccount: false,
     adminlogin: false,
     showPassword: false,
     loginForm: {
@@ -43,19 +42,32 @@ class AuthPage extends Component {
         touched: false,
         validators: [required],
       },
+      surname: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required],
+      },
     },
     formIsValid: false,
   };
-  inputChangeHandler = (input, value) => {
+
+  inputChangeHandler = (input, value, formType) => {
     this.setState((prevState) => {
       let isValid = true;
-      for (const validator of prevState.loginForm[input].validators) {
+      let validators =
+        formType === "loginForm"
+          ? prevState.loginForm[input].validators
+          : prevState.signupForm[input].validators;
+      for (const validator of validators) {
         isValid = isValid && validator(value);
       }
+      let previousState =
+        formType === "loginForm" ? prevState.loginForm : prevState.signupForm;
       const updatedForm = {
-        ...prevState.loginForm,
+        ...previousState,
         [input]: {
-          ...prevState.loginForm[input],
+          ...previousState[input],
           valid: isValid,
           value: value,
         },
@@ -67,7 +79,7 @@ class AuthPage extends Component {
         }
       }
       return {
-        loginForm: updatedForm,
+        [formType]: updatedForm,
         formIsValid: formIsValid,
       };
     });
@@ -87,11 +99,6 @@ class AuthPage extends Component {
     });
   };
 
-  formTypeHandler = () => {
-    this.setState((prevState) => {
-      return { createAccount: !prevState.createAccount };
-    });
-  };
   adminLoginHandler = (e) => {
     e.preventDefault();
     this.setState((prevState) => {
@@ -131,7 +138,9 @@ class AuthPage extends Component {
               name="email"
               className={classes.email}
               placeholder="Enter your email address"
-              onChange={(e) => this.inputChangeHandler("email", e.target.value)}
+              onChange={(e) =>
+                this.inputChangeHandler("email", e.target.value, "loginForm")
+              }
             />
           </div>
           <div className={classes.form_input}>
@@ -142,7 +151,7 @@ class AuthPage extends Component {
               className={classes.password}
               placeholder="Enter your password"
               onChange={(e) =>
-                this.inputChangeHandler("password", e.target.value)
+                this.inputChangeHandler("password", e.target.value, "loginForm")
               }
             />
             {this.state.showPassword ? (
@@ -165,24 +174,50 @@ class AuthPage extends Component {
         </form>
         <div className={classes.question}>
           <p>Not a member yet?</p>
-          <button className={classes.logIn_link} onClick={this.formTypeHandler}>
+          <button
+            className={classes.logIn_link}
+            onClick={this.props.formTypeHandler}
+          >
             create a free account
           </button>
         </div>
       </Fragment>
     );
 
-    if (this.state.createAccount) {
+    if (this.props.createAccount) {
       Auth_form = (
         <Fragment>
-          <form classes={classes.Auth_form}>
+          <form
+            name="signupForm"
+            classes={classes.Auth_form}
+            onSubmit={(e) => {
+              this.props.onSignup(e, {
+                name: this.state.signupForm.name.value,
+                surname: this.state.signupForm.surname.value,
+                email: this.state.signupForm.email.value,
+                password: this.state.signupForm.password.value,
+                formIsValid: this.state.formIsValid,
+              });
+            }}
+          >
             <p className={classes.siteDescription}>
               The best online library in the world
             </p>
             <div className={classes.form_item}>
               <div className={classes.form_input}>
                 <i className="fas fa-user"></i>
-                <input type="name" name="name" placeholder="Enter Name" />
+                <input
+                  type="name"
+                  name="name"
+                  placeholder="Enter Name"
+                  onChange={(e) =>
+                    this.inputChangeHandler(
+                      "name",
+                      e.target.value,
+                      "signupForm"
+                    )
+                  }
+                />
               </div>
               <div className={classes.form_input}>
                 <i className="fas fa-user"></i>
@@ -190,6 +225,13 @@ class AuthPage extends Component {
                   type="surname"
                   name="surname"
                   placeholder="Enter Surname"
+                  onChange={(e) =>
+                    this.inputChangeHandler(
+                      "surname",
+                      e.target.value,
+                      "signupForm"
+                    )
+                  }
                 />
               </div>
             </div>
@@ -200,6 +242,9 @@ class AuthPage extends Component {
                 name="email"
                 className={classes.email}
                 placeholder="Enter your email address"
+                onChange={(e) =>
+                  this.inputChangeHandler("email", e.target.value, "signupForm")
+                }
               />
             </div>
             <div className={classes.form_input}>
@@ -209,6 +254,13 @@ class AuthPage extends Component {
                 name="password"
                 className={classes.password}
                 placeholder="Enter your password"
+                onChange={(e) =>
+                  this.inputChangeHandler(
+                    "password",
+                    e.target.value,
+                    "signupForm"
+                  )
+                }
               />
             </div>
             <button className={classes.login}>SIGN UP</button>
@@ -217,7 +269,7 @@ class AuthPage extends Component {
             <p>Already a member?</p>
             <button
               className={classes.logIn_link}
-              onClick={this.formTypeHandler}
+              onClick={this.props.formTypeHandler}
             >
               Log in
             </button>
@@ -371,7 +423,7 @@ class AuthPage extends Component {
             <Logo adminLogin={this.state.adminlogin} />
             <div className={classes.Form_wrapper}>
               <div className={classes.Form}>
-                {this.state.createAccount ? (
+                {this.props.createAccount ? (
                   <h1>Create Account</h1>
                 ) : (
                   <h1>Log in</h1>

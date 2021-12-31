@@ -4,13 +4,18 @@ import AuthPage from "./Pages/Auth";
 import { connect } from "react-redux";
 import { Route, Routes, Redirect, withRouter } from "react-router-dom";
 import Home from "./Pages/Home/Home";
+import Modal from "./Components/Modal/Modal";
 
 class App extends Component {
   state = {
+    createAccount: false,
     isAuth: false,
     token: null,
     authLoading: false,
     userId: null,
+    goToLogin: false,
+    serverMessage: null,
+    showModal: false,
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -40,9 +45,64 @@ class App extends Component {
       isAuth: isAuth,
       token: token,
       userId: userId,
+      showModal: true,
       adminId: adminId,
     });
   }
+  signupHandler = (event, userData) => {
+    event.preventDefault();
+    this.setState({ authLoading: true });
+    console.log(userData.surname);
+    if (userData.formIsValid) {
+      fetch("http://localhost:5000/auth/signup", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userData.email,
+          password: userData.password,
+          name: `${userData.name}  ${userData.surname}`,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 422) {
+            throw {
+              error:
+                "Validation failed. Make sure the email address isn't used yet!",
+            };
+          }
+          if (res.status !== 200 && res.status !== 201) {
+            console.log("Error!");
+            throw { error: "Could not create user" };
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          this.setState({
+            authLoading: false,
+            goToLogin: true,
+            showModal: false,
+            createAccount: false,
+          });
+        })
+        .catch((err) => {
+          this.setState({
+            authLoading: false,
+            error: err,
+            serverMessage: err.error,
+            showModal: true,
+          });
+        });
+      event.target.reset();
+    } else {
+      alert("form not valid :(");
+      this.setState({
+        isAuth: false,
+        authLoading: false,
+      });
+    }
+  };
   loginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
@@ -116,6 +176,14 @@ class App extends Component {
       this.logoutHandler();
     }, milliseconds);
   };
+  closeModalHandler = () => {
+    this.setState({ showModal: false });
+  };
+  formTypeHandler = () => {
+    this.setState((prevState) => {
+      return { createAccount: !prevState.createAccount };
+    });
+  };
   render() {
     let route = (
       <Routes>
@@ -125,7 +193,10 @@ class App extends Component {
           element={
             <AuthPage
               onLogin={this.loginHandler}
+              onSignup={this.signupHandler}
               loading={this.state.authLoading}
+              createAccount={this.state.createAccount}
+              formTypeHandler={this.formTypeHandler}
             />
           }
         />
@@ -138,7 +209,20 @@ class App extends Component {
         </Routes>
       );
     }
-    return <div className={classes.App}>{route}</div>;
+    return (
+      <Fragment>
+        <Modal show={this.state.showModal} clicked={this.closeModalHandler}>
+          <div className={classes.ModalContent}>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU"
+              alt=""
+            />
+            <p>{this.state.serverMessage}</p>
+          </div>
+        </Modal>
+        <div className={classes.App}>{route}</div>;
+      </Fragment>
+    );
   }
 }
 
