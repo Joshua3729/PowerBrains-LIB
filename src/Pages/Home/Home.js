@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Home.module.css";
 import Logo from "../../Components/UI/Logo";
+import cart from "../../Assets/cart.svg";
 
 class Home extends Component {
   render() {
@@ -49,7 +50,15 @@ class Home extends Component {
             </li>
           </ul>
         </div>
-        <div className={classes.right_pane}></div>
+        <div className={classes.right_pane}>
+          <div className={classes.navBar}>
+            <div className={classes.searchBar_wrapper}>
+              <input type="text" className={classes.searchBar} />
+            </div>
+
+            <img src={cart} className={classes.Cart} />
+          </div>
+        </div>
       </div>
     );
   }

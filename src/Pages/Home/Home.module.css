@@ -13,8 +13,11 @@
 .right_pane {
   width: 80%;
   height: 100vh;
-  background-color: yellow;
+  /* background-color: yellow; */
   margin-left: 20%;
+  padding: 20px;
+  padding-bottom: 0;
+  box-sizing: border-box;
 }
 .tab_buttons {
   list-style: none;
@@ -41,7 +44,9 @@
   align-items: center;
 }
 .active {
-  background-color: #4b48b9;
+  /* background-color: #4b48b9; */
+  background-color: white;
+  color: #050a30;
 }
 
 .logOut {
@@ -54,4 +59,13 @@
   margin: 0 auto;
   color: white;
   border: white 2px solid;
+}
+.Cart {
+  height: 30px;
+  width: 30px;
+}
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
