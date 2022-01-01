@@ -238,7 +238,7 @@ class App extends Component {
             <p>{this.state.serverMessage}</p>
           </div>
         </Modal>
-        <div className={classes.App}>{route}</div>;
+        <div className={classes.App}>{route}</div>
       </Fragment>
     );
   }

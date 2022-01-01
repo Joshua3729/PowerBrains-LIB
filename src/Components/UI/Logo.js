@@ -6,10 +6,21 @@ const logo = (props) => {
   return (
     <div className={classes.Logo}>
       <div className={classes.Logo_wrapper}>
-        <div className={classes.Rectangle2}></div>
-        <div className={classes.Rectangle1}></div>
+        <div
+          className={classes.Rectangle2}
+          style={{
+            border: props.home ? "white 5px solid" : "#050a30 5px solid",
+          }}
+        ></div>
+        <div
+          className={classes.Rectangle1}
+          style={{ backgroundColor: props.home ? "white" : "#050a30" }}
+        ></div>
       </div>
-      <div className={classes.Logo_text}>
+      <div
+        className={classes.Logo_text}
+        style={{ color: props.home ? "white" : "#050a30" }}
+      >
         {logoText}
         <span style={{ color: "#08F003", fontSize: "25px", fontWeight: "900" }}>
           .
