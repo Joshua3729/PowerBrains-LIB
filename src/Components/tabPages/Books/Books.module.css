@@ -9,15 +9,11 @@
   padding-left: 0;
 }
 .gutter {
-  position: fixed;
-  top: 100px;
-  /* background-color: tomato; */
+  margin-top: 100px;
   background-color: white;
-  width: calc(80% - 40px);
+  width: 100%;
 }
-.scroll {
-  box-shadow: 0px 11px 9px -10px rgb(64 60 67 / 16%);
-}
+
 .tab_buttons {
   background-color: transparent;
   font-size: 17px;
@@ -45,17 +41,33 @@
 }
 .books_wrapper {
   width: 100%;
-  margin-top: 200px;
-
-  background-color: yellowgreen;
+  /* 
+  background-color: yellowgreen; */
 }
 .grid_wrapper {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
+
 .grid_item {
+  display: flex;
   height: 300px;
-  background-color: chocolate;
+  /* background-color: chocolate; */
+}
+.grid_item img {
+  width: 178px;
+  height: 248px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.grid_item h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+}
+.grid_item p {
+  margin-top: 7px;
+  font-size: 20px;
 }

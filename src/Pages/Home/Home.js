@@ -11,7 +11,7 @@ class Home extends Component {
     scroll: false,
   };
   scrollEffectHandler = () => {
-    window.scroll > 0
+    window.scrollY > 0
       ? this.setState({ scroll: true })
       : this.setState({ scroll: false });
   };
@@ -19,6 +19,8 @@ class Home extends Component {
     this.setState({ activeTab: tab });
   };
   render() {
+    window.addEventListener("scroll", this.scrollEffectHandler);
+
     let page = null;
     switch (this.state.activeTab) {
       case "favorites":
@@ -108,7 +110,13 @@ class Home extends Component {
           </ul>
         </div>
         <div className={classes.right_pane}>
-          <div className={classes.navBar}>
+          <div
+            className={
+              this.state.scroll
+                ? [classes.scroll, classes.navBar].join(" ")
+                : classes.navBar
+            }
+          >
             <div className={classes.searchBar_wrapper}>
               <img src={search} className={classes.search} alt="" />
               <input

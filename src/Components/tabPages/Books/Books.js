@@ -4,18 +4,12 @@ import classes from "./Books.module.css";
 class Books extends Component {
   state = {
     activeTab: "all",
-    scroll: false,
   };
   changeTabHandler = (tab) => {
     this.setState({ activeTab: tab });
   };
-  scrollEffectHandler = () => {
-    window.scrollY > 0
-      ? this.setState({ scroll: true })
-      : this.setState({ scroll: false });
-  };
+
   render() {
-    window.addEventListener("scroll", this.scrollEffectHandler);
     return (
       <div className={classes.books}>
         <div
@@ -82,21 +76,119 @@ class Books extends Component {
         </div>
         <div className={classes.books_wrapper}>
           <div className={classes.grid_wrapper}>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
-            <div className={classes.grid_item}></div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+                <div className={classes.starRating_wrapper}>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
+            <div className={classes.grid_item}>
+              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
+              <div className={classes.bookInfo}>
+                <h1>THE GREAT RESET</h1>
+                <p>Richard Florida</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
