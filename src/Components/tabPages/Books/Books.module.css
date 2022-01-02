@@ -1,0 +1,34 @@
+.books {
+  width: 100%;
+}
+.tabs_wrapper {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.tab_buttons {
+  background-color: transparent;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 10px;
+  border: none;
+  padding: 2px 5px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.tab_buttons:focus {
+  outline: none;
+}
+.tab_buttons:hover {
+  background-color: pink;
+  color: white;
+}
+
+.active,
+.tab_buttons:focus {
+  background-color: #ef5da8;
+  color: white;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Home.module.css";
 import Logo from "../../Components/UI/Logo";
+import Books from "../../Components/tabPages/Books/Books";
 import cart from "../../Assets/cart.svg";
 import search from "../../Assets/search.png";
 
@@ -12,6 +13,23 @@ class Home extends Component {
     this.setState({ activeTab: tab });
   };
   render() {
+    let page = null;
+    switch (this.state.activeTab) {
+      case "favorites":
+        page = <h1>favorites</h1>;
+        break;
+
+      case "loans":
+        page = <h1>loans</h1>;
+        break;
+      case "returned":
+        page = <h1>returned</h1>;
+        break;
+
+      default:
+        page = <Books />;
+        break;
+    }
     return (
       <div className={classes.Home}>
         <div className={classes.left_pane}>
@@ -100,6 +118,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
+          {page}
         </div>
       </div>
     );
