@@ -8,6 +8,12 @@ import search from "../../Assets/search.png";
 class Home extends Component {
   state = {
     activeTab: "books",
+    scroll: false,
+  };
+  scrollEffectHandler = () => {
+    window.scroll > 0
+      ? this.setState({ scroll: true })
+      : this.setState({ scroll: false });
   };
   tabChangeHandler = (tab) => {
     this.setState({ activeTab: tab });
@@ -16,14 +22,14 @@ class Home extends Component {
     let page = null;
     switch (this.state.activeTab) {
       case "favorites":
-        page = <h1>favorites</h1>;
+        page = <h1 style={{ marginTop: "100px" }}>favorites</h1>;
         break;
 
       case "loans":
-        page = <h1>loans</h1>;
+        page = <h1 style={{ marginTop: "100px" }}>loans</h1>;
         break;
       case "returned":
-        page = <h1>returned</h1>;
+        page = <h1 style={{ marginTop: "100px" }}>returned</h1>;
         break;
 
       default:

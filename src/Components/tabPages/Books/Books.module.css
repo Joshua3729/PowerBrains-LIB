@@ -5,7 +5,18 @@
   list-style: none;
   display: flex;
   align-items: center;
-  padding: 0;
+  padding-bottom: 20px;
+  padding-left: 0;
+}
+.gutter {
+  position: fixed;
+  top: 100px;
+  /* background-color: tomato; */
+  background-color: white;
+  width: calc(80% - 40px);
+}
+.scroll {
+  box-shadow: 0px 11px 9px -10px rgb(64 60 67 / 16%);
 }
 .tab_buttons {
   background-color: transparent;
@@ -31,4 +42,20 @@
 .tab_buttons:focus {
   background-color: #ef5da8;
   color: white;
+}
+.books_wrapper {
+  width: 100%;
+  margin-top: 200px;
+
+  background-color: yellowgreen;
+}
+.grid_wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.grid_item {
+  height: 300px;
+  background-color: chocolate;
 }
