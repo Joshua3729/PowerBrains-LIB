@@ -30,13 +30,13 @@
   outline: none;
 }
 .tab_buttons:hover {
-  background-color: pink;
+  background-color: #f12237;
   color: white;
 }
 
 .active,
 .tab_buttons:focus {
-  background-color: #ef5da8;
+  background-color: #ba0113;
   color: white;
 }
 .books_wrapper {
