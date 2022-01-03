@@ -20,7 +20,7 @@ class Home extends Component {
   };
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
-
+    console.log("[Home] " + this.props.token);
     let page = null;
     switch (this.state.activeTab) {
       case "favorites":
@@ -35,7 +35,7 @@ class Home extends Component {
         break;
 
       default:
-        page = <Books />;
+        page = <Books token={this.props.token} />;
         break;
     }
     return (

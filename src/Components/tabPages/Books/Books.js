@@ -6,12 +6,48 @@ import SingleBook from "./SingleBook/SingleBook";
 class Books extends Component {
   state = {
     activeTab: "all",
+    books: null,
   };
   changeTabHandler = (tab) => {
     this.setState({ activeTab: tab });
   };
 
+  componentDidMount() {
+    fetch("http://localhost:5000/feed/books", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch books.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          books: resData.Books,
+          //   totalPosts: resData.totalItems,
+          booksLoading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
+    let books = <h1>Loading...</h1>;
+    if (this.state.books) {
+      books = this.state.books.map((book) => {
+        return (
+          <SingleBook
+            imgUrl={book.imageUrl}
+            title={book.name}
+            author={"default"}
+            rating={2}
+          />
+        );
+      });
+    }
     let bookInfo = [
       {
         imgUrl:
@@ -98,16 +134,16 @@ class Books extends Component {
         rating: 4,
       },
     ];
-    const books = bookInfo.map((book) => {
-      return (
-        <SingleBook
-          imgUrl={book.imgUrl}
-          title={book.title}
-          author={book.author}
-          rating={book.rating}
-        />
-      );
-    });
+    // const books = bookInfo.map((book) => {
+    //   return (
+    // <SingleBook
+    //   imgUrl={book.imgUrl}
+    //   title={book.title}
+    //   author={book.author}
+    //   rating={book.rating}
+    // />
+    //   );
+    // });
     return (
       <div className={classes.books}>
         <div

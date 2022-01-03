@@ -121,6 +121,7 @@ class App extends Component {
         body: JSON.stringify({
           email: authData.email,
           password: authData.password,
+          rememberMe: this.state.rememberMe,
         }),
       })
         .then((res) => {
@@ -223,7 +224,12 @@ class App extends Component {
     if (this.state.isAuth) {
       route = (
         <Routes>
-          <Route path="/" element={<Home onLogout={this.logoutHandler} />} />
+          <Route
+            path="/"
+            element={
+              <Home token={this.state.token} onLogout={this.logoutHandler} />
+            }
+          />
         </Routes>
       );
     }
