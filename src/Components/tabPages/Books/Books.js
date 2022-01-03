@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import StarRating from "../../StarRating/StarRating";
 import classes from "./Books.module.css";
 
 class Books extends Component {
@@ -81,15 +82,10 @@ class Books extends Component {
               <div className={classes.bookInfo}>
                 <h1>THE GREAT RESET</h1>
                 <p>Richard Florida</p>
-                <div className={classes.starRating_wrapper}>
-                  <i
-                    className={["fa", "fa-star", classes.checked].join(" ")}
-                  ></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
+                <StarRating rating={5} />
+                <div className={classes.buttons_wrapper}>
+                  <button className={classes.cart_btn}>Add To Cart</button>
+                  <button className={classes.favorite}>Favorite</button>
                 </div>
               </div>
             </div>
@@ -98,6 +94,7 @@ class Books extends Component {
               <div className={classes.bookInfo}>
                 <h1>THE GREAT RESET</h1>
                 <p>Richard Florida</p>
+                <StarRating rating={3} />
               </div>
             </div>
             <div className={classes.grid_item}>
@@ -105,6 +102,7 @@ class Books extends Component {
               <div className={classes.bookInfo}>
                 <h1>THE GREAT RESET</h1>
                 <p>Richard Florida</p>
+                <StarRating rating={2} />
               </div>
             </div>
             <div className={classes.grid_item}>

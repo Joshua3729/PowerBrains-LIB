@@ -1,0 +1,10 @@
+.checked {
+  color: gold;
+}
+.star {
+  font-size: 25px;
+  margin-right: 5px;
+}
+.star:last-child {
+  margin-left: 0;
+}
