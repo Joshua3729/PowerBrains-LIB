@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StarRating from "../../StarRating/StarRating";
 import classes from "./Books.module.css";
+import SingleBook from "./SingleBook/SingleBook";
 
 class Books extends Component {
   state = {
@@ -11,6 +12,102 @@ class Books extends Component {
   };
 
   render() {
+    let bookInfo = [
+      {
+        imgUrl:
+          "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
+        title: "Ghosts of the past",
+        author: "Tony Park",
+        rating: 3,
+      },
+      {
+        imgUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
+        title: "Reproducing Racism",
+        author: "Daria Roithmayr",
+        rating: 2,
+      },
+      {
+        imgUrl:
+          "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
+        title: "The Past Is Rising",
+        author: "Kathryn By Waters",
+        rating: 4,
+      },
+      {
+        imgUrl:
+          "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
+        title: "Ghosts of the past",
+        author: "Tony Park",
+        rating: 3,
+      },
+      {
+        imgUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
+        title: "Reproducing Racism",
+        author: "Daria Roithmayr",
+        rating: 2,
+      },
+      {
+        imgUrl:
+          "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
+        title: "The Past Is Rising",
+        author: "Kathryn By Waters",
+        rating: 4,
+      },
+      {
+        imgUrl:
+          "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
+        title: "Ghosts of the past",
+        author: "Tony Park",
+        rating: 3,
+      },
+      {
+        imgUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
+        title: "Reproducing Racism",
+        author: "Daria Roithmayr",
+        rating: 2,
+      },
+      {
+        imgUrl:
+          "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
+        title: "The Past Is Rising",
+        author: "Kathryn By Waters",
+        rating: 4,
+      },
+      {
+        imgUrl:
+          "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
+        title: "Ghosts of the past",
+        author: "Tony Park",
+        rating: 3,
+      },
+      {
+        imgUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
+        title: "Reproducing Racism",
+        author: "Daria Roithmayr",
+        rating: 2,
+      },
+      {
+        imgUrl:
+          "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
+        title: "The Past Is Rising",
+        author: "Kathryn By Waters",
+        rating: 4,
+      },
+    ];
+    const books = bookInfo.map((book) => {
+      return (
+        <SingleBook
+          imgUrl={book.imgUrl}
+          title={book.title}
+          author={book.author}
+          rating={book.rating}
+        />
+      );
+    });
     return (
       <div className={classes.books}>
         <div
@@ -76,120 +173,7 @@ class Books extends Component {
           </ul>
         </div>
         <div className={classes.books_wrapper}>
-          <div className={classes.grid_wrapper}>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-                <StarRating rating={5} />
-                <div className={classes.buttons_wrapper}>
-                  <button className={classes.cart_btn}>Add To Cart</button>
-                  <button className={classes.favorite}>Favorite</button>
-                </div>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-                <StarRating rating={3} />
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-                <StarRating rating={2} />
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-            <div className={classes.grid_item}>
-              <img src="https://i.pinimg.com/236x/24/cb/c6/24cbc64131af3c509551a111c7ead55e--modern-physics-quantum-physics.jpg" />
-              <div className={classes.bookInfo}>
-                <h1>THE GREAT RESET</h1>
-                <p>Richard Florida</p>
-              </div>
-            </div>
-          </div>
+          <div className={classes.grid_wrapper}>{books}</div>
         </div>
       </div>
     );

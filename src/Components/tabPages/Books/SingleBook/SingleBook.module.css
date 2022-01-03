@@ -1,0 +1,44 @@
+.Book {
+  display: flex;
+  height: 300px;
+  /* background-color: chocolate; */
+}
+.Book img {
+  width: 178px;
+  height: 248px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.Book h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+}
+.Book p {
+  margin-top: 7px;
+  font-size: 20px;
+}
+.buttons_wrapper {
+  margin-top: 20px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 5px;
+}
+.cart_btn {
+  background-color: transparent;
+  color: #ba0113;
+  border-radius: 10px;
+  border: solid 2px #ba0113;
+  font-size: 125x;
+  padding: 5px;
+  font-weight: bold;
+}
+.favorite {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #ba0113;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
