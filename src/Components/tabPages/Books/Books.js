@@ -82,7 +82,9 @@ class Books extends Component {
                 <h1>THE GREAT RESET</h1>
                 <p>Richard Florida</p>
                 <div className={classes.starRating_wrapper}>
-                  <i className="fa fa-star"></i>
+                  <i
+                    className={["fa", "fa-star", classes.checked].join(" ")}
+                  ></i>
                   <i className="fa fa-star"></i>
                   <i className="fa fa-star"></i>
                   <i className="fa fa-star"></i>
