@@ -27,7 +27,6 @@ class Books extends Component {
       .then((resData) => {
         this.setState({
           books: resData.Books,
-          //   totalPosts: resData.totalItems,
           booksLoading: false,
         });
       })

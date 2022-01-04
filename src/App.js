@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
 import { connect } from "react-redux";
-import { Route, Routes, Redirect, withRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Modal from "./Components/Modal/Modal";
 
@@ -111,7 +111,6 @@ class App extends Component {
   loginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    // console.log(authData.formIsValid);
     if (authData.formIsValid) {
       fetch("https://power-brains.herokuapp.com/auth/login", {
         method: "POST",
@@ -126,11 +125,9 @@ class App extends Component {
       })
         .then((res) => {
           if (res.status === 422) {
-            // throw new Error("Validation failed.");
             throw { error: "Validation failed" };
           }
           if (res.status !== 200 && res.status !== 201) {
-            // throw new Error("Could not authenticate you!");
             throw {
               error:
                 "Could not authenticate you. Please make sure your email and password are entered correctly.",
@@ -202,7 +199,6 @@ class App extends Component {
     this.setState({ rememberMe: value });
   };
   render() {
-    // console.log(this.state.isAuth);
     let route = (
       <Routes>
         <Route
@@ -237,10 +233,7 @@ class App extends Component {
       <Fragment>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>
           <div className={classes.ModalContent}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU"
-              alt=""
-            />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU" />
             <p>{this.state.serverMessage}</p>
           </div>
         </Modal>

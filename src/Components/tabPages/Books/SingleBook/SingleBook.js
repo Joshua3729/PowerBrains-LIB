@@ -15,7 +15,7 @@ const singleBook = (props) => {
         <StarRating rating={props.rating} />
         <div className={classes.buttons_wrapper}>
           <button className={classes.cart_btn}>
-            <i class="fas fa-cart-plus"></i>
+            <i className="fas fa-cart-plus"></i>
           </button>
           <button className={classes.favorite}>Favorite</button>
         </div>

@@ -117,6 +117,15 @@ const starRating = (props) => {
       break;
 
     default:
+      stars = (
+        <div className={classes.starRating_wrapper}>
+          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
+          <i className={["fa fa-star", classes.star].join(" ")}></i>
+          <i className={["fa fa-star", classes.star].join(" ")}></i>
+          <i className={["fa fa-star", classes.star].join(" ")}></i>
+          <i className={["fa fa-star", classes.star].join(" ")}></i>
+        </div>
+      );
       break;
   }
   return stars;
