@@ -11,8 +11,11 @@ const singleBook = (props) => {
           <h1>{props.title.slice(0, 10) + "..."}</h1>
           <div className={classes.title_preview}>{props.title}</div>
         </div>
-        <p>{props.author}</p>
+        <p className={classes.author}>{props.author}</p>
         <StarRating rating={props.rating} />
+        <p className={classes.genre}>
+          {props.genre === "non_fiction" ? "non fiction" : props.genre}
+        </p>
         <div className={classes.buttons_wrapper}>
           <button className={classes.cart_btn}>
             <i className="fas fa-cart-plus"></i>

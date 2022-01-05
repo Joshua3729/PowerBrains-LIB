@@ -68,6 +68,7 @@ class Books extends Component {
             title={book.name}
             rating={book.rating}
             author={book.AuthorName}
+            genre={book.category}
           />
         );
       });

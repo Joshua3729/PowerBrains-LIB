@@ -1,6 +1,7 @@
 .Home {
   display: flex;
   width: 100%;
+  min-height: 120vh;
 }
 .left_pane {
   position: fixed;

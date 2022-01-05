@@ -15,12 +15,9 @@
   font-weight: 900;
   cursor: pointer;
 }
-.Book p {
-  margin-top: 20px;
-  font-size: 20px;
-}
+
 .buttons_wrapper {
-  margin-top: 30px;
+  margin-top: 15px;
   display: grid;
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
@@ -63,4 +60,15 @@
 
 .titleWrapper {
   position: relative;
+}
+.genre {
+  display: inline-block;
+  padding: 5px;
+  margin-top: 15px;
+  font-weight: 900;
+  text-transform: capitalize;
+  background-color: lightgray;
+  font-size: 15px;
+  border-radius: 10px;
+  color: white;
 }
