@@ -22,15 +22,14 @@ class Home extends Component {
   }
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
-      console.log(prevState.cartData);
+      let cartData = [...prevState.cartData];
+      cartData.push(bookData);
+      localStorage.setItem("cartData", JSON.stringify(cartData));
 
-      const cartData = prevState.cartData.push(bookData);
-      console.log(prevState.cartData);
       return {
         cartData: cartData,
       };
     });
-    // localStorage.setItem("cartData", JSON.stringify(this.state.cartData));
   };
 
   openTrayHandler = () => {
@@ -50,7 +49,6 @@ class Home extends Component {
   };
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
-    console.log("[Home] " + this.props.token);
     let page = null;
     switch (this.state.activeTab) {
       case "favorites":
@@ -72,7 +70,7 @@ class Home extends Component {
     }
     return (
       <Fragment>
-        <Cart openTray={this.state.openTray} />
+        <Cart openTray={this.state.openTray} cartData={this.state.cartData} />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
             <Logo home={true} />
@@ -86,7 +84,7 @@ class Home extends Component {
                       : classes.tab_button
                   }
                 >
-                  <i class="fas fa-book" style={{ marginRight: "5px" }}></i>
+                  <i className="fas fa-book" style={{ marginRight: "5px" }}></i>
                   Books
                 </button>
               </li>
@@ -99,7 +97,10 @@ class Home extends Component {
                   }
                   onClick={() => this.tabChangeHandler("favorites")}
                 >
-                  <i class="fas fa-heart" style={{ marginRight: "5px" }}></i>
+                  <i
+                    className="fas fa-heart"
+                    style={{ marginRight: "5px" }}
+                  ></i>
                   Favorites
                 </button>
               </li>
@@ -112,7 +113,10 @@ class Home extends Component {
                   }
                   onClick={() => this.tabChangeHandler("loans")}
                 >
-                  <i class="fab fa-leanpub" style={{ marginRight: "5px" }}></i>
+                  <i
+                    className="fab fa-leanpub"
+                    style={{ marginRight: "5px" }}
+                  ></i>
                   Loans
                 </button>
               </li>
@@ -125,7 +129,10 @@ class Home extends Component {
                   }
                   onClick={() => this.tabChangeHandler("returned")}
                 >
-                  <i class="fas fa-award" style={{ marginRight: "5px" }}></i>
+                  <i
+                    className="fas fa-award"
+                    style={{ marginRight: "5px" }}
+                  ></i>
                   Returned
                 </button>
               </li>
@@ -135,7 +142,7 @@ class Home extends Component {
                   onClick={this.props.onLogout}
                 >
                   <i
-                    class="fas fa-sign-out-alt"
+                    className="fas fa-sign-out-alt"
                     style={{ marginRight: "5px" }}
                   ></i>
                   Logout

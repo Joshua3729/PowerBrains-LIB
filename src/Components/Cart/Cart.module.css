@@ -1,7 +1,9 @@
 .cartTray {
   position: fixed;
-  padding: 30px;
+  padding: 30px 10px;
+  text-align: center;
   box-sizing: border-box;
+  overflow-y: scroll;
   top: 100px;
   right: 0;
   width: 350px;
@@ -11,4 +13,33 @@
   transition: all 0.5s;
   z-index: 1200;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.book {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 5px;
+}
+.book img {
+  width: 70px;
+  height: 100px;
+}
+.bookInfo {
+  margin-left: 10px;
+  text-align: left;
+}
+.bookInfo p:first-child {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+.bookInfo p:last-child {
+  margin-top: 12px;
+}
+.stars {
+  transform: scale(0.7) translateX(-20%);
+}
+.heading {
+  font-size: 25px;
 }

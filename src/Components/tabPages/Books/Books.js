@@ -69,14 +69,14 @@ class Books extends Component {
             rating={book.rating}
             author={book.AuthorName}
             genre={book.category}
-            addToCart={() =>
-              this.props.addToCart({
-                imgUrl: book.imageUrl,
-                title: book.name,
-                rating: book.rating,
-                author: book.AuthorName,
-              })
-            }
+            addToCart={this.props.addToCart}
+            bookData={{
+              imgUrl: book.imageUrl,
+              title: book.name,
+              rating: book.rating,
+              author: book.AuthorName,
+            }}
+            key={book._id}
           />
         );
       });
