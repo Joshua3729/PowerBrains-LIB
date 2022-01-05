@@ -35,14 +35,39 @@ class Books extends Component {
 
   render() {
     let books = <h1>Loading...</h1>;
+    let booksData;
     if (this.state.books) {
-      books = this.state.books.map((book) => {
+      switch (this.state.activeTab) {
+        case "fiction":
+          booksData = this.state.books.filter((book) => {
+            return book.category === "fiction";
+          });
+          break;
+        case "non-fiction":
+          booksData = this.state.books.filter((book) => {
+            return book.category === "non-fiction";
+          });
+          break;
+        case "textbooks":
+          booksData = this.state.books.filter((book) => {
+            return book.category === "textbook";
+          });
+          break;
+        case "all":
+          booksData = this.state.books;
+          break;
+
+        default:
+          booksData = this.state.books;
+          break;
+      }
+      books = booksData.map((book) => {
         return (
           <SingleBook
             imgUrl={book.imageUrl}
             title={book.name}
-            author={"default"}
-            rating={2}
+            rating={book.rating}
+            author={book.AuthorName}
           />
         );
       });
