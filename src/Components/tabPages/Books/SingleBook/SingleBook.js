@@ -17,7 +17,7 @@ const singleBook = (props) => {
           {props.genre === "non_fiction" ? "non fiction" : props.genre}
         </p>
         <div className={classes.buttons_wrapper}>
-          <button className={classes.cart_btn}>
+          <button className={classes.cart_btn} onClick={props.addToCart}>
             <i className="fas fa-cart-plus"></i>
           </button>
           <button className={classes.favorite}>Favorite</button>
