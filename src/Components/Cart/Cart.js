@@ -4,7 +4,6 @@ import classes from "./Cart.module.css";
 import StarRating from "../StarRating/StarRating";
 
 const cart = (props) => {
-  console.log(props.cartData);
   const cartBooks = props.cartData.map((book) => {
     return (
       <div key={book._id} className={classes.book}>

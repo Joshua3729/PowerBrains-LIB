@@ -25,12 +25,10 @@ class App extends Component {
     if (!token) {
       return;
     }
-    console.log("[first thread]");
     if (new Date(expiryDate) <= new Date() && !rememberMe) {
       this.logoutHandler();
       return;
     }
-    console.log("[second thread]");
 
     const userId = localStorage.getItem("userId");
     const adminId = localStorage.getItem("adminId");
@@ -57,7 +55,6 @@ class App extends Component {
   signupHandler = (event, userData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    console.log(userData.surname);
     if (userData.formIsValid) {
       fetch("http://localhost:5000/auth/signup", {
         method: "PUT",
@@ -78,7 +75,6 @@ class App extends Component {
             };
           }
           if (res.status !== 200 && res.status !== 201) {
-            console.log("Error!");
             throw { error: "Could not create user" };
           }
           return res.json();
@@ -155,7 +151,6 @@ class App extends Component {
           }
         })
         .catch((err) => {
-          console.log(err);
           this.setState({
             isAuth: false,
             authLoading: false,

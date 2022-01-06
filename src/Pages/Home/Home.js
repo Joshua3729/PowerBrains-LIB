@@ -12,12 +12,13 @@ class Home extends Component {
     scroll: false,
     openTray: false,
     cartData: [],
+    numberOfCartItems: null,
   };
 
   componentDidMount() {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) {
-      this.setState({ cartData: cartData });
+      this.setState({ cartData: cartData, numberOfCartItems: cartData.length });
     }
   }
   addToCartHandler = (bookData) => {
@@ -28,6 +29,7 @@ class Home extends Component {
 
       return {
         cartData: cartData,
+        numberOfCartItems: cartData.length,
       };
     });
   };
@@ -50,6 +52,7 @@ class Home extends Component {
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
     let page = null;
+    let cartCounter;
     switch (this.state.activeTab) {
       case "favorites":
         page = <h1 style={{ marginTop: "100px" }}>favorites</h1>;
@@ -67,6 +70,14 @@ class Home extends Component {
           <Books token={this.props.token} addToCart={this.addToCartHandler} />
         );
         break;
+    }
+
+    if (this.state.numberOfCartItems) {
+      cartCounter = (
+        <div className={classes.cartCount}>
+          <div className={classes.number}>{this.state.numberOfCartItems}</div>
+        </div>
+      );
     }
     return (
       <Fragment>
@@ -167,11 +178,15 @@ class Home extends Component {
                 />
               </div>
               <div className={classes.profileWrapper}>
-                <img
-                  src={cart}
-                  className={classes.Cart}
-                  onClick={this.openTrayHandler}
-                />
+                <div className={classes.cartWrapper}>
+                  {cartCounter}
+                  <img
+                    src={cart}
+                    className={classes.Cart}
+                    onClick={this.openTrayHandler}
+                  />
+                </div>
+
                 <div className={classes.userProfile}>
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5wZvfeftkisleD3qzJtVhnxsodFXZ_Q0nyLdr1q7l7U6phsrfnuOmwLznNwzW4VCSWy4&usqp=CAU" />
                 </div>
