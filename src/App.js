@@ -108,7 +108,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({ authLoading: true });
     if (authData.formIsValid) {
-      fetch("https://power-brains.herokuapp.com/auth/login", {
+      fetch("http://localhost:5000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

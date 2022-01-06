@@ -65,3 +65,17 @@
 .removeItem_btn:focus {
   border: none;
 }
+.emptyStateImage_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.emptyStateImage_wrapper img {
+  width: 100%;
+}
+.removeItem_btn img {
+  width: 50px;
+  height: 30px;
+}
