@@ -33,6 +33,20 @@ class Home extends Component {
       };
     });
   };
+  deleteItemFromCartHandler = (item) => {
+    this.setState((prevState) => {
+      let cartData = [...prevState.cartData];
+      cartData = cartData.filter((cartItem) => {
+        return item !== cartItem;
+      });
+      localStorage.setItem("cartData", JSON.stringify(cartData));
+
+      return {
+        cartData: cartData,
+        numberOfCartItems: cartData.length,
+      };
+    });
+  };
 
   openTrayHandler = () => {
     this.setState((prevState) => {
@@ -81,7 +95,11 @@ class Home extends Component {
     }
     return (
       <Fragment>
-        <Cart openTray={this.state.openTray} cartData={this.state.cartData} />
+        <Cart
+          openTray={this.state.openTray}
+          cartData={this.state.cartData}
+          deleteCartItem={this.deleteItemFromCartHandler}
+        />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
             <Logo home={true} />

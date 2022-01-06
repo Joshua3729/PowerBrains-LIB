@@ -7,13 +7,23 @@ const cart = (props) => {
   const cartBooks = props.cartData.map((book) => {
     return (
       <div key={book._id} className={classes.book}>
-        <img src={book.imgUrl} alt="" />
-        <div className={classes.bookInfo}>
-          <p>{book.title.slice(0, 15) + "..."}</p>
-          <div className={classes.stars}>
-            <StarRating rating={book.rating} />
+        <div className={classes.leftItems_wrapper}>
+          <img src={book.imgUrl} alt="" />
+          <div className={classes.bookInfo}>
+            <p>{book.title.slice(0, 15) + "..."}</p>
+            <div className={classes.stars}>
+              <StarRating rating={book.rating} />
+            </div>
+            <p>{book.author}</p>
           </div>
-          <p>{book.author}</p>
+        </div>
+        <div className={classes.removeItembtn_wrapper}>
+          <button
+            className={classes.removeItem_btn}
+            onClick={props.deleteCartItem.bind(this, book)}
+          >
+            X
+          </button>
         </div>
       </div>
     );

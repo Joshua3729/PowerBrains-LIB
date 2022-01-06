@@ -6,7 +6,7 @@
   overflow-y: scroll;
   top: 100px;
   right: 0;
-  width: 350px;
+  width: 370px;
   height: 600px;
   background-color: #050a30;
   color: white;
@@ -18,8 +18,14 @@
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 5px;
+}
+.leftItems_wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 .book img {
   width: 70px;
@@ -42,4 +48,20 @@
 }
 .heading {
   font-size: 25px;
+}
+.removeItem_btn {
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: white;
+}
+.removeItem_btn:hover {
+  transform: scale(1.2);
+}
+
+.removeItem_btn:focus {
+  border: none;
 }
