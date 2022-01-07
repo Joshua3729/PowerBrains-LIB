@@ -4,14 +4,14 @@
   /* background-color: chocolate; */
 }
 .Book img {
-  width: 178px;
-  height: 248px;
+  width: 158px;
+  height: 228px;
   border-radius: 10px;
   margin-right: 10px;
 }
 .Book h1 {
   margin: 0;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 900;
   cursor: pointer;
 }

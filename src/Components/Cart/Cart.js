@@ -35,10 +35,7 @@ const cart = (props) => {
                   className={classes.removeItem_btn}
                   onClick={props.deleteCartItem.bind(this, book)}
                 >
-                  <img
-                    src="https://o.remove.bg/downloads/050ca0f0-88fb-463b-ab29-253c8495372a/5571428-middle-removebg-preview.png"
-                    alt=""
-                  />
+                  &times;
                 </button>
               </div>
             </div>
@@ -59,6 +56,9 @@ const cart = (props) => {
         transform: props.openTray ? "translateX(0)" : "translateX(102%)",
       }}
     >
+      <button className={classes.exit_btn} onClick={props.clicked}>
+        &times;
+      </button>
       <h4 className={classes.heading}>Book Cart</h4>
       {cartBooks}
       {borrowBook}

@@ -3,10 +3,10 @@
   padding: 30px 10px;
   text-align: center;
   box-sizing: border-box;
-  top: 100px;
+  top: 0;
   right: 0;
-  width: 370px;
-  height: 600px;
+  width: 350px;
+  height: 100vh;
   background-color: #050a30;
   color: white;
   transition: all 0.5s;
@@ -14,9 +14,24 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .CartBooks {
-  overflow-y: scroll;
+  overflow: hidden;
   width: 100%;
-  height: 370px;
+}
+.exit_btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  font-size: 30px;
+  color: white;
+  font-weight: 900s;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+}
+.exit_btn:hover {
+  color: orange;
+  transform: scale(1.2);
 }
 .book {
   display: flex;

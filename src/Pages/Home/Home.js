@@ -24,13 +24,17 @@ class Home extends Component {
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
       let cartData = [...prevState.cartData];
-      cartData.push(bookData);
-      localStorage.setItem("cartData", JSON.stringify(cartData));
+      if (!cartData.some((book) => book.id === bookData.id)) {
+        cartData.push(bookData);
+        localStorage.setItem("cartData", JSON.stringify(cartData));
 
-      return {
-        cartData: cartData,
-        numberOfCartItems: cartData.length,
-      };
+        return {
+          cartData: cartData,
+          numberOfCartItems: cartData.length,
+        };
+      } else {
+        alert("Hela what are you trying to do?");
+      }
     });
   };
   deleteItemFromCartHandler = (item) => {
@@ -99,6 +103,7 @@ class Home extends Component {
           openTray={this.state.openTray}
           cartData={this.state.cartData}
           deleteCartItem={this.deleteItemFromCartHandler}
+          clicked={this.openTrayHandler}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
