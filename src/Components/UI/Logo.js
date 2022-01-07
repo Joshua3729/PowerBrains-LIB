@@ -7,18 +7,18 @@ const logo = (props) => {
     <div className={classes.Logo}>
       <div className={classes.Logo_wrapper}>
         <div
-          className={classes.Rectangle2}
+          className={props.home ? classes.Rectangle_2 : classes.Rectangle2}
           style={{
             border: props.home ? "white 5px solid" : "#050a30 5px solid",
           }}
         ></div>
         <div
-          className={classes.Rectangle1}
+          className={props.home ? classes.Rectangle_1 : classes.Rectangle1}
           style={{ backgroundColor: props.home ? "white" : "#050a30" }}
         ></div>
       </div>
       <div
-        className={classes.Logo_text}
+        className={props.home ? classes.Logo_text1 : classes.Logo_text}
         style={{ color: props.home ? "white" : "#050a30" }}
       >
         {logoText}

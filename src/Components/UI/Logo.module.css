@@ -12,6 +12,20 @@
   box-sizing: border-box;
   border-radius: 0px 20px 20px 0px;
 }
+.Rectangle_1 {
+  width: 18px;
+  height: 18px;
+  background: #050a30;
+  border-radius: 0px 20px 20px 0px;
+  transform: rotate(-180deg);
+}
+.Rectangle_2 {
+  width: 17px;
+  height: 17px;
+  border: 3px solid white !important;
+  box-sizing: border-box;
+  border-radius: 0px 20px 20px 0px;
+}
 .Logo_wrapper {
   display: flex;
   align-items: center;
@@ -24,5 +38,10 @@
 .Logo_text {
   color: #050a30;
   font-size: 25px;
+  font-weight: 900;
+}
+.Logo_text1 {
+  color: #050a30;
+  font-size: 22px;
   font-weight: 900;
 }
