@@ -150,3 +150,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.ModalContent {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  font-size: 20px;
+}
+.ModalContent img {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+}

@@ -5,6 +5,7 @@ import Books from "../../Components/tabPages/Books/Books";
 import cart from "../../Assets/cart.svg";
 import search from "../../Assets/search.png";
 import Cart from "../../Components/Cart/Cart";
+import Modal from "../../Components/Modal/Modal";
 
 class Home extends Component {
   state = {
@@ -13,6 +14,8 @@ class Home extends Component {
     openTray: false,
     cartData: [],
     numberOfCartItems: null,
+    showModal: false,
+    modalMessage: null,
   };
 
   componentDidMount() {
@@ -24,7 +27,10 @@ class Home extends Component {
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
       let cartData = [...prevState.cartData];
-      if (!cartData.some((book) => book.id === bookData.id)) {
+      if (
+        !cartData.some((book) => book.id === bookData.id) &&
+        cartData.length < 3
+      ) {
         cartData.push(bookData);
         localStorage.setItem("cartData", JSON.stringify(cartData));
 
@@ -32,10 +38,21 @@ class Home extends Component {
           cartData: cartData,
           numberOfCartItems: cartData.length,
         };
+      } else if (cartData.some((book) => book.id === bookData.id)) {
+        this.setState({
+          showModal: true,
+          modalMessage: "You can borrow that book only once!",
+        });
       } else {
-        alert("Hela what are you trying to do?");
+        this.setState({
+          showModal: true,
+          modalMessage: "You have reached the 3 books maximum!",
+        });
       }
     });
+  };
+  closeModalHandler = () => {
+    this.setState({ showModal: false });
   };
   deleteItemFromCartHandler = (item) => {
     this.setState((prevState) => {
@@ -99,6 +116,12 @@ class Home extends Component {
     }
     return (
       <Fragment>
+        <Modal show={this.state.showModal} clicked={this.closeModalHandler}>
+          <div className={classes.ModalContent}>
+            {this.state.modalMessage}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU" />
+          </div>
+        </Modal>
         <Cart
           openTray={this.state.openTray}
           cartData={this.state.cartData}
