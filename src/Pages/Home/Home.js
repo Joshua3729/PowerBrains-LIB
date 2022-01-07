@@ -6,6 +6,7 @@ import cart from "../../Assets/cart.svg";
 import search from "../../Assets/search.png";
 import Cart from "../../Components/Cart/Cart";
 import Modal from "../../Components/Modal/Modal";
+import Favorites from "../../Components/tabPages/Favorites/Favorites";
 
 class Home extends Component {
   state = {
@@ -90,7 +91,7 @@ class Home extends Component {
     let cartCounter;
     switch (this.state.activeTab) {
       case "favorites":
-        page = <h1 style={{ marginTop: "100px" }}>favorites</h1>;
+        page = <Favorites token={this.props.token} />;
         break;
 
       case "loans":
