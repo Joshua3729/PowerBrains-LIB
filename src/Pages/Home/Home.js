@@ -7,6 +7,7 @@ import search from "../../Assets/search.png";
 import Cart from "../../Components/Cart/Cart";
 import Modal from "../../Components/Modal/Modal";
 import Favorites from "../../Components/tabPages/Favorites/Favorites";
+import Spinner from "../../Components/UI/Spinner/Spinner";
 
 class Home extends Component {
   state = {
@@ -17,6 +18,8 @@ class Home extends Component {
     numberOfCartItems: null,
     showModal: false,
     modalMessage: null,
+    loading: false,
+    requestSent: false,
   };
 
   componentDidMount() {
@@ -51,6 +54,42 @@ class Home extends Component {
         });
       }
     });
+  };
+  addFavoriteHandler = (id) => {
+    this.setState({ loading: true });
+    fetch("http://localhost:5000/feed/favorite", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.token,
+      },
+      body: JSON.stringify({
+        bookId: id,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 422) {
+          throw { error: "this is already your favorite" };
+        }
+        return res.json();
+      })
+      .then((res) =>
+        this.setState({
+          requestSent: true,
+          loading: false,
+          modalMessage: res.message,
+          showModal: true,
+        })
+      )
+      .catch((err) =>
+        this.setState({
+          requestSent: false,
+          loading: false,
+          modalMessage: err.error,
+          showModal: true,
+        })
+      );
   };
   closeModalHandler = () => {
     this.setState({ showModal: false });
@@ -103,7 +142,11 @@ class Home extends Component {
 
       default:
         page = (
-          <Books token={this.props.token} addToCart={this.addToCartHandler} />
+          <Books
+            token={this.props.token}
+            addFavorite={this.addFavoriteHandler}
+            addToCart={this.addToCartHandler}
+          />
         );
         break;
     }
@@ -117,10 +160,22 @@ class Home extends Component {
     }
     return (
       <Fragment>
+        <Modal show={this.state.loading}>
+          <div className={classes.loading}>
+            <Spinner /> <p>Please wait...</p>
+          </div>
+        </Modal>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>
           <div className={classes.ModalContent}>
             {this.state.modalMessage}
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU" />
+
+            <img
+              src={
+                this.state.requestSent
+                  ? "https://e7.pngegg.com/pngimages/442/715/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png"
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU"
+              }
+            />
           </div>
         </Modal>
         <Cart

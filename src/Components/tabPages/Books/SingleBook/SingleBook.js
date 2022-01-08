@@ -23,7 +23,12 @@ const singleBook = (props) => {
           >
             <i className="fas fa-cart-plus"></i>
           </button>
-          <button className={classes.favorite}>Favorite</button>
+          <button
+            className={classes.favorite}
+            onClick={props.addFavorite.bind(this, props.bookData.id)}
+          >
+            Favorite
+          </button>
         </div>
       </div>
     </div>

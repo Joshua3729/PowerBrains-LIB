@@ -1,5 +1,7 @@
 .books {
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .tabs_wrapper {
   list-style: none;

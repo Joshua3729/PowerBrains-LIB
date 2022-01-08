@@ -81,6 +81,7 @@ class Books extends Component {
               rating: book.rating,
               author: book.AuthorName,
             }}
+            addFavorite={this.props.addFavorite}
             key={book._id}
             alreadyAdded={this.state.cartData.some(
               (bookData) => bookData.id === book._id
