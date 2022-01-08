@@ -2,6 +2,53 @@ import React, { Component } from "react";
 import classes from "./Favorites.module.css";
 
 class Favorites extends Component {
+  state = {
+    favorites: null,
+  };
+  componentDidMount() {
+    fetch("http://localhost:5000/feed/favorites", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch favorites.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        const favoritesToReturn = [];
+        let requests = resData.favorites.map((bookId) => {
+          return new Promise((resolve, reject) => {
+            request({
+              uri: "http://localhost:5000/feed/favorite/" + bookId,
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + this.props.token,
+              },
+            }),
+              (err, res, body) => {
+                if (err) {
+                  reject(err);
+                }
+                resolve(body);
+              };
+          });
+        });
+
+        Promise.all(requests).then((body) => {
+          body.forEach((res) => {
+            if (res) favoritesToReturn.push(JSON.parse(res).book);
+          });
+          this.setState({
+            favorites: favoritesToReturn,
+          });
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className={classes.Favorites}>
