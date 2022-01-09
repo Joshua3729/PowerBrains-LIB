@@ -57,7 +57,7 @@ class Home extends Component {
   };
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/favorite", {
+    fetch("http://localhost:5000/feed/remove-favorite", {
       method: "PUT",
 
       headers: {
