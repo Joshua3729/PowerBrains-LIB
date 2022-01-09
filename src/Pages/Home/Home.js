@@ -72,6 +72,12 @@ class Home extends Component {
         if (res.status === 422) {
           throw { error: "this is already your favorite" };
         }
+        if (res.status !== 200 && res.status !== 201) {
+          throw {
+            error:
+              "Could not authenticate you. Please make sure your email and password are entered correctly.",
+          };
+        }
         return res.json();
       })
       .then((res) =>
