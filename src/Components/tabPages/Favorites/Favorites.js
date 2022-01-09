@@ -47,7 +47,10 @@ class Favorites extends Component {
             </div>
             <div className={classes.btn_wrapper}>
               <i className="fas fa-share"></i>
-              <i className="fas fa-trash"></i>
+              <i
+                onClick={this.props.deleteFavorite.bind(this, favorite.id)}
+                className="fas fa-trash"
+              ></i>
             </div>
           </div>
         );

@@ -55,6 +55,39 @@ class Home extends Component {
       }
     });
   };
+  deleteFavoriteHandler = (id) => {
+    this.setState({ loading: true });
+    fetch("http://localhost:5000/feed/favorite", {
+      method: "PUT",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.token,
+      },
+      body: JSON.stringify({
+        bookId: id,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) =>
+        this.setState({
+          requestSent: true,
+          loading: false,
+          modalMessage: res.message,
+          showModal: true,
+        })
+      )
+      .catch((err) =>
+        this.setState({
+          requestSent: false,
+          loading: false,
+          modalMessage: err.error,
+          showModal: true,
+        })
+      );
+  };
   addFavoriteHandler = (id) => {
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/favorite", {
@@ -74,8 +107,7 @@ class Home extends Component {
         }
         if (res.status !== 200 && res.status !== 201) {
           throw {
-            error:
-              "Could not authenticate you. Please make sure your email and password are entered correctly.",
+            error: "You already saved this book as your favorite",
           };
         }
         return res.json();
@@ -136,7 +168,12 @@ class Home extends Component {
     let cartCounter;
     switch (this.state.activeTab) {
       case "favorites":
-        page = <Favorites token={this.props.token} />;
+        page = (
+          <Favorites
+            token={this.props.token}
+            deleteFavorite={this.deleteFavoriteHandler}
+          />
+        );
         break;
 
       case "loans":
