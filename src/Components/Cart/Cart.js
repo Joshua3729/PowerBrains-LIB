@@ -19,7 +19,7 @@ const cart = (props) => {
       <div className={classes.CartBooks}>
         {props.cartData.map((book) => {
           return (
-            <div key={book._id} className={classes.book}>
+            <div key={book.id} className={classes.book}>
               <div className={classes.leftItems_wrapper}>
                 <img src={book.imgUrl} alt="" />
                 <div className={classes.bookInfo}>

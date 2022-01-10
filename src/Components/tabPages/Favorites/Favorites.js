@@ -12,7 +12,7 @@ class Favorites extends Component {
     if (this.props.favorites) {
       favorites = this.props.favorites.map((favorite) => {
         return (
-          <div className={classes.favorite_item}>
+          <div key={favorite._id} className={classes.favorite_item}>
             <img src={favorite.imageUrl} />
             <div className={classes.description}>
               <h4>{favorite.name}</h4>
@@ -40,6 +40,18 @@ class Favorites extends Component {
           </div>
         );
       });
+    } else {
+      favorites = (
+        <div className={classes.emptyStateWrapper}>
+          <img
+            src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
+            alt=""
+          />
+          <p>
+            You Dont Have A Favorite Book. Add Your First Favorite Book Now.
+          </p>
+        </div>
+      );
     }
     return (
       <div className={classes.Favorites}>
