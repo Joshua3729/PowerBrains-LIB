@@ -2,34 +2,15 @@ import React, { Component } from "react";
 import classes from "./Favorites.module.css";
 
 class Favorites extends Component {
-  state = {
-    favorites: null,
-  };
-
   componentDidMount() {
-    fetch("http://localhost:5000/feed/favorites", {
-      headers: {
-        Authorization: "Bearer " + this.props.token,
-      },
-    })
-      .then((res) => {
-        console.log("[res -> ]" + res);
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch favorites.");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        this.setState({ favorites: resData.books });
-      })
-      .catch((err) => console.log(err));
+    this.props.getFavorites();
   }
 
   render() {
     let favorites = <h1>Loading...</h1>;
 
-    if (this.state.favorites) {
-      favorites = this.state.favorites.map((favorite) => {
+    if (this.props.favorites) {
+      favorites = this.props.favorites.map((favorite) => {
         return (
           <div className={classes.favorite_item}>
             <img src={favorite.imageUrl} />
@@ -46,11 +27,15 @@ class Favorites extends Component {
               </p>
             </div>
             <div className={classes.btn_wrapper}>
-              <i className="fas fa-share"></i>
-              <i
-                onClick={this.props.deleteFavorite.bind(this, favorite.id)}
-                className="fas fa-trash"
-              ></i>
+              <button className={classes.share}>
+                <i className="fas fa-share"></i>
+              </button>
+              <button
+                className={classes.delete}
+                onClick={this.props.deleteFavorite.bind(this, favorite._id)}
+              >
+                <i className="fas fa-trash"></i>
+              </button>
             </div>
           </div>
         );

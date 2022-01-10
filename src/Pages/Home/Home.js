@@ -20,6 +20,7 @@ class Home extends Component {
     modalMessage: null,
     loading: false,
     requestSent: false,
+    favorites: null,
   };
 
   componentDidMount() {
@@ -55,6 +56,24 @@ class Home extends Component {
       }
     });
   };
+  getFavorites = () => {
+    fetch("http://localhost:5000/feed/favorites", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        console.log("[res -> ]" + res);
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch favorites.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({ favorites: resData.books });
+      })
+      .catch((err) => console.log(err));
+  };
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/remove-favorite", {
@@ -72,11 +91,17 @@ class Home extends Component {
         return res.json();
       })
       .then((res) =>
-        this.setState({
-          requestSent: true,
-          loading: false,
-          modalMessage: res.message,
-          showModal: true,
+        this.setState((prevState) => {
+          const favorites = prevState.favorites.filter((favorite) => {
+            return favorite._id != id;
+          });
+          return {
+            favorites: favorites,
+            requestSent: true,
+            loading: false,
+            modalMessage: res.message,
+            showModal: true,
+          };
         })
       )
       .catch((err) =>
@@ -172,6 +197,8 @@ class Home extends Component {
           <Favorites
             token={this.props.token}
             deleteFavorite={this.deleteFavoriteHandler}
+            getFavorites={this.getFavorites}
+            favorites={this.state.favorites}
           />
         );
         break;

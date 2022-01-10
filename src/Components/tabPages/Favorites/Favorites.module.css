@@ -47,13 +47,26 @@
   align-items: center;
   width: 100px;
 }
-.btn_wrapper i {
-  font-size: 25px;
-  margin-right: 10px;
-  color: #cccbcb;
-}
+
 .btn_wrapper i:first-child {
 }
 .Favorites_wrapper {
   margin-top: 50px;
+}
+
+.share,
+.delete {
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 25px;
+  margin-right: 10px;
+  color: #cccbcb;
+}
+
+.share:hover,
+.delete:hover {
+  transform: scale(1.2);
+  color: gray;
 }
