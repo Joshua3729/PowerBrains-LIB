@@ -16,52 +16,36 @@ class Books extends Component {
   componentDidMount() {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) this.setState({ cartData: cartData });
-    fetch("http://localhost:5000/feed/books", {
-      headers: {
-        Authorization: "Bearer " + this.props.token,
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch books.");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        this.setState({
-          books: resData.Books,
-          booksLoading: false,
-        });
-      })
-      .catch((err) => console.log(err));
+
+    this.props.getBooks();
   }
 
   render() {
     let books = <h1>Loading...</h1>;
     let booksData;
-    if (this.state.books) {
+    if (this.props.books) {
       switch (this.state.activeTab) {
         case "fiction":
-          booksData = this.state.books.filter((book) => {
+          booksData = this.props.books.filter((book) => {
             return book.category === "fiction";
           });
           break;
         case "non-fiction":
-          booksData = this.state.books.filter((book) => {
+          booksData = this.props.books.filter((book) => {
             return book.category === "non-fiction";
           });
           break;
         case "textbooks":
-          booksData = this.state.books.filter((book) => {
+          booksData = this.props.books.filter((book) => {
             return book.category === "textbook";
           });
           break;
         case "all":
-          booksData = this.state.books;
+          booksData = this.props.books;
           break;
 
         default:
-          booksData = this.state.books;
+          booksData = this.props.books;
           break;
       }
 

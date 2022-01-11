@@ -22,6 +22,7 @@ class Home extends Component {
     requestSent: false,
     favorites: [],
     favoritesLength: null,
+    books: null,
   };
 
   componentDidMount() {
@@ -56,6 +57,26 @@ class Home extends Component {
         });
       }
     });
+  };
+  getBooks = () => {
+    fetch("http://localhost:5000/feed/books", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch books.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          books: resData.Books,
+          booksLoading: false,
+        });
+      })
+      .catch((err) => console.log(err));
   };
   getFavorites = () => {
     fetch("http://localhost:5000/feed/favorites", {
@@ -223,6 +244,8 @@ class Home extends Component {
             token={this.props.token}
             addFavorite={this.addFavoriteHandler}
             addToCart={this.addToCartHandler}
+            getBooks={this.getBooks}
+            books={this.state.books}
           />
         );
         break;
