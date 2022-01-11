@@ -8,8 +8,22 @@ class Favorites extends Component {
 
   render() {
     let favorites = <h1>Loading...</h1>;
+    console.log(this.props.favoritesLength);
+    console.log(this.props.favorites);
+    if (this.props.favoritesLength === 0)
+      favorites = (
+        <div className={classes.emptyStateWrapper}>
+          <img
+            src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
+            alt=""
+          />
+          <p>
+            You Dont Have A Favorite Book. Add Your First Favorite Book Now.
+          </p>
+        </div>
+      );
 
-    if (this.props.favorites) {
+    if (this.props.favorites.length > 0) {
       favorites = this.props.favorites.map((favorite) => {
         return (
           <div key={favorite._id} className={classes.favorite_item}>
@@ -40,19 +54,8 @@ class Favorites extends Component {
           </div>
         );
       });
-    } else {
-      favorites = (
-        <div className={classes.emptyStateWrapper}>
-          <img
-            src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
-            alt=""
-          />
-          <p>
-            You Dont Have A Favorite Book. Add Your First Favorite Book Now.
-          </p>
-        </div>
-      );
     }
+
     return (
       <div className={classes.Favorites}>
         <h1>Favorites</h1>

@@ -20,7 +20,8 @@ class Home extends Component {
     modalMessage: null,
     loading: false,
     requestSent: false,
-    favorites: null,
+    favorites: [],
+    favoritesLength: null,
   };
 
   componentDidMount() {
@@ -69,9 +70,14 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
-        this.setState({ favorites: resData.books });
+        this.setState({
+          favorites: resData.books,
+          favoritesLength: resData.books.length,
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
@@ -96,6 +102,7 @@ class Home extends Component {
           });
           return {
             favorites: favorites,
+            favoritesLength: favorites.length,
             requestSent: true,
             loading: false,
             modalMessage: res.message,
@@ -198,6 +205,7 @@ class Home extends Component {
             deleteFavorite={this.deleteFavoriteHandler}
             getFavorites={this.getFavorites}
             favorites={this.state.favorites}
+            favoritesLength={this.state.favoritesLength}
           />
         );
         break;
