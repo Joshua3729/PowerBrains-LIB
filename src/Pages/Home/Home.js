@@ -58,6 +58,26 @@ class Home extends Component {
       }
     });
   };
+  bookSearchHandler = (value) => {
+    this.setState((prevState) => {
+      const booksByTitle = [...prevState.books].filter(
+        (book) => book.title == value
+      );
+      const booksByAuthor = [...prevState.books].filter(
+        (book) => book.AuthorName == value
+      );
+
+      return {
+        books:
+          booksByAuthor.length > 0
+            ? booksByAuthor
+            : booksByTitle.length > 0
+            ? booksByTitle
+            : [],
+      };
+    });
+  };
+
   getBooks = () => {
     fetch("http://localhost:5000/feed/books", {
       headers: {
