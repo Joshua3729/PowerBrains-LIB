@@ -81,9 +81,10 @@
   top: 0;
   width: calc(80%);
   padding: 20px;
-  /* height: 100px; */
+  height: 80px;
   box-sizing: border-box;
   background-color: white;
+  /* background-color: rgba(255, 0, 0, 0.2); */
   display: flex;
   align-items: center;
   justify-content: space-between;
