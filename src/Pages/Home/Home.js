@@ -51,15 +51,21 @@ class Home extends Component {
       } else if (cartData.some((book) => book.id === bookData.id)) {
         this.setState({
           showModal: true,
+          requestSent: false,
           modalMessage: "You can borrow that book only once!",
         });
       } else {
         this.setState({
           showModal: true,
+          requestSent: false,
           modalMessage: "You have reached the 3 books maximum!",
         });
       }
     });
+  };
+
+  closeResultsHandler = () => {
+    this.setState({ searchResults: [], notFound: false });
   };
   bookSearchHandler = (e) => {
     e.preventDefault();
@@ -288,7 +294,12 @@ class Home extends Component {
     if (this.state.notFound) {
       searchResults = (
         <div className={classes.resultsWrapper}>
-          <button className={classes.exit_btn}>&times;</button>
+          <button
+            className={classes.exit_btn}
+            onClick={this.closeResultsHandler}
+          >
+            &times;
+          </button>
           <p>Book not found!</p>
         </div>
       );
@@ -296,7 +307,12 @@ class Home extends Component {
     if (this.state.searchResults.length > 0 && !this.state.notFound) {
       searchResults = (
         <div className={classes.resultsWrapper}>
-          <button className={classes.exit_btn}></button>
+          <button
+            className={classes.exit_btn}
+            onClick={this.closeResultsHandler}
+          >
+            &times;
+          </button>
           <h4>Search Results: </h4>
           <div className={classes.searchResults_wrapper}>
             {this.state.searchResults.map((result) => {
