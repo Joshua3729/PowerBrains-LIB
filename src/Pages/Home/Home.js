@@ -8,6 +8,7 @@ import Cart from "../../Components/Cart/Cart";
 import Modal from "../../Components/Modal/Modal";
 import Favorites from "../../Components/tabPages/Favorites/Favorites";
 import Spinner from "../../Components/UI/Spinner/Spinner";
+import SingleBook from "../../Components/tabPages/Books/SingleBook/SingleBook";
 
 class Home extends Component {
   state = {
@@ -23,6 +24,8 @@ class Home extends Component {
     favorites: [],
     favoritesLength: null,
     books: null,
+    searchResults: [],
+    notFound: false,
   };
 
   componentDidMount() {
@@ -63,19 +66,20 @@ class Home extends Component {
     const value = e.target.elements.search.value?.toLowerCase();
     this.setState((prevState) => {
       const booksByTitle = [...prevState.books].filter(
-        (book) => book.title?.toLowerCase() == value
+        (book) => book.name?.toLowerCase() == value
       );
       const booksByAuthor = [...prevState.books].filter(
         (book) => book.AuthorName?.toLowerCase() == value
       );
 
       return {
-        books:
+        searchResults:
           booksByAuthor.length > 0
             ? booksByAuthor
             : booksByTitle.length > 0
             ? booksByTitle
             : [],
+        notFound: booksByAuthor.length === 0 && booksByTitle === 0,
       };
     });
   };
@@ -240,6 +244,7 @@ class Home extends Component {
     window.addEventListener("scroll", this.scrollEffectHandler);
     let page = null;
     let cartCounter;
+    let searchResults = null;
     switch (this.state.activeTab) {
       case "favorites":
         page = (
@@ -277,6 +282,46 @@ class Home extends Component {
       cartCounter = (
         <div className={classes.cartCount}>
           <div className={classes.number}>{this.state.numberOfCartItems}</div>
+        </div>
+      );
+    }
+    if (this.state.notFound) {
+      searchResults = (
+        <div className={classes.resultsWrapper}>
+          <p>Book not found!</p>
+        </div>
+      );
+    }
+    if (this.state.searchResults.length > 0 && !this.state.notFound) {
+      searchResults = (
+        <div className={classes.resultsWrapper}>
+          <h4>Search Results: </h4>
+          <div className={classes.searchResults_wrapper}>
+            {this.state.searchResults.map((result) => {
+              return (
+                <SingleBook
+                  imgUrl={result.imageUrl}
+                  title={result.name}
+                  rating={result.rating}
+                  author={result.AuthorName}
+                  genre={result.category}
+                  addToCart={this.addToCartHandler}
+                  bookData={{
+                    id: result._id,
+                    imgUrl: result.imageUrl,
+                    title: result.name,
+                    rating: result.rating,
+                    author: result.AuthorName,
+                  }}
+                  addFavorite={this.addFavoriteHandler}
+                  key={result._id}
+                  alreadyAdded={this.state.cartData.some(
+                    (bookData) => bookData.id === result._id
+                  )}
+                />
+              );
+            })}
+          </div>
         </div>
       );
     }
@@ -422,6 +467,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
+            {searchResults}
             {page}
           </div>
         </div>
