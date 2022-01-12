@@ -97,6 +97,15 @@
   border: none;
   box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
 }
+.search_btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 .scroll {
   box-shadow: 0px 11px 9px -10px rgb(64 60 67 / 16%);
 }
@@ -106,10 +115,6 @@
 .search {
   width: 20px;
   height: 20px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 10px;
 }
 .searchBar_wrapper {
   position: relative;

@@ -58,13 +58,15 @@ class Home extends Component {
       }
     });
   };
-  bookSearchHandler = (value) => {
+  bookSearchHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.elements.search.value?.toLowerCase();
     this.setState((prevState) => {
       const booksByTitle = [...prevState.books].filter(
-        (book) => book.title == value
+        (book) => book.title?.toLowerCase() == value
       );
       const booksByAuthor = [...prevState.books].filter(
-        (book) => book.AuthorName == value
+        (book) => book.AuthorName?.toLowerCase() == value
       );
 
       return {
@@ -391,14 +393,20 @@ class Home extends Component {
                   : classes.navBar
               }
             >
-              <div className={classes.searchBar_wrapper}>
-                <img src={search} className={classes.search} alt="" />
+              <form
+                className={classes.searchBar_wrapper}
+                onSubmit={this.bookSearchHandler}
+              >
+                <button className={classes.search_btn}>
+                  <img src={search} className={classes.search} alt="" />
+                </button>
                 <input
                   type="text"
                   className={classes.searchBar}
                   placeholder="Search books by name, genre, author and etc."
+                  id="search"
                 />
-              </div>
+              </form>
               <div className={classes.profileWrapper}>
                 <div className={classes.cartWrapper}>
                   {cartCounter}
