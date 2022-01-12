@@ -65,9 +65,9 @@ class Home extends Component {
     e.preventDefault();
     const value = e.target.elements.search.value?.toLowerCase();
     this.setState((prevState) => {
-      const booksByTitle = [...prevState.books].filter(
-        (book) => book.name?.toLowerCase() == value
-      );
+      const booksByTitle = [...prevState.books].filter((book) => {
+        return book.name.toLowerCase() == value;
+      });
       const booksByAuthor = [...prevState.books].filter(
         (book) => book.AuthorName?.toLowerCase() == value
       );
@@ -79,7 +79,7 @@ class Home extends Component {
             : booksByTitle.length > 0
             ? booksByTitle
             : [],
-        notFound: booksByAuthor.length === 0 && booksByTitle === 0,
+        notFound: booksByAuthor.length === 0 && booksByTitle.length === 0,
       };
     });
   };
