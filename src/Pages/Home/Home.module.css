@@ -190,9 +190,26 @@
 .resultsWrapper {
   position: fixed;
   z-index: 1000;
-  width: 100%;
+  width: 80%;
   padding: 20px;
   margin-top: 80px;
   background-color: #f7f7f7;
   box-shadow: 0px 11px 9px -10px rgb(64 60 67 / 16%);
+  box-sizing: border-box;
+}
+.exit_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  font-size: 30px;
+  color: red;
+  font-weight: 900;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+}
+.exit_btn:hover {
+  color: orange;
+  transform: scale(1.2);
 }

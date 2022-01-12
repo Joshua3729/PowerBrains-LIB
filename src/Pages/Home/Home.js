@@ -288,6 +288,7 @@ class Home extends Component {
     if (this.state.notFound) {
       searchResults = (
         <div className={classes.resultsWrapper}>
+          <button className={classes.exit_btn}>&times;</button>
           <p>Book not found!</p>
         </div>
       );
@@ -295,6 +296,7 @@ class Home extends Component {
     if (this.state.searchResults.length > 0 && !this.state.notFound) {
       searchResults = (
         <div className={classes.resultsWrapper}>
+          <button className={classes.exit_btn}></button>
           <h4>Search Results: </h4>
           <div className={classes.searchResults_wrapper}>
             {this.state.searchResults.map((result) => {
