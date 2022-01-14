@@ -9,6 +9,7 @@ import Modal from "../../Components/Modal/Modal";
 import Favorites from "../../Components/tabPages/Favorites/Favorites";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import SingleBook from "../../Components/tabPages/Books/SingleBook/SingleBook";
+import Loans from "../../Components/tabPages/Loans/Loans";
 
 class Home extends Component {
   state = {
@@ -34,6 +35,32 @@ class Home extends Component {
       this.setState({ cartData: cartData, numberOfCartItems: cartData.length });
     }
   }
+  borrowBookHandler = (id) => {
+    this.setState({ loadingModal: true });
+    fetch("http://localhost:5000/feed/loan", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.token,
+      },
+      body: JSON.stringify({
+        bookId: id,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) =>
+        this.setState({
+          requestSent: true,
+          loadingModal: false,
+          successMessage: res,
+          showModal: true,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
       let cartData = [...prevState.cartData];
@@ -265,7 +292,7 @@ class Home extends Component {
         break;
 
       case "loans":
-        page = <h1 style={{ marginTop: "100px" }}>loans</h1>;
+        page = <Loans />;
         break;
       case "returned":
         page = <h1 style={{ marginTop: "100px" }}>returned</h1>;
@@ -368,6 +395,7 @@ class Home extends Component {
           cartData={this.state.cartData}
           deleteCartItem={this.deleteItemFromCartHandler}
           clicked={this.openTrayHandler}
+          borrow={this.borrowBookHandler}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
