@@ -45,7 +45,12 @@ const cart = (props) => {
     );
     borrowBook = (
       <div className={classes.borrowBooks}>
-        <button className={classes.borrowBook_btn}>BORROW BOOK(S)</button>
+        <button
+          className={classes.borrowBook_btn}
+          onClick={props.borrow.bind(this, props.cartData)}
+        >
+          BORROW BOOK(S)
+        </button>
       </div>
     );
   }
