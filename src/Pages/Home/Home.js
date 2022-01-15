@@ -36,12 +36,6 @@ class Home extends Component {
     }
   }
   borrowBookHandler = (cartData) => {
-    const bookIds = [];
-    cartData.forEach((book) => {
-      bookIds.push(book.id);
-    });
-
-    console.log(bookIds);
     this.setState({ loadingModal: true });
     fetch("http://localhost:5000/feed/loan", {
       method: "POST",
@@ -51,7 +45,7 @@ class Home extends Component {
         Authorization: "Bearer " + this.props.token,
       },
       body: JSON.stringify({
-        bookIds: bookIds,
+        books: cartData,
       }),
     })
       .then((res) => {
@@ -64,6 +58,9 @@ class Home extends Component {
           successMessage: res,
           showModal: true,
         })
+        
+        localStorage.removeItem('cartData')
+
       )
       .catch((err) => console.log(err));
   };
