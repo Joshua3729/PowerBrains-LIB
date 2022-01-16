@@ -59,7 +59,7 @@ class Books extends Component {
             genre={book.category}
             addToCart={this.props.addToCart}
             bookData={{
-              id: book._id,
+              _id: book._id,
               imgUrl: book.imageUrl,
               title: book.name,
               rating: book.rating,

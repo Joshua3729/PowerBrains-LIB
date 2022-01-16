@@ -36,7 +36,7 @@ class Home extends Component {
     }
   }
   borrowBookHandler = (cartData) => {
-    this.setState({ loadingModal: true });
+    this.setState({ loading: true });
     fetch("http://localhost:5000/feed/loan", {
       method: "POST",
 
@@ -51,16 +51,18 @@ class Home extends Component {
       .then((res) => {
         return res.json();
       })
-      .then((res) =>
+      .then((res) =>{
         this.setState({
           requestSent: true,
-          loadingModal: false,
-          successMessage: res,
+          loading: false,
+          modalMessage: res.message,
           showModal: true,
+          cartData: [],
+          numberOfCartItems: null,
         })
         
         localStorage.removeItem('cartData')
-
+      }
       )
       .catch((err) => console.log(err));
   };
@@ -68,7 +70,7 @@ class Home extends Component {
     this.setState((prevState) => {
       let cartData = [...prevState.cartData];
       if (
-        !cartData.some((book) => book.id === bookData.id) &&
+        !cartData.some((book) => book._id === bookData._id) &&
         cartData.length < 3
       ) {
         cartData.push(bookData);
@@ -78,7 +80,7 @@ class Home extends Component {
           cartData: cartData,
           numberOfCartItems: cartData.length,
         };
-      } else if (cartData.some((book) => book.id === bookData.id)) {
+      } else if (cartData.some((book) => book._id === bookData._id)) {
         this.setState({
           showModal: true,
           requestSent: false,
