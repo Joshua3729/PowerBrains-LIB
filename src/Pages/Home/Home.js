@@ -49,9 +49,17 @@ class Home extends Component {
       }),
     })
       .then((res) => {
+        if (res.status === 400) {
+          throw new Error(
+            "You cant borrow any book at the moment because you owe the library more than R10"
+          );
+        }
+        if (res.status === 409) {
+          throw new Error("You have already borrowed the book(s)");
+        }
         return res.json();
       })
-      .then((res) =>{
+      .then((res) => {
         this.setState({
           requestSent: true,
           loading: false,
@@ -59,12 +67,19 @@ class Home extends Component {
           showModal: true,
           cartData: [],
           numberOfCartItems: null,
-        })
-        
-        localStorage.removeItem('cartData')
-      }
-      )
-      .catch((err) => console.log(err));
+        });
+
+        localStorage.removeItem("cartData");
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          requestSent: false,
+          loading: false,
+          modalMessage: err.message,
+          showModal: true,
+        });
+      });
   };
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
