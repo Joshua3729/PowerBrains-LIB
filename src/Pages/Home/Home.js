@@ -179,6 +179,28 @@ class Home extends Component {
         console.log(err);
       });
   };
+  getLoans = () => {
+    fetch("http://localhost:5000/feed/loans", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch loans.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          loans: resData.loans,
+          loansLength: resData.loans.length,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/remove-favorite", {
@@ -312,7 +334,7 @@ class Home extends Component {
         break;
 
       case "loans":
-        page = <Loans />;
+        page = <Loans token={this.props.token} getLoans={this.getLoans} />;
         break;
       case "returned":
         page = <h1 style={{ marginTop: "100px" }}>returned</h1>;
