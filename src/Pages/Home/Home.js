@@ -27,7 +27,7 @@ class Home extends Component {
     books: null,
     searchResults: [],
     notFound: false,
-    loans: [],
+    loans: null,
     loansLength: 0,
   };
 
@@ -197,7 +197,6 @@ class Home extends Component {
         console.log(resData.loan);
         this.setState({
           loans: resData.loan,
-          loansLength: resData.loan.length,
         });
       })
       .catch((err) => {
@@ -337,7 +336,14 @@ class Home extends Component {
         break;
 
       case "loans":
-        page = <Loans token={this.props.token} getLoans={this.getLoans} />;
+        page = (
+          <Loans
+            token={this.props.token}
+            getLoans={this.getLoans}
+            loans={this.state.loans}
+            loansLength={this.state.loansLength}
+          />
+        );
         break;
       case "returned":
         page = <h1 style={{ marginTop: "100px" }}>returned</h1>;
