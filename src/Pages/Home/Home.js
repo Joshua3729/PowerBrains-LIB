@@ -27,6 +27,8 @@ class Home extends Component {
     books: null,
     searchResults: [],
     notFound: false,
+    loans: [],
+    loansLength: 0,
   };
 
   componentDidMount() {
@@ -192,9 +194,10 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
+        console.log(resData.loan);
         this.setState({
-          loans: resData.loans,
-          loansLength: resData.loans.length,
+          loans: resData.loan,
+          loansLength: resData.loan.length,
         });
       })
       .catch((err) => {

@@ -1,4 +1,24 @@
 .Loans_wrapper {
   padding: 20px;
   margin-top: 80px;
+  background-color: #f7f7f7;
+  min-height: calc(120vh - 80px);
+  box-sizing: border-box;
+}
+.BookLoan {
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.loanedBooks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+.bookLoans {
+  height: 200px;
+  background-color: turquoise;
 }
