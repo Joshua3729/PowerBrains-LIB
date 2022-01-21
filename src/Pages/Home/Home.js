@@ -60,6 +60,9 @@ class Home extends Component {
           if (res.status === 409) {
             throw new Error("You have already borrowed the book(s)");
           }
+          if (res.status === 405) {
+            throw new Error("You can't borrow more than 3 books per loan term");
+          }
           return res.json();
         })
         .then((res) => {
@@ -200,7 +203,7 @@ class Home extends Component {
       })
       .then((resData) => {
         this.setState({
-          loans: resData.loan,
+          loans: resData.loans,
         });
       })
       .catch((err) => {

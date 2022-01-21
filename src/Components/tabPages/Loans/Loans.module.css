@@ -24,6 +24,13 @@
   background-color: #f7f7f7;
   box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
 }
+.BookLoan {
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+.BookLoan:last-child {
+  margin-bottom: 0;
+}
 .bookLoans img {
   margin-right: 20px;
   width: 40%;

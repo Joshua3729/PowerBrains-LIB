@@ -8,16 +8,25 @@ class Loans extends Component {
   }
   render() {
     let loans = <h1>Loading...</h1>;
-    console.log(this.props.loansLength);
     if (this.props.loans) {
-      loans = this.props.loans.books.map((loanBook, i) => {
+      console.log(this.props.loans);
+
+      loans = this.props.loans.map((loan, i) => {
         return (
-          <div className={classes.bookLoans} key={i}>
-            <img src={loanBook.imgUrl} alt="" />
-            <div className={classes.right_side}>
-              <h4>{loanBook.title.slice(0, 20) + "..."}</h4>
-              <p>{loanBook.author}</p>
-              <StarRating rating={loanBook.rating} />
+          <div className={classes.BookLoan} key={i}>
+            <p>Date Out: 20 January 2022</p>
+            <p>Return Date: 20 February 2022</p>
+            <p>Time Remaining: 30 Days</p>
+            <button>Return Book(s)</button>
+            <div className={classes.loanedBooks}>
+              <div className={classes.bookLoans}>
+                <img src={loan.book.imgUrl} alt="" />
+                <div className={classes.right_side}>
+                  <h4>{loan.book.title.slice(0, 20) + "..."}</h4>
+                  <p>{loan.book.author}</p>
+                  <StarRating rating={loan.book.rating} />
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -26,15 +35,7 @@ class Loans extends Component {
     return (
       <div className={classes.Loans_wrapper}>
         <h1>Loans</h1>
-        <div className={classes.LoansGrid_wrapper}>
-          <div className={classes.BookLoan}>
-            <p>Date Out: 20 January 2022</p>
-            <p>Return Date: 20 February 2022</p>
-            <p>Time Remaining: 30 Days</p>
-            <button>Return Book(s)</button>
-            <div className={classes.loanedBooks}>{loans}</div>
-          </div>
-        </div>
+        <div className={classes.LoansGrid_wrapper}>{loans}</div>
       </div>
     );
   }
