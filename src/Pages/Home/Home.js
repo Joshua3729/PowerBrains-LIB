@@ -39,49 +39,54 @@ class Home extends Component {
   }
   borrowBookHandler = (cartData) => {
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/loan", {
-      method: "POST",
+    cartData.forEach((book, i) => {
+      fetch("http://localhost:5000/feed/loan", {
+        method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.props.token,
-      },
-      body: JSON.stringify({
-        books: cartData,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 400) {
-          throw new Error(
-            "You cant borrow any book at the moment because you owe the library more than R10"
-          );
-        }
-        if (res.status === 409) {
-          throw new Error("You have already borrowed the book(s)");
-        }
-        return res.json();
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.props.token,
+        },
+        body: JSON.stringify({
+          book: book,
+        }),
       })
-      .then((res) => {
-        this.setState({
-          requestSent: true,
-          loading: false,
-          modalMessage: res.message,
-          showModal: true,
-          cartData: [],
-          numberOfCartItems: null,
-        });
+        .then((res) => {
+          if (res.status === 400) {
+            throw new Error(
+              "You cant borrow any book at the moment because you owe the library more than R10"
+            );
+          }
+          if (res.status === 409) {
+            throw new Error("You have already borrowed the book(s)");
+          }
+          return res.json();
+        })
+        .then((res) => {
+          console.log(cartData.length + "vs" + i);
+          if (i == cartData.length - 1) {
+            this.setState({
+              requestSent: true,
+              loading: false,
+              modalMessage: res.message,
+              showModal: true,
+              cartData: [],
+              numberOfCartItems: null,
+            });
 
-        localStorage.removeItem("cartData");
-      })
-      .catch((err) => {
-        console.log(err);
-        this.setState({
-          requestSent: false,
-          loading: false,
-          modalMessage: err.message,
-          showModal: true,
+            localStorage.removeItem("cartData");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          this.setState({
+            requestSent: false,
+            loading: false,
+            modalMessage: err.message,
+            showModal: true,
+          });
         });
-      });
+    });
   };
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
@@ -194,7 +199,6 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData.loan);
         this.setState({
           loans: resData.loan,
         });
@@ -419,6 +423,17 @@ class Home extends Component {
             })}
           </div>
         </div>
+      );
+    }
+    if (this.state.loans) {
+      const date = new Date(this.state.loans.createdAt);
+
+      console.log(
+        date.getDate() +
+          " " +
+          date.toLocaleString("en-us", { month: "long" }) +
+          " " +
+          date.getFullYear()
       );
     }
 
