@@ -41,7 +41,8 @@
 }
 .cart_btn:disabled {
   color: lightgray;
-  border: solid 3px #3d272a;
+  border: solid 3px lightgray;
+  cursor: not-allowed;
 }
 .favorite {
   border-radius: 10px;
