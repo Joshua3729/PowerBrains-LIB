@@ -63,6 +63,9 @@ class Home extends Component {
           if (res.status === 405) {
             throw new Error("You can't borrow more than 3 books per loan term");
           }
+          if (res.status === 407) {
+            throw new Error("This is unavailable");
+          }
           return res.json();
         })
         .then((res) => {

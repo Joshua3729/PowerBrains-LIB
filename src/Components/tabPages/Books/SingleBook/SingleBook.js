@@ -3,9 +3,19 @@ import classes from "./SingleBook.module.css";
 import StarRating from "../../../StarRating/StarRating";
 
 const singleBook = (props) => {
+  let availabilityState = null;
+  if (props.notAvailable) {
+    availabilityState = (
+      <div className={classes.availabilityState}>Out Of Stock</div>
+    );
+  }
+
   return (
     <div className={classes.Book}>
-      <img src={props.imgUrl} />
+      <div className={classes.bookCoverWrapper}>
+        {availabilityState}
+        <img src={props.imgUrl} />
+      </div>
       <div className={classes.bookInfo}>
         <div className={classes.titleWrapper}>
           <h1>{props.title.slice(0, 10) + "..."}</h1>
@@ -20,6 +30,7 @@ const singleBook = (props) => {
           <button
             className={classes.cart_btn}
             onClick={props.addToCart.bind(this, props.bookData)}
+            disabled={props.notAvailable}
           >
             <i className="fas fa-cart-plus"></i>
           </button>
