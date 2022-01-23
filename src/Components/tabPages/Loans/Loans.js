@@ -7,15 +7,23 @@ class Loans extends Component {
     this.props.getLoans();
   }
 
-  dateHandler = (date) => {
-    const date = new Date(date);
+  getDateHandler = (dateArg) => {
+    const date = new Date(dateArg);
 
     const day = date.getDate();
-    const month = date.date.toLocaleString("en-us", { month: "long" });
+    const month = date.toLocaleString("en-us", { month: "long" });
     const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
   };
+  getDaysRemaining = (returnDate) => {
+    const today = new Date(Date.now());
+    const target = new Date(returnDate);
+    const differenceInTime = target.getTime() - today.getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+    return Math.floor(differenceInDays) + 1;
+  };
+
   render() {
     let loans = <h1>Loading...</h1>;
     if (this.props.loans) {
@@ -24,9 +32,12 @@ class Loans extends Component {
       loans = this.props.loans.map((loan, i) => {
         return (
           <div className={classes.BookLoan} key={i}>
-            <p>Date Out: 20 January 2022</p>
-            <p>Return Date: 20 February 2022</p>
-            <p>Time Remaining: 30 Days</p>
+            <p>Date Out: {this.getDateHandler(loan.book.dateOut)}</p>
+            <p>Return Date: {this.getDateHandler(loan.book.dateReturned)}</p>
+            <p>
+              Time Remaining: {this.getDaysRemaining(loan.book.dateReturned)}{" "}
+              Days
+            </p>
             <button>Return Book(s)</button>
             <div className={classes.loanedBooks}>
               <div className={classes.bookLoans}>
