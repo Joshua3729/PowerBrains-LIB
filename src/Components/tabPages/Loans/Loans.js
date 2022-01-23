@@ -6,6 +6,16 @@ class Loans extends Component {
   componentDidMount() {
     this.props.getLoans();
   }
+
+  dateHandler = (date) => {
+    const date = new Date(date);
+
+    const day = date.getDate();
+    const month = date.date.toLocaleString("en-us", { month: "long" });
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+  };
   render() {
     let loans = <h1>Loading...</h1>;
     if (this.props.loans) {
