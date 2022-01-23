@@ -94,6 +94,63 @@ class Home extends Component {
         });
     });
   };
+
+  returnBookHandler = (bookData) => {
+    this.setState({ loading: true });
+    fetch("http://localhost:5000/feed/loan", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.token,
+      },
+      body: JSON.stringify({
+        book: book,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 400) {
+          throw new Error(
+            "You cant borrow any book at the moment because you owe the library more than R10"
+          );
+        }
+        if (res.status === 409) {
+          throw new Error("You have already borrowed the book(s)");
+        }
+        if (res.status === 405) {
+          throw new Error("You can't borrow more than 3 books per loan term");
+        }
+        if (res.status === 407) {
+          throw new Error("This is unavailable");
+        }
+        return res.json();
+      })
+      .then((res) => {
+        console.log(cartData.length + "vs" + i);
+        if (i == cartData.length - 1) {
+          this.setState({
+            requestSent: true,
+            loading: false,
+            modalMessage: res.message,
+            showModal: true,
+            cartData: [],
+            numberOfCartItems: null,
+          });
+
+          localStorage.removeItem("cartData");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          requestSent: false,
+          loading: false,
+          modalMessage: err.message,
+          showModal: true,
+        });
+      });
+  };
+
   addToCartHandler = (bookData) => {
     this.setState((prevState) => {
       let cartData = [...prevState.cartData];

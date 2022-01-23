@@ -41,3 +41,10 @@
   font-size: 20px;
   margin: 0 0 20px 0;
 }
+.returnButton {
+  padding: 5px 10px;
+  font-weight: 900;
+  background-color: #050a30;
+  color: white;
+  border: none;
+}

@@ -38,7 +38,7 @@ class Loans extends Component {
               Time Remaining: {this.getDaysRemaining(loan.book.dateReturned)}{" "}
               Days
             </p>
-            <button>Return Book(s)</button>
+            <button className={classes.returnButton}>Return Book(s)</button>
             <div className={classes.loanedBooks}>
               <div className={classes.bookLoans}>
                 <img src={loan.book.imgUrl} alt="" />
