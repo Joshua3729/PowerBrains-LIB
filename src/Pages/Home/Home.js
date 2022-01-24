@@ -97,7 +97,7 @@ class Home extends Component {
 
   returnBookHandler = (bookData) => {
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/ruturn-book", {
+    fetch("http://localhost:5000/feed/return-book", {
       method: "POST",
 
       headers: {
@@ -389,6 +389,7 @@ class Home extends Component {
             getLoans={this.getLoans}
             loans={this.state.loans}
             loansLength={this.state.loansLength}
+            returnBook={this.returnBookHandler}
           />
         );
         break;
