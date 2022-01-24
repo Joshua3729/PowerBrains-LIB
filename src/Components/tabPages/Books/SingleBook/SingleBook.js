@@ -37,7 +37,7 @@ const singleBook = (props) => {
           </button>
           <button
             className={classes.favorite}
-            onClick={props.addFavorite.bind(this, props.bookData.id)}
+            onClick={props.addFavorite.bind(this, props.bookData._id)}
           >
             Favorite
           </button>

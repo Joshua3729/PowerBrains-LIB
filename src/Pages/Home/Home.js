@@ -218,6 +218,7 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
+        console.log(resData);
         this.setState({
           favorites: resData.books,
           favoritesLength: resData.books.length,
@@ -289,6 +290,7 @@ class Home extends Component {
       );
   };
   addFavoriteHandler = (id) => {
+    console.log(id);
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/favorite", {
       method: "POST",
