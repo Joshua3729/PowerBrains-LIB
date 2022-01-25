@@ -1,0 +1,7 @@
+.Returned {
+  position: relative;
+  padding: 20px;
+  margin-top: 80px;
+  background-color: #f7f7f7;
+  min-height: calc(120vh - 80px);
+}
