@@ -11,6 +11,11 @@
   padding: 10px;
   box-sizing: border-box;
 }
+.BookLoan p {
+  font-size: 20px;
+  color: #050a30;
+  font-weight: 700;
+}
 .loanedBooks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

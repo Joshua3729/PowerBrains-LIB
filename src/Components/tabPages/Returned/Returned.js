@@ -25,9 +25,16 @@ class Returned extends Component {
         return (
           <div className={classes.BookLoan} key={i}>
             <p>
-              Date Returned: {this.getDateHandler(returnItem.book.dateReturned)}
+              Date Borrowed:{" "}
+              <span>{this.getDateHandler(returnItem.book.dateOut)}</span>
             </p>
-            <p>Return Status: {}</p>
+            <p>
+              Date Returned:{" "}
+              <span>{this.getDateHandler(returnItem.book.dateReturned)}</span>
+            </p>
+            <p>
+              Return Status: <span>{returnItem.returnStatus}</span>
+            </p>
 
             <div className={classes.loanedBooks}>
               <div className={classes.bookLoans}>
