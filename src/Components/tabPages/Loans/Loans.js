@@ -32,11 +32,16 @@ class Loans extends Component {
       loans = this.props.loans.map((loan, i) => {
         return (
           <div className={classes.BookLoan} key={i}>
-            <p>Date Out: {this.getDateHandler(loan.book.dateOut)}</p>
-            <p>Return Date: {this.getDateHandler(loan.book.dateReturned)}</p>
             <p>
-              Time Remaining: {this.getDaysRemaining(loan.book.dateReturned)}{" "}
-              Days
+              Date Out: <span>{this.getDateHandler(loan.book.dateOut)}</span>
+            </p>
+            <p>
+              Return Date:{" "}
+              <span>{this.getDateHandler(loan.book.dateReturned)}</span>
+            </p>
+            <p>
+              Time Remaining:{" "}
+              <span>{this.getDaysRemaining(loan.book.dateReturned)} Days</span>
             </p>
             <button
               className={classes.returnButton}
