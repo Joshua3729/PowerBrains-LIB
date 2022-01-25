@@ -10,6 +10,7 @@ import Favorites from "../../Components/tabPages/Favorites/Favorites";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import SingleBook from "../../Components/tabPages/Books/SingleBook/SingleBook";
 import Loans from "../../Components/tabPages/Loans/Loans";
+import Returned from "../../Components/tabPages/Returned/Returned";
 
 class Home extends Component {
   state = {
@@ -249,6 +250,7 @@ class Home extends Component {
         console.log(err);
       });
   };
+
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/remove-favorite", {
@@ -394,7 +396,7 @@ class Home extends Component {
         );
         break;
       case "returned":
-        page = <h1 style={{ marginTop: "100px" }}>returned</h1>;
+        page = <Returned />;
         break;
 
       default:
