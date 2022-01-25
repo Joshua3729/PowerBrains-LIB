@@ -30,7 +30,8 @@ class Home extends Component {
     notFound: false,
     loans: null,
     loansLength: 0,
-    returned: null,
+    returned: [],
+    returnedLength: 0,
   };
 
   componentDidMount() {
@@ -419,7 +420,13 @@ class Home extends Component {
         );
         break;
       case "returned":
-        page = <Returned getReturnedBooks={this.getReturned} />;
+        page = (
+          <Returned
+            getReturnedBooks={this.getReturned}
+            returned={this.state.returned}
+            returnedLength={this.state.returnedLength}
+          />
+        );
         break;
 
       default:
