@@ -30,6 +30,7 @@ class Home extends Component {
     notFound: false,
     loans: null,
     loansLength: 0,
+    returned: null,
   };
 
   componentDidMount() {
@@ -184,6 +185,28 @@ class Home extends Component {
         notFound: booksByAuthor.length === 0 && booksByTitle.length === 0,
       };
     });
+  };
+
+  getReturned = () => {
+    fetch("http://localhost:5000/feed/returned", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch returned.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          returned: resData.returned,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   getBooks = () => {
@@ -396,7 +419,7 @@ class Home extends Component {
         );
         break;
       case "returned":
-        page = <Returned />;
+        page = <Returned getReturnedBooks={this.getReturned} />;
         break;
 
       default:
