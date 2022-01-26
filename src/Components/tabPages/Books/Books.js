@@ -66,12 +66,13 @@ class Books extends Component {
               rating: book.rating,
               author: book.AuthorName,
             }}
+            book={book}
             addFavorite={this.props.addFavorite}
             key={book._id}
             alreadyAdded={this.state.cartData.some(
               (bookData) => bookData.id === book._id
             )}
-            tabChange={this.props.tabChange}
+            viewBook={this.props.viewBook}
           />
         );
       });

@@ -11,6 +11,7 @@ import Spinner from "../../Components/UI/Spinner/Spinner";
 import SingleBook from "../../Components/tabPages/Books/SingleBook/SingleBook";
 import Loans from "../../Components/tabPages/Loans/Loans";
 import Returned from "../../Components/tabPages/Returned/Returned";
+import ViewBook from "../../Components/ViewBook/ViewBook";
 
 class Home extends Component {
   state = {
@@ -32,6 +33,7 @@ class Home extends Component {
     loansLength: 0,
     returned: [],
     returnedLength: null,
+    viewBook: false,
   };
 
   componentDidMount() {
@@ -382,6 +384,17 @@ class Home extends Component {
       };
     });
   };
+
+  viewBookHandler = (bookData) => {
+    this.setState({
+      viewBook: true,
+      bookData: bookData,
+    });
+  };
+  closeBookHandler = () => {
+    this.setState({ viewBook: false });
+  };
+
   scrollEffectHandler = () => {
     window.scrollY > 0
       ? this.setState({ scroll: true })
@@ -437,7 +450,7 @@ class Home extends Component {
             addToCart={this.addToCartHandler}
             getBooks={this.getBooks}
             books={this.state.books}
-            tabChange={this.tabChangeHandler}
+            viewBook={this.viewBookHandler}
           />
         );
         break;
@@ -540,6 +553,10 @@ class Home extends Component {
           deleteCartItem={this.deleteItemFromCartHandler}
           clicked={this.openTrayHandler}
           borrow={this.borrowBookHandler}
+        />
+        <ViewBook
+          clicked={this.closeBookhandler}
+          openTray={this.state.viewBook}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>

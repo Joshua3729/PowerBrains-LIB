@@ -15,7 +15,10 @@ const singleBook = (props) => {
     <div className={classes.Book}>
       <div className={classes.bookCoverWrapper}>
         {availabilityState}
-        <img src={props.imgUrl} onClick={props.tabChange.bind(this, "book")} />
+        <img
+          src={props.imgUrl}
+          onClick={props.viewBook.bind(this, props.book)}
+        />
       </div>
       <div className={classes.bookInfo}>
         <div className={classes.titleWrapper}>
