@@ -69,18 +69,3 @@
   transform: scale(1.2);
   color: gray;
 }
-.emptyStateWrapper {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.emptyStateWrapper img {
-  display: flex;
-  width: 400px;
-  margin: 0 auto;
-}
-.emptyStateWrapper p {
-  text-align: center;
-  font-size: 25px;
-}
