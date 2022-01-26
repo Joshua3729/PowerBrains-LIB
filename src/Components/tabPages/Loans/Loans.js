@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Loans.module.css";
 import StarRating from "../../StarRating/StarRating";
+import EmptyState from "../../EmptyState/EmptyState";
 
 class Loans extends Component {
   componentDidMount() {
@@ -26,7 +27,9 @@ class Loans extends Component {
 
   render() {
     let loans = <h1>Loading...</h1>;
-    if (this.props.loans) {
+    if (this.props.loansLength === 0) loans = <EmptyState />;
+
+    if (this.props.loans.length > 0) {
       console.log(this.props.loans);
 
       loans = this.props.loans.map((loan, i) => {

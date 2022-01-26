@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classes from "./Favorites.module.css";
+import EmptyState from "../../EmptyState/EmptyState";
 
 class Favorites extends Component {
   componentDidMount() {
@@ -12,15 +13,11 @@ class Favorites extends Component {
     console.log(this.props.favorites);
     if (this.props.favoritesLength === 0)
       favorites = (
-        <div className={classes.emptyStateWrapper}>
-          <img
-            src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
-            alt=""
-          />
-          <p>
-            You Dont Have A Favorite Book. Add Your First Favorite Book Now.
-          </p>
-        </div>
+        <EmptyState
+          message={
+            "You Dont Have Any Favorite Book. Add Your First Favorite Book Now."
+          }
+        />
       );
 
     if (this.props.favorites.length > 0) {

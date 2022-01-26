@@ -28,7 +28,7 @@ class Home extends Component {
     books: null,
     searchResults: [],
     notFound: false,
-    loans: null,
+    loans: [],
     loansLength: 0,
     returned: [],
     returnedLength: 0,
