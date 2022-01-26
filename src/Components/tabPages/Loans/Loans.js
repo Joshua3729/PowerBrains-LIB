@@ -27,7 +27,8 @@ class Loans extends Component {
 
   render() {
     let loans = <h1>Loading...</h1>;
-    if (this.props.loansLength === 0) loans = <EmptyState />;
+    if (this.props.loansLength === 0)
+      loans = <EmptyState message={"You Have Not Borrowed Any Book Yet."} />;
 
     if (this.props.loans.length > 0) {
       console.log(this.props.loans);

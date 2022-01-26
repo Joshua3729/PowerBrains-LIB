@@ -31,7 +31,7 @@ class Home extends Component {
     loans: [],
     loansLength: 0,
     returned: [],
-    returnedLength: 0,
+    returnedLength: null,
   };
 
   componentDidMount() {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Returned.module.css";
 import StarRating from "../../StarRating/StarRating";
+import EmptyState from "../../EmptyState/EmptyState";
 
 class Returned extends Component {
   componentDidMount() {
@@ -18,7 +19,11 @@ class Returned extends Component {
 
   render() {
     let returned = <h1>Loading...</h1>;
-    if (this.props.returned) {
+
+    if (this.props.returnedLength === 0)
+      returned = <EmptyState message={"You Have Not Return Any Book Yet."} />;
+
+    if (this.props.returned.length > 0) {
       console.log(this.props.returned);
 
       returned = this.props.returned.map((returnItem, i) => {
