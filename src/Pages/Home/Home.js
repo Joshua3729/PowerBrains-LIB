@@ -437,6 +437,7 @@ class Home extends Component {
             addToCart={this.addToCartHandler}
             getBooks={this.getBooks}
             books={this.state.books}
+            tabChange={this.tabChangeHandler}
           />
         );
         break;

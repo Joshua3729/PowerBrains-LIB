@@ -1,0 +1,15 @@
+.cartTray {
+  position: fixed;
+  padding: 30px 10px;
+  text-align: center;
+  box-sizing: border-box;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background-color: #050a30;
+  color: white;
+  transition: all 0.5s;
+  z-index: 1200;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

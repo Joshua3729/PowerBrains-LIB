@@ -71,6 +71,7 @@ class Books extends Component {
             alreadyAdded={this.state.cartData.some(
               (bookData) => bookData.id === book._id
             )}
+            tabChange={this.props.tabChange}
           />
         );
       });

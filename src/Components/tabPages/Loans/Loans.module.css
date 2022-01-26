@@ -1,7 +1,7 @@
 .Loans_wrapper {
   padding: 20px;
   margin-top: 80px;
-  background-color: #f7f7f7;
+  background-color: hsl(0, 0%, 97%);
   min-height: calc(120vh - 80px);
   box-sizing: border-box;
 }
