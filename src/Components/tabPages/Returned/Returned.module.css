@@ -29,16 +29,21 @@
   margin-bottom: 20px;
   box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
 }
-.BookLoan p {
+.RetunedInfo p {
   font-size: 20px;
   color: #050a30;
   font-weight: 700;
 }
-.BookLoan span {
+.RetunedInfo span {
   font-size: 17px;
   font-weight: normal;
   color: black;
   font-style: italic;
+}
+.RetunedInfo {
+  padding: 5px;
+  box-shadow: 0 2px 5px 1px rgba(15, 14, 15, 0.16);
+  background-color: white;
 }
 .BookLoan:last-child {
   margin-bottom: 0;

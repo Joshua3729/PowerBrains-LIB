@@ -24,17 +24,19 @@ class Returned extends Component {
       returned = this.props.returned.map((returnItem, i) => {
         return (
           <div className={classes.BookLoan} key={i}>
-            <p>
-              Date Borrowed:{" "}
-              <span>{this.getDateHandler(returnItem.book.dateOut)}</span>
-            </p>
-            <p>
-              Date Returned:{" "}
-              <span>{this.getDateHandler(returnItem.book.dateReturned)}</span>
-            </p>
-            <p>
-              Return Status: <span>{returnItem.returnStatus}</span>
-            </p>
+            <div className={classes.RetunedInfo}>
+              <p>
+                Date Borrowed:{" "}
+                <span>{this.getDateHandler(returnItem.book.dateOut)}</span>
+              </p>
+              <p>
+                Date Returned:{" "}
+                <span>{this.getDateHandler(returnItem.book.dateReturned)}</span>
+              </p>
+              <p>
+                Return Status: <span>{returnItem.returnStatus}</span>
+              </p>
+            </div>
 
             <div className={classes.loanedBooks}>
               <div className={classes.bookLoans}>
