@@ -555,7 +555,7 @@ class Home extends Component {
           borrow={this.borrowBookHandler}
         />
         <ViewBook
-          clicked={this.closeBookhandler}
+          clicked={this.closeBookHandler}
           openTray={this.state.viewBook}
         />
         <div className={classes.Home}>

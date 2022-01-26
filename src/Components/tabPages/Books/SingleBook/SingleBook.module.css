@@ -14,7 +14,13 @@
 .bookCoverWrapper img {
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  transition: transform 0.5s;
 }
+.bookCoverWrapper img:hover {
+  transform: scale(1.2);
+}
+
 .Book h1 {
   margin: 0;
   font-size: 20px;
@@ -91,4 +97,7 @@
   color: white;
   background-color: chartreuse;
   padding: 10px 0;
+}
+.bookCoverWrapper {
+  background-color: lightgray;
 }
