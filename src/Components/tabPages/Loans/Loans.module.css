@@ -1,4 +1,5 @@
 .Loans_wrapper {
+  position: relative;
   padding: 20px;
   margin-top: 80px;
   background-color: hsl(0, 0%, 97%);
@@ -58,4 +59,10 @@
   background-color: #050a30;
   color: white;
   border: none;
+}
+.loadingWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

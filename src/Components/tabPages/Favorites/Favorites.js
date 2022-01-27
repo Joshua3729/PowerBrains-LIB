@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Favorites.module.css";
 import EmptyState from "../../EmptyState/EmptyState";
+import Loading from "../../UI/Loading/Loading";
 
 class Favorites extends Component {
   componentDidMount() {
@@ -8,7 +9,11 @@ class Favorites extends Component {
   }
 
   render() {
-    let favorites = <h1>Loading...</h1>;
+    let favorites = (
+      <div className={classes.loadingWrapper}>
+        <Loading />
+      </div>
+    );
     console.log(this.props.favoritesLength);
     console.log(this.props.favorites);
     if (this.props.favoritesLength === 0)

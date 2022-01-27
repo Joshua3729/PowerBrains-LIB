@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Loans.module.css";
 import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
+import Loading from "../../UI/Loading/Loading";
 
 class Loans extends Component {
   componentDidMount() {
@@ -26,7 +27,11 @@ class Loans extends Component {
   };
 
   render() {
-    let loans = <h1>Loading...</h1>;
+    let loans = (
+      <div className={classes.loadingWrapper}>
+        <Loading />
+      </div>
+    );
     if (this.props.loansLength === 0)
       loans = <EmptyState message={"You Have Not Borrowed Any Book Yet."} />;
 

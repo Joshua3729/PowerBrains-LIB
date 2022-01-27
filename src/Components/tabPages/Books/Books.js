@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import StarRating from "../../StarRating/StarRating";
 import classes from "./Books.module.css";
 import SingleBook from "./SingleBook/SingleBook";
+import Loading from "../../UI/Loading/Loading";
 
 class Books extends Component {
   state = {
@@ -21,7 +22,11 @@ class Books extends Component {
   }
 
   render() {
-    let books = <h1>Loading...</h1>;
+    let books = (
+      <div className={classes.loadingWrapper}>
+        <Loading />
+      </div>
+    );
     let booksData;
     if (this.props.books) {
       switch (this.state.activeTab) {

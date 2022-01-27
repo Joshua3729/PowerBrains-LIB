@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Returned.module.css";
 import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
+import Loading from "../../UI/Loading/Loading";
 
 class Returned extends Component {
   componentDidMount() {
@@ -18,7 +19,11 @@ class Returned extends Component {
   };
 
   render() {
-    let returned = <h1>Loading...</h1>;
+    let returned = (
+      <div className={classes.loadingWrapper}>
+        <Loading />
+      </div>
+    );
 
     if (this.props.returnedLength === 0)
       returned = <EmptyState message={"You Have Not Return Any Book Yet."} />;
