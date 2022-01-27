@@ -497,6 +497,8 @@ class Home extends Component {
                   author={result.AuthorName}
                   genre={result.category}
                   addToCart={this.addToCartHandler}
+                  viewBook={this.viewBookHandler}
+                  book={result}
                   bookData={{
                     id: result._id,
                     imgUrl: result.imageUrl,
