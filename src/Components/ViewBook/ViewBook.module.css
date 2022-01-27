@@ -67,3 +67,44 @@
   font-size: 20px;
   font-weight: 700;
 }
+
+.bookSummary {
+  overflow-y: scroll;
+  height: 250px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.bookSummary p {
+  margin: 0;
+}
+.bookSummary::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+.bookSummary::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.bookSummary::-webkit-scrollbar-thumb {
+  background-color: #c9c8c8;
+}
+.bookSummary::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b2b2;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #c9c8c8;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b2b2;
+}

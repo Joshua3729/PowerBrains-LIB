@@ -32,7 +32,7 @@ const viewBook = (props) => {
             <p className={classes.statLabel}>Pages</p>
           </div>
           <div className={classes.bookStat}>
-            <p className={classes.stat}>2012</p>
+            <p className={classes.stat}>{props.bookData?.release}</p>
             <p className={classes.statLabel}>Release</p>
           </div>
           <div className={classes.bookStat}>
@@ -41,12 +41,7 @@ const viewBook = (props) => {
           </div>
         </div>
         <div className={classes.bookSummary}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
-            in impedit. Veniam nulla velit voluptates mollitia corrupti earum
-            obcaecati sunt placeat, facere sequi nam ullam natus, rem illo
-            repudiandae amet.
-          </p>
+          <p>{props.bookData?.summary}</p>
         </div>
       </div>
     </div>,
