@@ -34,6 +34,7 @@ class Home extends Component {
     returned: [],
     returnedLength: null,
     viewBook: false,
+    bookData: null,
   };
 
   componentDidMount() {
@@ -557,6 +558,7 @@ class Home extends Component {
         <ViewBook
           clicked={this.closeBookHandler}
           openTray={this.state.viewBook}
+          bookData={this.state.bookData}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>

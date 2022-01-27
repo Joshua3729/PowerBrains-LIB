@@ -29,3 +29,41 @@
   color: orange;
   transform: scale(1.2);
 }
+.bookCover {
+  height: 178px;
+  width: 128px;
+  margin: 0 auto;
+}
+
+.bookCover img {
+  width: 100%;
+  height: 100%;
+}
+.bookInfo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.bookStatGrid {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bookStat {
+  text-align: center;
+  border-right: solid lightgray 1px;
+}
+
+.bookStat:last-child {
+  border: none;
+}
+
+.bookStat p {
+  margin: 0 0 10px 0;
+}
+
+.stat {
+  font-size: 20px;
+  font-weight: 700;
+}
