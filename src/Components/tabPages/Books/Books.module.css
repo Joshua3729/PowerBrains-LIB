@@ -1,5 +1,4 @@
 .books {
-  position: relative;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -59,6 +58,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* .books_wrapper {
+.grid_wrapper {
   position: relative;
-} */
+  min-height: 300px;
+}

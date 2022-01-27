@@ -28,7 +28,7 @@ const viewBook = (props) => {
         </div>
         <div className={classes.bookStatGrid}>
           <div className={classes.bookStat}>
-            <p className={classes.stat}>196</p>
+            <p className={classes.stat}>{props.bookData?.pages}</p>
             <p className={classes.statLabel}>Pages</p>
           </div>
           <div className={classes.bookStat}>
