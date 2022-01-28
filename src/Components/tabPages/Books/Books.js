@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import StarRating from "../../StarRating/StarRating";
 import classes from "./Books.module.css";
 import SingleBook from "./SingleBook/SingleBook";
 import Loading from "../../UI/Loading/Loading";
@@ -82,102 +81,7 @@ class Books extends Component {
         );
       });
     }
-    // let bookInfo = [
-    //   {
-    //     imgUrl:
-    //       "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
-    //     title: "Ghosts of the past",
-    //     author: "Tony Park",
-    //     rating: 3,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
-    //     title: "Reproducing Racism",
-    //     author: "Daria Roithmayr",
-    //     rating: 2,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
-    //     title: "The Past Is Rising",
-    //     author: "Kathryn By Waters",
-    //     rating: 4,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
-    //     title: "Ghosts of the past",
-    //     author: "Tony Park",
-    //     rating: 3,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
-    //     title: "Reproducing Racism",
-    //     author: "Daria Roithmayr",
-    //     rating: 2,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
-    //     title: "The Past Is Rising",
-    //     author: "Kathryn By Waters",
-    //     rating: 4,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
-    //     title: "Ghosts of the past",
-    //     author: "Tony Park",
-    //     rating: 3,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
-    //     title: "Reproducing Racism",
-    //     author: "Daria Roithmayr",
-    //     rating: 2,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
-    //     title: "The Past Is Rising",
-    //     author: "Kathryn By Waters",
-    //     rating: 4,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://www.panmacmillan.co.za/static/1593173b58aaa83539aba7ba3f6825bb/3a250/9781770106789.jpg",
-    //     title: "Ghosts of the past",
-    //     author: "Tony Park",
-    //     rating: 3,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh623-TCBO3oF3dfcOPsg3NRYCIIcj8qj9q72THvULStptj_A6evTocbWnwP7ZXZ9rKQ&usqp=CAU",
-    //     title: "Reproducing Racism",
-    //     author: "Daria Roithmayr",
-    //     rating: 2,
-    //   },
-    //   {
-    //     imgUrl:
-    //       "https://i.pinimg.com/474x/f7/c8/12/f7c812c9b0296cd9f119e33a06d9a256.jpg",
-    //     title: "The Past Is Rising",
-    //     author: "Kathryn By Waters",
-    //     rating: 4,
-    //   },
-    // ];
-    // const books = bookInfo.map((book) => {
-    //   return (
-    // <SingleBook
-    //   imgUrl={book.imgUrl}
-    //   title={book.title}
-    //   author={book.author}
-    //   rating={book.rating}
-    // />
-    //   );
-    // });
+
     return (
       <div className={classes.books}>
         <div
