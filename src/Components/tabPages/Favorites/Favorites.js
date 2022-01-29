@@ -14,9 +14,8 @@ class Favorites extends Component {
         <Loading />
       </div>
     );
-    console.log(this.props.favoritesLength);
-    console.log(this.props.favorites);
-    if (this.props.favoritesLength === 0)
+
+    if (this.props.favoritesLength == 0)
       favorites = (
         <EmptyState
           message={

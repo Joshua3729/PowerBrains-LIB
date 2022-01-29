@@ -35,6 +35,7 @@ class Home extends Component {
     returnedLength: null,
     viewBook: false,
     bookData: null,
+    favoritesLength: null,
   };
 
   componentDidMount() {

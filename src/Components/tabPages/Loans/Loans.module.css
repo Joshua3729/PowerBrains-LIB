@@ -35,6 +35,8 @@
   height: 200px;
   background-color: #f7f7f7;
   box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+  padding: 20px;
+  border-radius: 10px;
 }
 .BookLoan {
   margin-bottom: 20px;
@@ -60,7 +62,9 @@
   color: white;
   border: none;
   border-radius: 100px;
+  cursor: pointer;
 }
+
 .loadingWrapper {
   position: absolute;
   top: 50%;
