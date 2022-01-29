@@ -3,6 +3,7 @@ import classes from "./Loans.module.css";
 import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
 import Loading from "../../UI/Loading/Loading";
+import CountDown from "../../CountDown/CountDown";
 
 class Loans extends Component {
   componentDidMount() {
@@ -50,7 +51,8 @@ class Loans extends Component {
             </p>
             <p>
               Time Remaining:{" "}
-              <span>{this.getDaysRemaining(loan.book.dateReturned)} Days</span>
+              {/* <span>{this.getDaysRemaining(loan.book.dateReturned)} Days</span> */}
+              <CountDown />
             </p>
             <button
               className={classes.returnButton}
