@@ -206,6 +206,7 @@ class Home extends Component {
       .then((resData) => {
         this.setState({
           returned: resData.returned,
+          returnedLength: resData.returned.length,
         });
       })
       .catch((err) => {

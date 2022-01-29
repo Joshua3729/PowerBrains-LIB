@@ -1,6 +1,6 @@
 .emptyStateWrapper {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -12,4 +12,5 @@
 .emptyStateWrapper p {
   text-align: center;
   font-size: 25px;
+  color: orangered;
 }

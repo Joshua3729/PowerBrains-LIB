@@ -25,7 +25,7 @@ class Returned extends Component {
       </div>
     );
 
-    if (this.props.returnedLength === 0)
+    if (this.props.returnedLength == 0)
       returned = <EmptyState message={"You Have Not Return Any Book Yet."} />;
 
     if (this.props.returned.length > 0) {
