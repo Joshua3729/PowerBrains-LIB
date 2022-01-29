@@ -54,15 +54,29 @@
   margin: 0 0 20px 0;
 }
 .returnButton {
-  padding: 5px 10px;
+  padding: 10px 20px;
   font-weight: 900;
   background-color: #050a30;
   color: white;
   border: none;
+  border-radius: 100px;
 }
 .loadingWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.timeLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.timeLeft p:first-child {
+  font-size: 20px;
+  color: #050a30;
+  font-weight: 700;
+  margin: 0 5px 0 0;
+  padding: 0;
 }

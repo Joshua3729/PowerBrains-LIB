@@ -49,11 +49,10 @@ class Loans extends Component {
               Return Date:{" "}
               <span>{this.getDateHandler(loan.book.dateReturned)}</span>
             </p>
-            <p>
-              Time Remaining:{" "}
-              {/* <span>{this.getDaysRemaining(loan.book.dateReturned)} Days</span> */}
-              <CountDown />
-            </p>
+            <div className={classes.timeLeft}>
+              <p>Time Remaining:</p>
+              <CountDown returnDate={loan.book.dateReturned} />
+            </div>
             <button
               className={classes.returnButton}
               onClick={this.props.returnBook.bind(this, loan)}

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import classes from "./CountDown.module.css";
 
-const calculateTimeLeft = () => {
+const calculateTimeLeft = (returnDate) => {
   let year = new Date().getFullYear();
-  let difference = +new Date(`10/01/${year}`) - +new Date();
+  let difference = +new Date(returnDate) - +new Date();
 
   let timeLeft = {};
 
@@ -18,12 +19,12 @@ const calculateTimeLeft = () => {
 };
 
 const CountDown = (props) => {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(props.returnDate));
   const [year] = useState(new Date().getFullYear());
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
+      setTimeLeft(calculateTimeLeft(props.returnDate));
     }, 1000);
     return () => clearTimeout(timer);
   });
@@ -42,9 +43,9 @@ const CountDown = (props) => {
   });
 
   return (
-    <div>
+    <p className={classes.timer}>
       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-    </div>
+    </p>
   );
 };
 
