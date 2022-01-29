@@ -7,6 +7,8 @@ import Loading from "../../UI/Loading/Loading";
 class Returned extends Component {
   componentDidMount() {
     this.props.getReturnedBooks();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
   getDateHandler = (dateArg) => {
     const date = new Date(dateArg);

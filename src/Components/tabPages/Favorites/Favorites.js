@@ -6,6 +6,8 @@ import Loading from "../../UI/Loading/Loading";
 class Favorites extends Component {
   componentDidMount() {
     this.props.getFavorites();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   render() {

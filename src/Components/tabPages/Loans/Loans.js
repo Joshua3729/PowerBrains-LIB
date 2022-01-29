@@ -8,6 +8,8 @@ import CountDown from "../../CountDown/CountDown";
 class Loans extends Component {
   componentDidMount() {
     this.props.getLoans();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   getDateHandler = (dateArg) => {

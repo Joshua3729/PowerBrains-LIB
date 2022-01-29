@@ -18,6 +18,8 @@ class Books extends Component {
     if (cartData) this.setState({ cartData: cartData });
 
     this.props.getBooks();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   render() {
