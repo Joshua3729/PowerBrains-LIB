@@ -4,6 +4,7 @@ import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
 import Loading from "../../UI/Loading/Loading";
 import CountDown from "../../CountDown/CountDown";
+import BookInfoCard from "../../BookInfoCard/BookInfoCard";
 
 class Loans extends Component {
   componentDidMount() {
@@ -43,35 +44,41 @@ class Loans extends Component {
 
       loans = this.props.loans.map((loan, i) => {
         return (
-          <div className={classes.BookLoan} key={i}>
-            <p>
-              Date Out: <span>{this.getDateHandler(loan.book.dateOut)}</span>
-            </p>
-            <p>
-              Return Date:{" "}
-              <span>{this.getDateHandler(loan.book.dateReturned)}</span>
-            </p>
-            <div className={classes.timeLeft}>
-              <p>Time Remaining:</p>
-              <CountDown returnDate={loan.book.dateReturned} />
-            </div>
-            <button
-              className={classes.returnButton}
-              onClick={this.props.returnBook.bind(this, loan)}
-            >
-              Return Book(s)
-            </button>
-            <div className={classes.loanedBooks}>
-              <div className={classes.bookLoans}>
-                <img src={loan.book.imgUrl} alt="" />
-                <div className={classes.right_side}>
-                  <h4>{loan.book.title.slice(0, 20) + "..."}</h4>
-                  <p>{loan.book.author}</p>
-                  <StarRating rating={loan.book.rating} />
-                </div>
-              </div>
-            </div>
-          </div>
+          // <div className={classes.BookLoan} key={i}>
+          //   <p>
+          //     Date Out: <span>{this.getDateHandler(loan.book.dateOut)}</span>
+          //   </p>
+          //   <p>
+          //     Return Date:{" "}
+          //     <span>{this.getDateHandler(loan.book.dateReturned)}</span>
+          //   </p>
+          //   <div className={classes.timeLeft}>
+          //     <p>Time Remaining:</p>
+          //     <CountDown returnDate={loan.book.dateReturned} />
+          //   </div>
+          //   <button
+          //     className={classes.returnButton}
+          //     onClick={this.props.returnBook.bind(this, loan)}
+          //   >
+          //     Return Book(s)
+          //   </button>
+          //   <div className={classes.loanedBooks}>
+          //     <div className={classes.bookLoans}>
+          //       <img src={loan.book.imgUrl} alt="" />
+          //       <div className={classes.right_side}>
+          //         <h4>{loan.book.title.slice(0, 20) + "..."}</h4>
+          //         <p>{loan.book.author}</p>
+          //         <StarRating rating={loan.book.rating} />
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+          <BookInfoCard
+            loanBook={loan.book}
+            key={i}
+            returnBook={this.props.returnBook}
+            loan={loan}
+          />
         );
       });
     }

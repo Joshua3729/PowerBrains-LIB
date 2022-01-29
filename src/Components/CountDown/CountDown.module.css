@@ -2,6 +2,7 @@
   margin: 0;
 }
 .timer span {
-  color: green;
-  font-weight: 700;
+  color: green !important;
+  font-weight: 700 !important;
+  font-style: normal;
 }
