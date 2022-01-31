@@ -250,3 +250,43 @@
 .loading p {
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 1100px) {
+  /*Small smartphones [325px -> 425px]*/
+  .left_side {
+    width: 100%;
+    padding: 30px;
+    background-color: hsl(0, 0%, 97%);
+  }
+  .right_side {
+    display: none;
+  }
+  .Form_wrapper {
+    width: 60%;
+    padding: 30px;
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+    height: auto;
+    background-color: white;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /*Small smartphones [325px -> 425px]*/
+
+  .Form_wrapper {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 460px) {
+  /*Small smartphones [325px -> 425px]*/
+  .Form_wrapper {
+    width: 90%;
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 460px) {
+  /*Small smartphones [325px -> 425px]*/
+  .Form_wrapper {
+    width: 95%;
+    padding: 10px;
+  }
+}

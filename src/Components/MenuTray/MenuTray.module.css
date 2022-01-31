@@ -1,12 +1,12 @@
 .menuTray {
-  /* display: none; */
+  display: none;
   position: fixed;
   padding: 30px 10px;
   text-align: center;
   box-sizing: border-box;
   top: 0;
-  right: 0;
-  width: 100%;
+  left: 0;
+  width: 350px;
   height: 100vh;
   background-color: #050a30;
   color: white;
@@ -74,4 +74,15 @@
 .exit_btn:hover {
   color: orange;
   transform: scale(1.2);
+}
+@media only screen and (max-width: 400px) {
+  .menuTray {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .menuTray {
+    display: block;
+  }
 }

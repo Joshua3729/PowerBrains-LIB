@@ -228,10 +228,18 @@
   width: 30px;
   height: 30px;
 }
+.showSearchBar {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 @media only screen and (max-width: 1200px) {
   /*Tablets [601px -> 1200px]*/
   .left_pane {
     display: none;
+  }
+  .menuBtn {
+    display: flex;
   }
   .right_pane {
     width: 100%;
@@ -251,25 +259,17 @@
 @media only screen and (max-width: 900px) {
   /*Tablets [601px -> 1200px]*/
 }
-@media only screen and (max-width: 700px) {
-  /*Big smartphones [426px -> 600px]*/
-}
-@media only screen and (max-width: 450px) {
-  /*Small smartphones [325px -> 425px]*/
-
+@media only screen and (max-width: 550px) {
   .searchBar_wrapper {
     display: none;
   }
 
-  .menuBtn,
   .showSearchBar {
     display: flex;
   }
-  .showSearchBar {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
+}
+@media only screen and (max-width: 450px) {
+  /*Small smartphones [325px -> 425px]*/
 }
 @media only screen and (max-width: 400px) {
   .searchResults_wrapper {

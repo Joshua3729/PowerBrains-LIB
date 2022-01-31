@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import classes from "./MenuTray.module.css";
+import Logo from "../UI/Logo";
 
 const menu = (props) => {
   return ReactDOM.createPortal(
@@ -13,6 +14,7 @@ const menu = (props) => {
       <button className={classes.exit_btn} onClick={props.clicked}>
         &times;
       </button>
+      <Logo home={true} />
       <ul className={classes.tab_buttons}>
         <li className={classes.tabButton_wrapper}>
           <button

@@ -578,6 +578,7 @@ class Home extends Component {
           clicked={this.showMenuHandler}
           tabChangeHandler={this.tabChangeHandler}
           activeTab={this.state.activeTab}
+          onLogout={this.props.onLogout}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>

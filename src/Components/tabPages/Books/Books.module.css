@@ -10,6 +10,7 @@
   padding-bottom: 20px;
   padding-left: 0;
 }
+
 .gutter {
   margin-top: 100px;
   background-color: white;
@@ -89,5 +90,13 @@
   }
   .gutter {
     background-color: transparent;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  /*Big smartphones [426px -> 600px]*/
+  .tabs_wrapper {
+    flex-wrap: wrap;
+    text-align: center;
   }
 }
