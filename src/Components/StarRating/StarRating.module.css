@@ -8,3 +8,9 @@
 .star:last-child {
   margin-left: 0;
 }
+@media only screen and (max-width: 400px) {
+  .star {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+}
