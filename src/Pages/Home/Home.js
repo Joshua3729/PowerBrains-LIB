@@ -12,6 +12,7 @@ import SingleBook from "../../Components/tabPages/Books/SingleBook/SingleBook";
 import Loans from "../../Components/tabPages/Loans/Loans";
 import Returned from "../../Components/tabPages/Returned/Returned";
 import ViewBook from "../../Components/ViewBook/ViewBook";
+import MenuTray from "../../Components/MenuTray/MenuTray";
 
 class Home extends Component {
   state = {
@@ -36,6 +37,7 @@ class Home extends Component {
     viewBook: false,
     bookData: null,
     favoritesLength: null,
+    showMenuTray: false,
   };
 
   componentDidMount() {
@@ -387,6 +389,13 @@ class Home extends Component {
       };
     });
   };
+  showMenuHandler = () => {
+    this.setState((prevState) => {
+      return {
+        showMenuTray: !prevState.showMenuTray,
+      };
+    });
+  };
 
   viewBookHandler = (bookData) => {
     this.setState({
@@ -404,7 +413,7 @@ class Home extends Component {
       : this.setState({ scroll: false });
   };
   tabChangeHandler = (tab) => {
-    this.setState({ activeTab: tab });
+    this.setState({ activeTab: tab, showMenuTray: false });
   };
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
@@ -564,6 +573,12 @@ class Home extends Component {
           openTray={this.state.viewBook}
           bookData={this.state.bookData}
         />
+        <MenuTray
+          openTray={this.state.showMenuTray}
+          clicked={this.showMenuHandler}
+          tabChangeHandler={this.tabChangeHandler}
+          activeTab={this.state.activeTab}
+        />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
             <Logo home={true} />
@@ -651,9 +666,13 @@ class Home extends Component {
                   : classes.navBar
               }
             >
-              <div className={classes.humburger}>
+              <button
+                className={classes.menuBtn}
+                onClick={this.showMenuHandler}
+              >
                 <i class="fas fa-bars"></i>
-              </div>
+              </button>
+
               <button className={classes.showSearchBar}>
                 <img src={search} className={classes.search} alt="" />
               </button>

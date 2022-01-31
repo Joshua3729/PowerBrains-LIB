@@ -213,10 +213,15 @@
   color: orange;
   transform: scale(1.2);
 }
-.humburger,
+.menuBtn,
 .showSearchBar {
   display: none;
+}
+.menuBtn {
+  background-color: transparent;
+  border: none;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .showSearchBar img {
@@ -256,7 +261,7 @@
     display: none;
   }
 
-  .humburger,
+  .menuBtn,
   .showSearchBar {
     display: flex;
   }
