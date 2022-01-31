@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import classes from "./Cart.module.css";
+import classes from "./MenuTray.module.css";
 
-const cart = (props) => {
+const menu = (props) => {
   return ReactDOM.createPortal(
     <div
-      className={classes.cartTray}
+      className={classes.menuTray}
       style={{
         transform: props.openTray ? "translateX(0)" : "translateX(-102%)",
       }}
@@ -82,4 +82,4 @@ const cart = (props) => {
   );
 };
 
-export default cart;
+export default menu;

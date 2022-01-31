@@ -1,4 +1,5 @@
 .menuTray {
+  /* display: none; */
   position: fixed;
   padding: 30px 10px;
   text-align: center;
@@ -12,4 +13,49 @@
   transition: all 0.5s;
   z-index: 1200;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.tab_buttons {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+  margin-left: -20px;
+}
+
+.tab_button {
+  width: 100%;
+  padding: 20px 0;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 0px 20px 20px 0;
+  cursor: pointer;
+  align-items: center;
+}
+.tab_button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #050a30;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.active,
+.tab_button:focus {
+  background-color: white;
+  color: #050a30;
+}
+
+.logOut {
+  display: flex;
+  padding: 10px 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 auto;
+  color: white;
+  border: white 2px solid;
 }
