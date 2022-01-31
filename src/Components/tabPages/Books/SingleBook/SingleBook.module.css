@@ -122,6 +122,57 @@
 }
 @media only screen and (max-width: 700px) {
   /*Big smartphones [426px -> 600px]*/
+  .bookCoverWrapper {
+    margin-right: 30px;
+  }
+  .bookCoverWrapper {
+    width: 50%;
+    height: 390px;
+  }
+  .Book h1 {
+    font-size: 40px;
+  }
+  .genre {
+    margin-top: 25px;
+    font-size: 30px;
+  }
+  .author {
+    margin: 25px 0 25px 0;
+    font-size: 30px;
+  }
+  .cart_btn {
+    font-size: 20px;
+  }
+  .favorite {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  /*Big smartphones [426px -> 600px]*/
+  .bookCoverWrapper {
+    margin-right: 30px;
+  }
+  .bookCoverWrapper {
+    width: 50%;
+    height: 370px;
+  }
+  .Book h1 {
+    font-size: 30px;
+  }
+  .genre {
+    margin-top: 25px;
+    font-size: 20px;
+  }
+  .author {
+    margin: 25px 0 25px 0;
+    font-size: 20px;
+  }
+  .cart_btn {
+    font-size: 20px;
+  }
+  .favorite {
+    font-size: 20px;
+  }
 }
 @media only screen and (max-width: 500px) {
   /*Small smartphones [325px -> 425px]*/
