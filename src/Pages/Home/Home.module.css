@@ -182,6 +182,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  background-color: tomato;
 }
 
 .resultsWrapper {
@@ -239,4 +240,12 @@
 }
 @media only screen and (max-width: 500px) {
   /*Small smartphones [325px -> 425px]*/
+}
+@media only screen and (max-width: 400px) {
+  .searchResults_wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    overflow-y: scroll;
+    background-color: tomato;
+    height: 90%;
+  }
 }
