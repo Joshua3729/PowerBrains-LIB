@@ -76,3 +76,33 @@
   margin: 0 5px 0 0;
   padding: 0;
 }
+@media only screen and (max-width: 1300px) {
+  /*Big smartphones [426px -> 600px]*/
+  .bookInfo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 720px) {
+  /*Big smartphones [426px -> 600px]*/
+
+  .bookInfo {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (max-width: 400px) {
+  /*Big smartphones [426px -> 600px]*/
+
+  .bookInfoCards {
+    flex-direction: column;
+    height: auto;
+  }
+  .right_side {
+    text-align: center;
+  }
+  .bookInfoCards img {
+    margin: 0 auto 20px auto;
+    width: 188px;
+    height: 258px;
+    border-radius: 10px;
+  }
+}
