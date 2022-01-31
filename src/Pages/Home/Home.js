@@ -651,6 +651,12 @@ class Home extends Component {
                   : classes.navBar
               }
             >
+              <div className={classes.humburger}>
+                <i class="fas fa-bars"></i>
+              </div>
+              <button className={classes.showSearchBar}>
+                <img src={search} className={classes.search} alt="" />
+              </button>
               <form
                 className={classes.searchBar_wrapper}
                 onSubmit={this.bookSearchHandler}
