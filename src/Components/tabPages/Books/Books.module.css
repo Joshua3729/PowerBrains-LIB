@@ -78,6 +78,16 @@
     grid-gap: 10px;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
   /*Small smartphones [325px -> 425px]*/
+  .books {
+    background-color: hsl(0, 0%, 97%);
+    padding: 10px;
+  }
+  .grid_wrapper {
+    grid-gap: 30px;
+  }
+  .gutter {
+    background-color: transparent;
+  }
 }
