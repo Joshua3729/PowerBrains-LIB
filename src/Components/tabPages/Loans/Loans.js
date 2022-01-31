@@ -78,6 +78,7 @@ class Loans extends Component {
             key={i}
             returnBook={this.props.returnBook}
             loan={loan}
+            parent={"loans"}
           />
         );
       });

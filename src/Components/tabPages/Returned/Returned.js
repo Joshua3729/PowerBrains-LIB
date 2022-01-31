@@ -3,6 +3,7 @@ import classes from "./Returned.module.css";
 import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
 import Loading from "../../UI/Loading/Loading";
+import BookInfoCard from "../../BookInfoCard/BookInfoCard";
 
 class Returned extends Component {
   componentDidMount() {
@@ -35,32 +36,38 @@ class Returned extends Component {
 
       returned = this.props.returned.map((returnItem, i) => {
         return (
-          <div className={classes.BookLoan} key={i}>
-            <div className={classes.RetunedInfo}>
-              <p>
-                Date Borrowed:{" "}
-                <span>{this.getDateHandler(returnItem.book.dateOut)}</span>
-              </p>
-              <p>
-                Date Returned:{" "}
-                <span>{this.getDateHandler(returnItem.book.dateReturned)}</span>
-              </p>
-              <p>
-                Return Status: <span>{returnItem.returnStatus}</span>
-              </p>
-            </div>
+          // <div className={classes.BookLoan} key={i}>
+          //   <div className={classes.RetunedInfo}>
+          //     <p>
+          //       Date Borrowed:{" "}
+          //       <span>{this.getDateHandler(returnItem.book.dateOut)}</span>
+          //     </p>
+          //     <p>
+          //       Date Returned:{" "}
+          //       <span>{this.getDateHandler(returnItem.book.dateReturned)}</span>
+          //     </p>
+          //     <p>
+          //       Return Status: <span>{returnItem.returnStatus}</span>
+          //     </p>
+          //   </div>
 
-            <div className={classes.loanedBooks}>
-              <div className={classes.bookLoans}>
-                <img src={returnItem.book.imgUrl} alt="" />
-                <div className={classes.right_side}>
-                  <h4>{returnItem.book.title.slice(0, 20) + "..."}</h4>
-                  <p>{returnItem.book.author}</p>
-                  <StarRating rating={returnItem.book.rating} />
-                </div>
-              </div>
-            </div>
-          </div>
+          //   <div className={classes.loanedBooks}>
+          //     <div className={classes.bookLoans}>
+          //       <img src={returnItem.book.imgUrl} alt="" />
+          //       <div className={classes.right_side}>
+          //         <h4>{returnItem.book.title.slice(0, 20) + "..."}</h4>
+          //         <p>{returnItem.book.author}</p>
+          //         <StarRating rating={returnItem.book.rating} />
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+
+          <BookInfoCard
+            parent={"returned"}
+            ReturnedBookItem={returnItem}
+            loanBook={returnItem.book}
+          />
         );
       });
     }
