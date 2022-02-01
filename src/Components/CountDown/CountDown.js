@@ -35,11 +35,19 @@ const CountDown = (props) => {
       return;
     }
 
-    timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
-    );
+    if (interval == "sec") {
+      timerComponents.push(
+        <span>
+          {timeLeft[interval]} {interval}
+        </span>
+      );
+    } else {
+      timerComponents.push(
+        <span>
+          {timeLeft[interval]} {interval} {" : "}
+        </span>
+      );
+    }
   });
 
   return (
