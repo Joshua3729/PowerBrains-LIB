@@ -13,6 +13,7 @@ import Loans from "../../Components/tabPages/Loans/Loans";
 import Returned from "../../Components/tabPages/Returned/Returned";
 import ViewBook from "../../Components/ViewBook/ViewBook";
 import MenuTray from "../../Components/MenuTray/MenuTray";
+import StarRater from "../../Components/StarRater/StarRater";
 
 class Home extends Component {
   state = {
@@ -546,6 +547,11 @@ class Home extends Component {
         <Modal show={this.state.loading}>
           <div className={classes.loading}>
             <Spinner /> <p>Please wait...</p>
+          </div>
+        </Modal>
+        <Modal show={true}>
+          <div className={classes.starRaterWrapper}>
+            <StarRater />
           </div>
         </Modal>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>

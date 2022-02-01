@@ -233,6 +233,12 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.starRaterWrapper {
+  background-color: white;
+  padding: 10px;
+}
+
 @media only screen and (max-width: 1200px) {
   /*Tablets [601px -> 1200px]*/
   .left_pane {
