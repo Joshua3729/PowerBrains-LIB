@@ -6,3 +6,6 @@
   font-weight: 700 !important;
   font-style: normal;
 }
+.timer span::after {
+  contain: " : ";
+}
