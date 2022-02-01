@@ -2,15 +2,47 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 700px;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 .emptyStateWrapper img {
   display: flex;
-  width: 400px;
+  width: 100%;
   margin: 0 auto;
 }
 .emptyStateWrapper p {
   text-align: center;
   font-size: 25px;
   color: orangered;
+}
+.messageWrapper {
+  width: 100%;
+}
+@media only screen and (max-width: 900px) {
+  /*Big smartphones [426px -> 600px]*/
+
+  .emptyStateWrapper {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  /*Big smartphones [426px -> 600px]*/
+
+  .emptyStateWrapper {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  /*Big smartphones [426px -> 600px]*/
+  .emptyStateWrapper p {
+    font-size: 20px;
+  }
+  .messageWrapper {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .emptyStateWrapper {
+    width: 100%;
+  }
 }

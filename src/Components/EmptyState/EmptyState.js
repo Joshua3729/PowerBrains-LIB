@@ -8,7 +8,9 @@ const emptyState = (props) => {
         src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
         alt=""
       />
-      <p>{props.message}</p>
+      <div className={classes.messageWrapper}>
+        <p>{props.message}</p>
+      </div>
     </div>
   );
 };
