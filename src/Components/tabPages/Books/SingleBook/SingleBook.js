@@ -4,7 +4,6 @@ import StarRating from "../../../StarRating/StarRating";
 
 const singleBook = (props) => {
   let availabilityState = null;
-  console.log(availabilityState);
   if (props.notAvailable) {
     availabilityState = (
       <div className={classes.availabilityState}>Out Of Stock</div>

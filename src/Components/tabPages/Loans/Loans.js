@@ -40,8 +40,6 @@ class Loans extends Component {
       loans = <EmptyState message={"You Have Not Borrowed Any Book Yet."} />;
 
     if (this.props.loans.length > 0) {
-      console.log(this.props.loans);
-
       loans = this.props.loans.map((loan, i) => {
         return (
           // <div className={classes.BookLoan} key={i}>

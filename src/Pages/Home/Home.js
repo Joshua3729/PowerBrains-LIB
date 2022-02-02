@@ -40,6 +40,8 @@ class Home extends Component {
     favoritesLength: null,
     showMenuTray: false,
     rating: 0,
+    writeReview: false,
+    bookReturned: null,
   };
 
   componentDidMount() {
@@ -106,38 +108,50 @@ class Home extends Component {
     });
   };
 
-  returnBookHandler = (bookData) => {
+  returnBookHandler = (e, bookData) => {
+    e.preventDefault();
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/return-book", {
-      method: "POST",
+    console.log(e.target.review.value);
+    //   fetch("http://localhost:5000/feed/return-book", {
+    //     method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.props.token,
-      },
-      body: JSON.stringify({
-        book: bookData,
-      }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        this.setState({
-          requestSent: true,
-          loading: false,
-          modalMessage: res.message,
-          showModal: true,
-        });
-      })
-      .catch((err) => {
-        this.setState({
-          requestSent: false,
-          loading: false,
-          modalMessage: err.message,
-          showModal: true,
-        });
-      });
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: "Bearer " + this.props.token,
+    //     },
+    //     body: JSON.stringify({
+    //       book: bookData,
+    //       rating: this.state.rating,
+
+    //     }),
+    //   })
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     .then((res) => {
+    //       this.setState({
+    //         requestSent: true,
+    //         loading: false,
+    //         modalMessage: res.message,
+    //         showModal: true,
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       this.setState({
+    //         requestSent: false,
+    //         loading: false,
+    //         modalMessage: err.message,
+    //         showModal: true,
+    //       });
+    //     });
+  };
+
+  reviewBookHandler = (returnedBook) => {
+    this.setState({ writeReview: true, bookReturned: returnedBook });
+  };
+
+  closeReviewBook = () => {
+    this.setState({ writeReview: false, bookReturned: null });
   };
 
   addToCartHandler = (bookData) => {
@@ -447,7 +461,7 @@ class Home extends Component {
             getLoans={this.getLoans}
             loans={this.state.loans}
             loansLength={this.state.loansLength}
-            returnBook={this.returnBookHandler}
+            returnBook={this.reviewBookHandler}
           />
         );
         break;
@@ -538,14 +552,6 @@ class Home extends Component {
     }
     if (this.state.loans) {
       const date = new Date(this.state.loans.createdAt);
-
-      console.log(
-        date.getDate() +
-          " " +
-          date.toLocaleString("en-us", { month: "long" }) +
-          " " +
-          date.getFullYear()
-      );
     }
 
     return (
@@ -555,7 +561,7 @@ class Home extends Component {
             <Spinner /> <p>Please wait...</p>
           </div>
         </Modal>
-        <Modal show={true}>
+        <Modal show={this.state.writeReview} clicked={this.closeReviewBook}>
           <div className={classes.starRaterWrapper}>
             <img
               className={classes.reviewIcon}
@@ -568,9 +574,15 @@ class Home extends Component {
               rating={this.state.rating}
               onRating={this.setRatingHandler}
             />
-            <form className={classes.reviewForm}>
+            <form
+              className={classes.reviewForm}
+              onSubmit={(e) =>
+                this.returnBookHandler(e, this.state.bookReturned)
+              }
+            >
               <div className={classes.textAreaWrapper}>
                 <textarea
+                  id="review"
                   className={classes.reviewTextArea}
                   name="bookReview"
                   rows="4"
