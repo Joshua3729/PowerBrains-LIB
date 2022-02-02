@@ -236,6 +236,18 @@
 
 .starRaterWrapper {
   background-color: white;
+  padding: 30px 20px;
+}
+.submit_btn {
+  border: none;
+  background-color: #050a30;
+  padding: 10px 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+#txtid {
   padding: 10px;
 }
 

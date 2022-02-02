@@ -557,12 +557,26 @@ class Home extends Component {
         </Modal>
         <Modal show={true}>
           <div className={classes.starRaterWrapper}>
+            <h1>How was the book?</h1>
             <StarRater
               count={5}
               rating={this.state.rating}
               onRating={this.setRatingHandler}
             />
-            <p>RATING: {this.state.rating}</p>
+            <form className={classes.reviewForm}>
+              <div className={classes.textAreaWrapper}>
+                <textarea
+                  id="txtid"
+                  name="bookReview"
+                  rows="4"
+                  cols="50"
+                  maxlength="200"
+                  placeholder="Write your review here"
+                ></textarea>
+              </div>
+
+              <button className={classes.submit_btn}>Continue</button>
+            </form>
           </div>
         </Modal>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>
