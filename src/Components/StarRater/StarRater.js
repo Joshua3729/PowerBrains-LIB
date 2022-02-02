@@ -9,7 +9,7 @@ const StarRater = (props) => {
     else if (!hoverRating && props.rating >= index) {
       return "gold";
     } else {
-      return "black";
+      return "lightGray";
     }
   };
   const starRating = useMemo(() => {

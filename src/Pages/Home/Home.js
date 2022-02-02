@@ -557,6 +557,11 @@ class Home extends Component {
         </Modal>
         <Modal show={true}>
           <div className={classes.starRaterWrapper}>
+            <img
+              className={classes.reviewIcon}
+              src="https://o.remove.bg/downloads/9cbc3d32-0818-4e0d-9950-bd58c1e64b68/images-removebg-preview.png"
+              alt=""
+            />
             <h1>How was the book?</h1>
             <StarRater
               count={5}
@@ -566,7 +571,7 @@ class Home extends Component {
             <form className={classes.reviewForm}>
               <div className={classes.textAreaWrapper}>
                 <textarea
-                  id="txtid"
+                  className={classes.reviewTextArea}
                   name="bookReview"
                   rows="4"
                   cols="50"
@@ -575,7 +580,7 @@ class Home extends Component {
                 ></textarea>
               </div>
 
-              <button className={classes.submit_btn}>Continue</button>
+              <button className={classes.submit_btn}>CONTINUE</button>
             </form>
           </div>
         </Modal>

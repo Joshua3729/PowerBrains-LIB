@@ -236,19 +236,30 @@
 
 .starRaterWrapper {
   background-color: white;
+  color: gray;
   padding: 30px 20px;
+  text-align: center;
 }
 .submit_btn {
   border: none;
+  color: white;
   background-color: #050a30;
   padding: 10px 20px;
-  color: white;
+  border-radius: 100px;
   font-size: 20px;
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 30px;
+  width: 100%;
 }
-#txtid {
-  padding: 10px;
+.reviewIcon {
+  width: 100px;
+  height: 100px;
+}
+.reviewTextArea {
+  padding: 5px;
+  margin-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media only screen and (max-width: 1200px) {
