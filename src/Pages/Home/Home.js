@@ -562,6 +562,7 @@ class Home extends Component {
               rating={this.state.rating}
               onRating={this.setRatingHandler}
             />
+            <p>RATING: {this.state.rating}</p>
           </div>
         </Modal>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>

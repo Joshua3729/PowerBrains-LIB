@@ -6,7 +6,7 @@ const StarRater = (props) => {
 
   const getColor = (index) => {
     if (hoverRating >= index) return "gold";
-    else if (!hoverRating && rating >= index) {
+    else if (!hoverRating && props.rating >= index) {
       return "gold";
     } else {
       return "black";
@@ -22,6 +22,8 @@ const StarRater = (props) => {
             style={{ color: getColor(indx) }}
             className={["fa", "fa-star", classes.star].join(" ")}
             onClick={() => props.onRating(indx)}
+            onMouseEnter={() => setHoverRating(indx)}
+            onMouseLeave={() => setHoverRating(0)}
           ></i>
         );
       });
