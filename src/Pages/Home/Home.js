@@ -111,39 +111,38 @@ class Home extends Component {
   returnBookHandler = (e, bookData) => {
     e.preventDefault();
     this.setState({ loading: true });
-    console.log(e.target.review.value);
-    //   fetch("http://localhost:5000/feed/return-book", {
-    //     method: "POST",
+    fetch("http://localhost:5000/feed/return-book", {
+      method: "POST",
 
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: "Bearer " + this.props.token,
-    //     },
-    //     body: JSON.stringify({
-    //       book: bookData,
-    //       rating: this.state.rating,
-
-    //     }),
-    //   })
-    //     .then((res) => {
-    //       return res.json();
-    //     })
-    //     .then((res) => {
-    //       this.setState({
-    //         requestSent: true,
-    //         loading: false,
-    //         modalMessage: res.message,
-    //         showModal: true,
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       this.setState({
-    //         requestSent: false,
-    //         loading: false,
-    //         modalMessage: err.message,
-    //         showModal: true,
-    //       });
-    //     });
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.token,
+      },
+      body: JSON.stringify({
+        book: bookData,
+        rating: this.state.rating,
+        review: e.target.review.value,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        this.setState({
+          requestSent: true,
+          loading: false,
+          modalMessage: res.message,
+          showModal: true,
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          requestSent: false,
+          loading: false,
+          modalMessage: err.message,
+          showModal: true,
+        });
+      });
   };
 
   reviewBookHandler = (returnedBook) => {
