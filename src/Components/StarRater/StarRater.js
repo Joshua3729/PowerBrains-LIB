@@ -27,7 +27,7 @@ const StarRater = (props) => {
           ></i>
         );
       });
-  }, [props.count, props.rating]);
+  }, [props.count, props.rating, hoverRating]);
 
   return <div className={classes.StarRater_wrapper}>{starRating}</div>;
 };
