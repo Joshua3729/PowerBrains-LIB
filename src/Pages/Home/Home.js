@@ -39,6 +39,7 @@ class Home extends Component {
     bookData: null,
     favoritesLength: null,
     showMenuTray: false,
+    rating: 0,
   };
 
   componentDidMount() {
@@ -416,6 +417,11 @@ class Home extends Component {
   tabChangeHandler = (tab) => {
     this.setState({ activeTab: tab, showMenuTray: false });
   };
+
+  setRatingHandler = (rating) => {
+    this.setState({ rating: rating });
+  };
+
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
     let page = null;
@@ -551,7 +557,11 @@ class Home extends Component {
         </Modal>
         <Modal show={true}>
           <div className={classes.starRaterWrapper}>
-            <StarRater />
+            <StarRater
+              count={5}
+              rating={this.state.rating}
+              onRating={this.setRatingHandler}
+            />
           </div>
         </Modal>
         <Modal show={this.state.showModal} clicked={this.closeModalHandler}>

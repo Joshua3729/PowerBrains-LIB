@@ -1,28 +1,33 @@
-import React, { Component } from "react";
+import React, { useState, useMemo } from "react";
 import classes from "./StarRater.module.css";
 
-class StarRater extends Component {
-  render() {
-    return (
-      <div className={classes.starRater_wrapper}>
-        <button className={classes.star_btn1}>
-          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
-        </button>
-        <button className={classes.star_btn2}>
-          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
-        </button>
-        <button className={classes.star_btn3}>
-          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
-        </button>
-        <button className={classes.star_btn4}>
-          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
-        </button>
-        <button className={classes.star_btn5}>
-          <i className={["fa", "fa-star", classes.star].join(" ")}></i>
-        </button>
-      </div>
-    );
-  }
-}
+const StarRater = (props) => {
+  const [hoverRating, setHoverRating] = useState(0);
+
+  const getColor = (index) => {
+    if (hoverRating >= index) return "gold";
+    else if (!hoverRating && rating >= index) {
+      return "gold";
+    } else {
+      return "black";
+    }
+  };
+  const starRating = useMemo(() => {
+    return Array(props.count)
+      .fill(0)
+      .map((_, i) => i + 1)
+      .map((indx) => {
+        return (
+          <i
+            style={{ color: getColor(indx) }}
+            className={["fa", "fa-star", classes.star].join(" ")}
+            onClick={() => props.onRating(indx)}
+          ></i>
+        );
+      });
+  }, [props.count, props.rating]);
+
+  return <div className={classes.StarRater_wrapper}>{starRating}</div>;
+};
 
 export default StarRater;
