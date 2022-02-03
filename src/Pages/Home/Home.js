@@ -156,7 +156,8 @@ class Home extends Component {
       });
   };
 
-  returnBookRouter = (bookId) => {
+  returnBookRouter = (bookData) => {
+    this.setState({ loading: true });
     fetch("http://localhost:5000/feed/user-reviews", {
       headers: {
         Authorization: "Bearer " + this.props.token,
@@ -169,8 +170,11 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
-        if (resData.includes(bookId)) {
-          this.setState({ canReview: true });
+        if (resData.includes(bookData._id)) {
+          this.returnBookHandler(bookData);
+        } else {
+          this.setState({ loading: false });
+          this.reviewBookHandler(bookData);
         }
       })
       .catch((err) => {
@@ -494,7 +498,7 @@ class Home extends Component {
             getLoans={this.getLoans}
             loans={this.state.loans}
             loansLength={this.state.loansLength}
-            returnBook={this.reviewBookHandler}
+            returnBook={this.returnBookRouter}
           />
         );
         break;
