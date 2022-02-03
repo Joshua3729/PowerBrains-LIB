@@ -31,7 +31,7 @@ const bookInfoCard = (props) => {
           </div>
           <button
             className={classes.returnButton}
-            onClick={props.returnBook.bind(this, props.loan)}
+            onClick={(e) => props.returnBook(e, props.loan)}
           >
             Return Book(s)
           </button>

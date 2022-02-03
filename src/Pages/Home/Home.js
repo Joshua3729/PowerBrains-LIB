@@ -112,7 +112,7 @@ class Home extends Component {
 
   returnBookHandler = (e, bookData) => {
     e.preventDefault();
-    this.state({ writeReview: false });
+    this.setState({ writeReview: false });
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/return-book", {
       method: "POST",
@@ -124,7 +124,7 @@ class Home extends Component {
       body: JSON.stringify({
         book: bookData,
         rating: this.state.rating,
-        feedback: e.target.review.value,
+        feedback: e.target.review?.value,
         bookId: bookData.book._id,
       }),
     })
@@ -156,7 +156,7 @@ class Home extends Component {
       });
   };
 
-  returnBookRouter = (bookData) => {
+  returnBookRouter = (e, bookData) => {
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/user-reviews", {
       headers: {
@@ -170,8 +170,8 @@ class Home extends Component {
         return res.json();
       })
       .then((resData) => {
-        if (resData.includes(bookData._id)) {
-          this.returnBookHandler(bookData);
+        if (resData.reviews.includes(bookData.book._id)) {
+          this.returnBookHandler(e, bookData);
         } else {
           this.setState({ loading: false });
           this.reviewBookHandler(bookData);
