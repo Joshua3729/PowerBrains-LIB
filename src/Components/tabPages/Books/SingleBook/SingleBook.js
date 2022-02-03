@@ -25,7 +25,9 @@ const singleBook = (props) => {
           <div className={classes.title_preview}>{props.title}</div>
         </div>
         <p className={classes.author}>{props.author}</p>
-        <StarRating rating={props.rating} />
+        <div className={classes.starRatingWrapper}>
+          <StarRating rating={props.rating} /> <p>({props.numberOfReviews})</p>
+        </div>
         <p className={classes.genre}>
           {props.genre === "non_fiction" ? "non fiction" : props.genre}
         </p>

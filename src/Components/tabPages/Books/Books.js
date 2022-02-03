@@ -65,6 +65,7 @@ class Books extends Component {
             genre={book.category}
             addToCart={this.props.addToCart}
             notAvailable={book.numberInStock == 0}
+            numberOfReviews={book.numberOfReviews}
             bookData={{
               _id: book._id,
               imgUrl: book.imageUrl,

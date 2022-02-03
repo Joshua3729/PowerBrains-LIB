@@ -20,7 +20,13 @@
 .bookCoverWrapper img:hover {
   transform: scale(1.2);
 }
-
+.starRatingWrapper {
+  display: flex;
+  align-items: center;
+}
+.starRatingWrapper p {
+  margin: 0;
+}
 .Book h1 {
   margin: 0;
   font-size: 20px;

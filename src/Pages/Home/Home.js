@@ -14,6 +14,7 @@ import Returned from "../../Components/tabPages/Returned/Returned";
 import ViewBook from "../../Components/ViewBook/ViewBook";
 import MenuTray from "../../Components/MenuTray/MenuTray";
 import StarRater from "../../Components/StarRater/StarRater";
+import review_icon from "../../Assets/review_icon.png";
 
 class Home extends Component {
   state = {
@@ -42,6 +43,7 @@ class Home extends Component {
     rating: 0,
     writeReview: false,
     bookReturned: null,
+    canReview: false,
   };
 
   componentDidMount() {
@@ -110,6 +112,7 @@ class Home extends Component {
 
   returnBookHandler = (e, bookData) => {
     e.preventDefault();
+    this.state({ writeReview: false });
     this.setState({ loading: true });
     fetch("http://localhost:5000/feed/return-book", {
       method: "POST",
@@ -121,18 +124,26 @@ class Home extends Component {
       body: JSON.stringify({
         book: bookData,
         rating: this.state.rating,
-        review: e.target.review.value,
+        feedback: e.target.review.value,
+        bookId: bookData.book._id,
       }),
     })
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        this.setState({
-          requestSent: true,
-          loading: false,
-          modalMessage: res.message,
-          showModal: true,
+        this.setState((prevState) => {
+          const updatedLoans = prevState.loans.filter((loan) => {
+            return loan._id !== bookData._id;
+          });
+          return {
+            requestSent: true,
+            loading: false,
+            modalMessage: res.message,
+            showModal: true,
+            loans: updatedLoans,
+            loansLength: updatedLoans.length,
+          };
         });
       })
       .catch((err) => {
@@ -142,6 +153,28 @@ class Home extends Component {
           modalMessage: err.message,
           showModal: true,
         });
+      });
+  };
+
+  returnBookRouter = (bookId) => {
+    fetch("http://localhost:5000/feed/user-reviews", {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch user reviews.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        if (resData.includes(bookId)) {
+          this.setState({ canReview: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -290,6 +323,7 @@ class Home extends Component {
       .then((resData) => {
         this.setState({
           loans: resData.loans,
+          loansLength: resData.loans.length,
         });
       })
       .catch((err) => {
@@ -564,8 +598,8 @@ class Home extends Component {
           <div className={classes.starRaterWrapper}>
             <img
               className={classes.reviewIcon}
-              src="https://o.remove.bg/downloads/9cbc3d32-0818-4e0d-9950-bd58c1e64b68/images-removebg-preview.png"
-              alt=""
+              src={review_icon}
+              alt="review icon"
             />
             <h1>How was the book?</h1>
             <StarRater
