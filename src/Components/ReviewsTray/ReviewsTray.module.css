@@ -47,13 +47,3 @@
 .review_feedback {
   font-size: 25px;
 }
-.emptyStateImage_wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-}
-.emptyStateImage_wrapper img {
-  width: 100%;
-}

@@ -2,16 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import classes from "./Cart.module.css";
 import StarRating from "../StarRating/StarRating";
-import emptyCart from "../../Assets/emptyCart.webp";
+import TrayEmptyState from "../TrayEmptyState/TrayEmptyState";
 import { BrowserRouter } from "react-router-dom";
 
 const cart = (props) => {
-  let cartBooks = (
-    <div className={classes.emptyStateImage_wrapper}>
-      <img src={emptyCart} alt="" />
-      <p>Your Cart Is Empty!</p>
-    </div>
-  );
+  let cartBooks = <TrayEmptyState message={"Your cart is empty"} />;
   let borrowBook = null;
 
   if (props.cartData.length > 0) {

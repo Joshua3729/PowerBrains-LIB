@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import classes from "./ReviewsTray.module.css";
 import Logo from "../UI/Logo";
 import StarRating from "../StarRating/StarRating";
-import emptyCart from "../../Assets/emptyCart.webp";
+import TrayEmptyState from "../TrayEmptyState/TrayEmptyState";
 
 const reviewsTray = (props) => {
   let reviews = <h1>Loading...</h1>;
@@ -23,12 +23,7 @@ const reviewsTray = (props) => {
       );
     });
   } else if (props.numberOfReviews == 0) {
-    reviews = (
-      <div className={classes.emptyStateImage_wrapper}>
-        <img src={emptyCart} alt="" />
-        <p>Your Cart Is Empty!</p>
-      </div>
-    );
+    reviews = <TrayEmptyState message={"No reviews yet."} />;
   }
   return ReactDOM.createPortal(
     <div
