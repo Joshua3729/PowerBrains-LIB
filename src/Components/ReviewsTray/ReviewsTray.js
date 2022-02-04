@@ -10,42 +10,33 @@ class ReviewsTray extends Component {
     numberOfReviews: null,
   };
   componentDidMount() {
-    fetch("http://localhost:5000/feed/reviews", {
-      headers: {
-        Authorization: "Bearer " + this.props.token,
-      },
-      body: {
-        bookId: this.props.bookId,
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch reviews.");
-        }
-        return res.json();
+    if (this.props.openTray && this.props.bookId) {
+      fetch("http://localhost:5000/feed/reviews/" + this.props.bookId, {
+        headers: {
+          Authorization: "Bearer " + this.props.token,
+        },
       })
-      .then((resData) => {
-        this.setState({
-          reviews: resData.reviews,
-          numberOfReviews: resData.reviews.length,
+        .then((res) => {
+          if (res.status !== 200) {
+            throw new Error("Failed to fetch reviews.");
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          this.setState({
+            reviews: resData.reviews,
+            numberOfReviews: resData.reviews.length,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   }
   render() {
-    console.log(props.openTray);
-    return ReactDOM.createPortal(
-      <div
-        className={classes.ReviewTray}
-        style={{
-          transform: props.openTray ? "translateX(0)" : "translateX(102%)",
-        }}
-      >
-        <button className={classes.exit_btn} onClick={props.clicked}>
-          &times;
-        </button>
+    let reviews = <h1>Loading...</h1>;
+    if (this.state.reviews) {
+      reviews = (
         <div className={classes.review_item}>
           <div className={classes.reviewInfoWrapper}>
             <p>Joshua Khumalo</p>
@@ -61,6 +52,19 @@ class ReviewsTray extends Component {
             </p>
           </div>
         </div>
+      );
+    }
+    return ReactDOM.createPortal(
+      <div
+        className={classes.ReviewTray}
+        style={{
+          transform: this.props.openTray ? "translateX(0)" : "translateX(102%)",
+        }}
+      >
+        <button className={classes.exit_btn} onClick={this.props.clicked}>
+          &times;
+        </button>
+        {reviews}
       </div>,
 
       document.getElementById("side-tray")

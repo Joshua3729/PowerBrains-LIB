@@ -46,6 +46,7 @@ class Home extends Component {
     bookReturned: null,
     canReview: false,
     openReviews: false,
+    bookId: null,
   };
 
   componentDidMount() {
@@ -474,8 +475,8 @@ class Home extends Component {
   setRatingHandler = (rating) => {
     this.setState({ rating: rating });
   };
-  openReviewsHandler = () => {
-    this.setState({ openReviews: true });
+  openReviewsHandler = (bookId) => {
+    this.setState({ openReviews: true, bookId: bookId });
   };
   closeReviewsHandler = () => {
     this.setState({ openReviews: false });
@@ -677,6 +678,8 @@ class Home extends Component {
         <ReviewsTray
           openTray={this.state.openReviews}
           clicked={this.closeReviewsHandler}
+          token={this.props.token}
+          bookId={this.state.bookId}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
