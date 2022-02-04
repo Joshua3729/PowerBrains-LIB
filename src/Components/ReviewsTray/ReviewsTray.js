@@ -23,7 +23,7 @@ const reviewsTray = (props) => {
       );
     });
   } else if (props.numberOfReviews == 0) {
-    reviews = <TrayEmptyState message={"No reviews yet."} />;
+    reviews = <TrayEmptyState message={"No reviews yet."} parent={"reviews"} />;
   }
   return ReactDOM.createPortal(
     <div

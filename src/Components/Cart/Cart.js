@@ -6,7 +6,9 @@ import TrayEmptyState from "../TrayEmptyState/TrayEmptyState";
 import { BrowserRouter } from "react-router-dom";
 
 const cart = (props) => {
-  let cartBooks = <TrayEmptyState message={"Your cart is empty"} />;
+  let cartBooks = (
+    <TrayEmptyState parent={"cart"} message={"Your cart is empty"} />
+  );
   let borrowBook = null;
 
   if (props.cartData.length > 0) {
