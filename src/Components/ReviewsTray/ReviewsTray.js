@@ -12,6 +12,9 @@ const reviewsTray = (props) => {
         transform: props.openTray ? "translateX(0)" : "translateX(102%)",
       }}
     >
+      <button className={classes.exit_btn} onClick={props.clicked}>
+        &times;
+      </button>
       <div className={classes.review_item}>HELLO WORLD</div>
     </div>,
 

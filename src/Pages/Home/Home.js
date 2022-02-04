@@ -676,7 +676,7 @@ class Home extends Component {
         />
         <ReviewsTray
           openTray={this.state.openReviews}
-          clicked={this.openReviewsHandler}
+          clicked={this.closeReviewsHandler}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
