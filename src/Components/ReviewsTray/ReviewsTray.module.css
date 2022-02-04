@@ -1,11 +1,10 @@
 .ReviewTray {
-  display: none;
   position: fixed;
   padding: 30px 10px;
   text-align: center;
   box-sizing: border-box;
   top: 0;
-  left: 0;
+  right: 0;
   width: 350px;
   height: 100vh;
   background-color: #050a30;

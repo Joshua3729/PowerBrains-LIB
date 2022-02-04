@@ -4,17 +4,18 @@ import classes from "./ReviewsTray.module.css";
 import Logo from "../UI/Logo";
 
 const reviewsTray = (props) => {
+  console.log(props.openTray);
   return ReactDOM.createPortal(
     <div
       className={classes.ReviewTray}
       style={{
-        transform: props.openTray ? "translateX(0)" : "translateX(-102%)",
+        transform: props.openTray ? "translateX(0)" : "translateX(102%)",
       }}
     >
       <div className={classes.review_item}>HELLO WORLD</div>
     </div>,
 
-    document.getElementById("menu-tray")
+    document.getElementById("side-tray")
   );
 };
 

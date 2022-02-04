@@ -17,6 +17,15 @@
   cursor: pointer;
   transition: transform 0.5s;
 }
+.numberOfReviews {
+  cursor: pointer;
+  transition: transform 0.3s;
+  font-weight: 900;
+}
+.numberOfReviews:hover {
+  color: orange;
+  transform: scale(1.3);
+}
 .bookCoverWrapper img:hover {
   transform: scale(1.2);
 }

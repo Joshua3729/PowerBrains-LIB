@@ -80,6 +80,7 @@ class Books extends Component {
               (bookData) => bookData.id === book._id
             )}
             viewBook={this.props.viewBook}
+            openReviews={this.props.openReviews}
           />
         );
       });

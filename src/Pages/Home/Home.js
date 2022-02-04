@@ -474,6 +474,12 @@ class Home extends Component {
   setRatingHandler = (rating) => {
     this.setState({ rating: rating });
   };
+  openReviewsHandler = () => {
+    this.setState({ openReviews: true });
+  };
+  closeReviewsHandler = () => {
+    this.setState({ openReviews: false });
+  };
 
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
@@ -523,6 +529,7 @@ class Home extends Component {
             getBooks={this.getBooks}
             books={this.state.books}
             viewBook={this.viewBookHandler}
+            openReviews={this.openReviewsHandler}
           />
         );
         break;
@@ -666,6 +673,10 @@ class Home extends Component {
           tabChangeHandler={this.tabChangeHandler}
           activeTab={this.state.activeTab}
           onLogout={this.props.onLogout}
+        />
+        <ReviewsTray
+          openTray={this.state.openReviews}
+          clicked={this.openReviewsHandler}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>

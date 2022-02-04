@@ -26,7 +26,10 @@ const singleBook = (props) => {
         </div>
         <p className={classes.author}>{props.author}</p>
         <div className={classes.starRatingWrapper}>
-          <StarRating rating={props.rating} /> <p>({props.numberOfReviews})</p>
+          <StarRating rating={props.rating} />{" "}
+          <p onClick={props.openReviews} className={classes.numberOfReviews}>
+            ({props.numberOfReviews})
+          </p>
         </div>
         <p className={classes.genre}>
           {props.genre === "non_fiction" ? "non fiction" : props.genre}
