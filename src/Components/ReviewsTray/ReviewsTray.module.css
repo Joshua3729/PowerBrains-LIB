@@ -1,7 +1,6 @@
 .ReviewTray {
   position: fixed;
   padding: 30px 10px;
-  text-align: center;
   box-sizing: border-box;
   top: 0;
   right: 0;
@@ -28,4 +27,20 @@
 .exit_btn:hover {
   color: orange;
   transform: scale(1.2);
+}
+.review_item {
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+.reviewInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.reviewInfoWrapper p {
+  margin: 0;
 }
