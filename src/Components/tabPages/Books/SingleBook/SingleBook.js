@@ -28,7 +28,7 @@ const singleBook = (props) => {
         <div className={classes.starRatingWrapper}>
           <StarRating rating={props.rating} />{" "}
           <p
-            onClick={props.openReviews.bind(this, props.book._d)}
+            onClick={props.openReviews.bind(this, props.book._id)}
             className={classes.numberOfReviews}
           >
             ({props.numberOfReviews})

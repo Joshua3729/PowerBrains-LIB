@@ -19,6 +19,7 @@ const StarRater = (props) => {
       .map((indx) => {
         return (
           <i
+            key={indx}
             style={{ color: getColor(indx) }}
             className={["fa", "fa-star", classes.star].join(" ")}
             onClick={() => props.onRating(indx)}

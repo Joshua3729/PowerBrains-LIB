@@ -47,6 +47,8 @@ class Home extends Component {
     canReview: false,
     openReviews: false,
     bookId: null,
+    reviews: null,
+    numberOfReviews: null,
   };
 
   componentDidMount() {
@@ -477,6 +479,27 @@ class Home extends Component {
   };
   openReviewsHandler = (bookId) => {
     this.setState({ openReviews: true, bookId: bookId });
+    fetch("http://localhost:5000/feed/reviews/" + bookId, {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      },
+    })
+      .then((res) => {
+        console.log("yep-2");
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch reviews.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          reviews: resData.reviews,
+          numberOfReviews: resData.reviews.length,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   closeReviewsHandler = () => {
     this.setState({ openReviews: false });
@@ -678,8 +701,7 @@ class Home extends Component {
         <ReviewsTray
           openTray={this.state.openReviews}
           clicked={this.closeReviewsHandler}
-          token={this.props.token}
-          bookId={this.state.bookId}
+          reviews={this.state.reviews}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
