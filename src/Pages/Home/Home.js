@@ -702,6 +702,7 @@ class Home extends Component {
           openTray={this.state.openReviews}
           clicked={this.closeReviewsHandler}
           reviews={this.state.reviews}
+          numberOfReviews={this.state.numberOfReviews}
         />
         <div className={classes.Home}>
           <div className={classes.left_pane}>
