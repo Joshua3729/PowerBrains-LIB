@@ -15,6 +15,7 @@ import ViewBook from "../../Components/ViewBook/ViewBook";
 import MenuTray from "../../Components/MenuTray/MenuTray";
 import StarRater from "../../Components/StarRater/StarRater";
 import review_icon from "../../Assets/review_icon.png";
+import ReviewsTray from "../../Components/ReviewsTray/ReviewsTray";
 
 class Home extends Component {
   state = {
@@ -44,6 +45,7 @@ class Home extends Component {
     writeReview: false,
     bookReturned: null,
     canReview: false,
+    openReviews: false,
   };
 
   componentDidMount() {
