@@ -49,6 +49,7 @@ class Home extends Component {
     bookId: null,
     reviews: null,
     numberOfReviews: null,
+    openSearch: false,
   };
 
   componentDidMount() {
@@ -502,7 +503,15 @@ class Home extends Component {
       });
   };
   closeReviewsHandler = () => {
-    this.setState({ openReviews: false });
+    this.setState({ openReviews: false, reviews: null, numberOfReviews: null });
+  };
+
+  openSearchHandler = () => {
+    this.setState((prevState) => {
+      return {
+        openSearch: !prevState.openSearch,
+      };
+    });
   };
 
   render() {
@@ -590,29 +599,32 @@ class Home extends Component {
           </button>
           <h4>Search Results: </h4>
           <div className={classes.searchResults_wrapper}>
-            {this.state.searchResults.map((result) => {
+            {this.state.searchResults.map((book) => {
               return (
                 <SingleBook
-                  imgUrl={result.imageUrl}
-                  title={result.name}
-                  rating={result.rating}
-                  author={result.AuthorName}
-                  genre={result.category}
+                  imgUrl={book.imageUrl}
+                  title={book.name}
+                  rating={book.rating}
+                  author={book.AuthorName}
+                  genre={book.category}
                   addToCart={this.addToCartHandler}
-                  viewBook={this.viewBookHandler}
-                  book={result}
+                  notAvailable={book.numberInStock == 0}
+                  numberOfReviews={book.numberOfReviews}
                   bookData={{
-                    id: result._id,
-                    imgUrl: result.imageUrl,
-                    title: result.name,
-                    rating: result.rating,
-                    author: result.AuthorName,
+                    _id: book._id,
+                    imgUrl: book.imageUrl,
+                    title: book.name,
+                    rating: book.rating,
+                    author: book.AuthorName,
                   }}
+                  book={book}
                   addFavorite={this.addFavoriteHandler}
-                  key={result._id}
+                  key={book._id}
                   alreadyAdded={this.state.cartData.some(
-                    (bookData) => bookData.id === result._id
+                    (bookData) => bookData.id === book._id
                   )}
+                  viewBook={this.viewBookHandler}
+                  openReviews={this.openReviewsHandler}
                 />
               );
             })}
@@ -798,7 +810,10 @@ class Home extends Component {
                 <i class="fas fa-bars"></i>
               </button>
 
-              <button className={classes.showSearchBar}>
+              <button
+                className={classes.showSearchBar}
+                onClick={this.openSearchHandler}
+              >
                 <img src={search} className={classes.search} alt="" />
               </button>
               <form
@@ -815,6 +830,7 @@ class Home extends Component {
                   id="search"
                 />
               </form>
+
               <div className={classes.profileWrapper}>
                 <div className={classes.cartWrapper}>
                   {cartCounter}
@@ -829,6 +845,29 @@ class Home extends Component {
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5wZvfeftkisleD3qzJtVhnxsodFXZ_Q0nyLdr1q7l7U6phsrfnuOmwLznNwzW4VCSWy4&usqp=CAU" />
                 </div>
               </div>
+            </div>
+            <div
+              className={classes.mobile_searchBar}
+              style={{
+                transform: this.state.openSearch
+                  ? "translateY(0)"
+                  : "translateY(-100%)",
+              }}
+            >
+              <form
+                className={classes.searchBar_wrapper}
+                onSubmit={this.bookSearchHandler}
+              >
+                <button className={classes.search_btn}>
+                  <img src={search} className={classes.search} alt="" />
+                </button>
+                <input
+                  type="text"
+                  className={classes.searchBar}
+                  placeholder="Search books by name, genre, author and etc."
+                  id="search"
+                />
+              </form>
             </div>
             {searchResults}
             {page}

@@ -10,7 +10,7 @@
   background-color: #050a30;
   color: white;
   transition: all 0.5s;
-  z-index: 1200;
+  z-index: 1500;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .CartBooks {
