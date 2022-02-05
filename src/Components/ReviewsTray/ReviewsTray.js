@@ -4,9 +4,14 @@ import classes from "./ReviewsTray.module.css";
 import Logo from "../UI/Logo";
 import StarRating from "../StarRating/StarRating";
 import TrayEmptyState from "../TrayEmptyState/TrayEmptyState";
+import Loading from "../UI/Loading/Loading";
 
 const reviewsTray = (props) => {
-  let reviews = <h1>Loading...</h1>;
+  let reviews = (
+    <div className={classes.loadingWrapper}>
+      <Loading parent={"tray"} />
+    </div>
+  );
   if (props.reviews && props.numberOfReviews > 0) {
     reviews = props.reviews.map((review, i) => {
       return (
