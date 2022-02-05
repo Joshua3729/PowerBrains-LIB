@@ -61,7 +61,7 @@ class Home extends Component {
   borrowBookHandler = (cartData) => {
     this.setState({ loading: true });
     cartData.forEach((book, i) => {
-      fetch("http://localhost:5000/feed/loan", {
+      fetch("https://power-brains.herokuapp.com/feed/loan", {
         method: "POST",
 
         headers: {
@@ -120,7 +120,7 @@ class Home extends Component {
     e.preventDefault();
     this.setState({ writeReview: false });
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/return-book", {
+    fetch("https://power-brains.herokuapp.com/feed/return-book", {
       method: "POST",
 
       headers: {
@@ -164,7 +164,7 @@ class Home extends Component {
 
   returnBookRouter = (e, bookData) => {
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/user-reviews", {
+    fetch("https://power-brains.herokuapp.com/feed/user-reviews", {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -253,7 +253,7 @@ class Home extends Component {
   };
 
   getReturned = () => {
-    fetch("http://localhost:5000/feed/returned", {
+    fetch("https://power-brains.herokuapp.com/feed/returned", {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -276,7 +276,7 @@ class Home extends Component {
   };
 
   getBooks = () => {
-    fetch("http://localhost:5000/feed/books", {
+    fetch("https://power-brains.herokuapp.com/feed/books", {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -296,7 +296,7 @@ class Home extends Component {
       .catch((err) => console.log(err));
   };
   getFavorites = () => {
-    fetch("http://localhost:5000/feed/favorites", {
+    fetch("https://power-brains.herokuapp.com/feed/favorites", {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -319,7 +319,7 @@ class Home extends Component {
       });
   };
   getLoans = () => {
-    fetch("http://localhost:5000/feed/loans", {
+    fetch("https://power-brains.herokuapp.com/feed/loans", {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -343,7 +343,7 @@ class Home extends Component {
 
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/remove-favorite", {
+    fetch("https://power-brains.herokuapp.com/feed/remove-favorite", {
       method: "PUT",
 
       headers: {
@@ -384,7 +384,7 @@ class Home extends Component {
   addFavoriteHandler = (id) => {
     console.log(id);
     this.setState({ loading: true });
-    fetch("http://localhost:5000/feed/favorite", {
+    fetch("https://power-brains.herokuapp.com/feed/favorite", {
       method: "POST",
 
       headers: {
@@ -480,7 +480,7 @@ class Home extends Component {
   };
   openReviewsHandler = (bookId) => {
     this.setState({ openReviews: true, bookId: bookId });
-    fetch("http://localhost:5000/feed/reviews/" + bookId, {
+    fetch("https://power-brains.herokuapp.com/feed/reviews/" + bookId, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
