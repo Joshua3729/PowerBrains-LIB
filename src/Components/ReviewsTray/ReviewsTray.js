@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import classes from "./ReviewsTray.module.css";
-import Logo from "../UI/Logo";
 import StarRating from "../StarRating/StarRating";
 import TrayEmptyState from "../TrayEmptyState/TrayEmptyState";
 import Loading from "../UI/Loading/Loading";

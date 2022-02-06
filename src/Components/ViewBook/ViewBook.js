@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import classes from "./ViewBook.module.css";
-import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 import StarRating from "../StarRating/StarRating";
 
 const viewBook = (props) => {
-  // console.log(props.book);
   return ReactDOM.createPortal(
     <div
       className={classes.cartTray}
