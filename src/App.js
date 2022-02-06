@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
-import { connect } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Modal from "./Components/Modal/Modal";
@@ -238,15 +237,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state.token,
-    isAdmin: state.isAdmin,
-    isAuth: state.isAuth,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
