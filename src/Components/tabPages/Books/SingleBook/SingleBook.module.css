@@ -1,7 +1,6 @@
 .Book {
   display: flex;
   background-color: white;
-  /* background-color: chocolate; */
 }
 .bookCoverWrapper {
   position: relative;
