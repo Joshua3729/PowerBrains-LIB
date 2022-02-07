@@ -27,7 +27,7 @@ class Home extends Component {
     showModal: false,
     modalMessage: null,
     loading: false,
-    requestSent: false,
+    requestSent: null,
     favorites: [],
     favoritesLength: null,
     books: null,
@@ -93,7 +93,7 @@ class Home extends Component {
           console.log(cartData.length + "vs" + i);
           if (i == cartData.length - 1) {
             this.setState({
-              requestSent: true,
+              requestSent: "yes",
               loading: false,
               modalMessage: res.message,
               showModal: true,
@@ -107,7 +107,7 @@ class Home extends Component {
         .catch((err) => {
           console.log(err);
           this.setState({
-            requestSent: false,
+            requestSent: "no",
             loading: false,
             modalMessage: err.message,
             showModal: true,
@@ -143,7 +143,7 @@ class Home extends Component {
             return loan._id !== bookData._id;
           });
           return {
-            requestSent: true,
+            requestSent: "yes",
             loading: false,
             modalMessage: res.message,
             showModal: true,
@@ -154,7 +154,7 @@ class Home extends Component {
       })
       .catch((err) => {
         this.setState({
-          requestSent: false,
+          requestSent: "no",
           loading: false,
           modalMessage: err.message,
           showModal: true,
@@ -213,13 +213,13 @@ class Home extends Component {
       } else if (cartData.some((book) => book._id === bookData._id)) {
         this.setState({
           showModal: true,
-          requestSent: false,
+          requestSent: "no",
           modalMessage: "You can borrow that book only once!",
         });
       } else {
         this.setState({
           showModal: true,
-          requestSent: false,
+          requestSent: "no",
           modalMessage: "You have reached the 3 books maximum!",
         });
       }
@@ -365,7 +365,7 @@ class Home extends Component {
           return {
             favorites: favorites,
             favoritesLength: favorites.length,
-            requestSent: true,
+            requestSent: "yes",
             loading: false,
             modalMessage: res.message,
             showModal: true,
@@ -374,7 +374,7 @@ class Home extends Component {
       )
       .catch((err) =>
         this.setState({
-          requestSent: false,
+          requestSent: "no",
           loading: false,
           modalMessage: err.error,
           showModal: true,
@@ -408,7 +408,7 @@ class Home extends Component {
       })
       .then((res) =>
         this.setState({
-          requestSent: true,
+          requestSent: "yes",
           loading: false,
           modalMessage: res.message,
           showModal: true,
@@ -416,7 +416,7 @@ class Home extends Component {
       )
       .catch((err) =>
         this.setState({
-          requestSent: false,
+          requestSent: "no",
           loading: false,
           modalMessage: err.error,
           showModal: true,
@@ -684,9 +684,11 @@ class Home extends Component {
 
             <img
               src={
-                this.state.requestSent
+                this.state.requestSent === "yes"
                   ? "https://e7.pngegg.com/pngimages/442/715/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png"
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU"
+                  : this.state.requestSent === "no"
+                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlWpmg3j7FWhjPb0_TYmbE_Qcz5lVw6p3GRAEKIUn8O78FIT7_GEZwF4TNGFZxZU3Bg3E&usqp=CAU"
+                  : null
               }
             />
           </div>
