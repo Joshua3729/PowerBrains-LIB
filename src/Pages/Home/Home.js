@@ -58,10 +58,13 @@ class Home extends Component {
       this.setState({ cartData: cartData, numberOfCartItems: cartData.length });
     }
   }
+
+  Url = "https://power-brains.herokuapp.com";
+
   borrowBookHandler = (cartData) => {
     this.setState({ loading: true });
     cartData.forEach((book, i) => {
-      fetch("https://power-brains.herokuapp.com/feed/loan", {
+      fetch(`${Url}/feed/loan`, {
         method: "POST",
 
         headers: {
@@ -120,7 +123,7 @@ class Home extends Component {
     e.preventDefault();
     this.setState({ writeReview: false });
     this.setState({ loading: true });
-    fetch("https://power-brains.herokuapp.com/feed/return-book", {
+    fetch(`${Url}/feed/return-book`, {
       method: "POST",
 
       headers: {
@@ -154,7 +157,7 @@ class Home extends Component {
       })
       .catch((err) => {
         this.setState({
-          requestSent: "no",
+          requestSent: false,
           loading: false,
           modalMessage: err.message,
           showModal: true,
@@ -164,7 +167,7 @@ class Home extends Component {
 
   returnBookRouter = (e, bookData) => {
     this.setState({ loading: true });
-    fetch("https://power-brains.herokuapp.com/feed/user-reviews", {
+    fetch(`${Url}/feed/user-reviews`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -213,13 +216,13 @@ class Home extends Component {
       } else if (cartData.some((book) => book._id === bookData._id)) {
         this.setState({
           showModal: true,
-          requestSent: "no",
+          requestSent: false,
           modalMessage: "You can borrow that book only once!",
         });
       } else {
         this.setState({
           showModal: true,
-          requestSent: "no",
+          requestSent: false,
           modalMessage: "You have reached the 3 books maximum!",
         });
       }
@@ -253,7 +256,7 @@ class Home extends Component {
   };
 
   getReturned = () => {
-    fetch("https://power-brains.herokuapp.com/feed/returned", {
+    fetch(`${Url}/feed/returned`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -374,7 +377,7 @@ class Home extends Component {
       )
       .catch((err) =>
         this.setState({
-          requestSent: "no",
+          requestSent: false,
           loading: false,
           modalMessage: err.error,
           showModal: true,
@@ -416,7 +419,7 @@ class Home extends Component {
       )
       .catch((err) =>
         this.setState({
-          requestSent: "no",
+          requestSent: false,
           loading: false,
           modalMessage: err.error,
           showModal: true,
