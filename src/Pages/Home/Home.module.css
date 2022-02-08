@@ -274,6 +274,8 @@
   border-top: lightgray 2px solid;
   transition: transform 0.3s;
   z-index: 1000;
+  box-shadow: 0px 11px 9px -10px rgba(0, 0, 0, 0.3);
+  background-color: hsl(0, 0%, 97%);
 }
 
 @media only screen and (max-width: 1200px) {
