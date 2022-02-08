@@ -119,12 +119,10 @@ class Home extends Component {
   };
 
   returnBookHandler = (e, bookData) => {
-    const Url = "https://power-brains.herokuapp.com";
-
     e.preventDefault();
     this.setState({ writeReview: false });
     this.setState({ loading: true });
-    fetch(`${Url}/feed/return-book`, {
+    fetch(`${URL.Url}/feed/return-book`, {
       method: "POST",
 
       headers: {
@@ -167,10 +165,8 @@ class Home extends Component {
   };
 
   returnBookRouter = (e, bookData) => {
-    const Url = "https://power-brains.herokuapp.com";
-
     this.setState({ loading: true });
-    fetch(`${Url}/feed/user-reviews`, {
+    fetch(`${URL.Url}feed/user-reviews`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -486,7 +482,7 @@ class Home extends Component {
   };
   openReviewsHandler = (bookId) => {
     this.setState({ openReviews: true, bookId: bookId });
-    fetch("https://power-brains.herokuapp.com/feed/reviews/" + bookId, {
+    fetch(`${URL.Url}/feed/reviews/` + bookId, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
