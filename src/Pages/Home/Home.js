@@ -16,6 +16,7 @@ import MenuTray from "../../Components/MenuTray/MenuTray";
 import StarRater from "../../Components/StarRater/StarRater";
 import review_icon from "../../Assets/review_icon.png";
 import ReviewsTray from "../../Components/ReviewsTray/ReviewsTray";
+import * as URL from "../../Util/Url";
 
 class Home extends Component {
   state = {
@@ -59,13 +60,10 @@ class Home extends Component {
     }
   }
 
-  Url = "https://power-brains.herokuapp.com";
-
   borrowBookHandler = (cartData) => {
-    const Url = "https://power-brains.herokuapp.com";
     this.setState({ loading: true });
     cartData.forEach((book, i) => {
-      fetch(`${Url}/feed/loan`, {
+      fetch(`${URL.Url}/feed/loan`, {
         method: "POST",
 
         headers: {
@@ -261,9 +259,7 @@ class Home extends Component {
   };
 
   getReturned = () => {
-    const Url = "https://power-brains.herokuapp.com";
-
-    fetch(`${Url}/feed/returned`, {
+    fetch(`${URL.Url}/feed/returned`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -286,7 +282,7 @@ class Home extends Component {
   };
 
   getBooks = () => {
-    fetch("https://power-brains.herokuapp.com/feed/books", {
+    fetch(`${URL.Url}/feed/books`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -306,7 +302,7 @@ class Home extends Component {
       .catch((err) => console.log(err));
   };
   getFavorites = () => {
-    fetch("https://power-brains.herokuapp.com/feed/favorites", {
+    fetch(`${URL.Url}/feed/favorites`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -329,7 +325,7 @@ class Home extends Component {
       });
   };
   getLoans = () => {
-    fetch("https://power-brains.herokuapp.com/feed/loans", {
+    fetch(`${URL.Url}/feed/loans`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -353,7 +349,7 @@ class Home extends Component {
 
   deleteFavoriteHandler = (id) => {
     this.setState({ loading: true });
-    fetch("https://power-brains.herokuapp.com/feed/remove-favorite", {
+    fetch(`${URL.Url}/feed/remove-favorite`, {
       method: "PUT",
 
       headers: {
@@ -394,7 +390,7 @@ class Home extends Component {
   addFavoriteHandler = (id) => {
     console.log(id);
     this.setState({ loading: true });
-    fetch("https://power-brains.herokuapp.com/feed/favorite", {
+    fetch(`${URL.Url}/feed/favorite`, {
       method: "POST",
 
       headers: {
