@@ -70,7 +70,7 @@
 
 .bookSummary {
   overflow-y: scroll;
-  height: 250px;
+  height: 170px;
   padding: 5px;
   box-sizing: border-box;
 }
