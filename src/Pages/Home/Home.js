@@ -62,6 +62,7 @@ class Home extends Component {
   Url = "https://power-brains.herokuapp.com";
 
   borrowBookHandler = (cartData) => {
+    const Url = "https://power-brains.herokuapp.com";
     this.setState({ loading: true });
     cartData.forEach((book, i) => {
       fetch(`${Url}/feed/loan`, {
@@ -120,6 +121,8 @@ class Home extends Component {
   };
 
   returnBookHandler = (e, bookData) => {
+    const Url = "https://power-brains.herokuapp.com";
+
     e.preventDefault();
     this.setState({ writeReview: false });
     this.setState({ loading: true });
@@ -166,6 +169,8 @@ class Home extends Component {
   };
 
   returnBookRouter = (e, bookData) => {
+    const Url = "https://power-brains.herokuapp.com";
+
     this.setState({ loading: true });
     fetch(`${Url}/feed/user-reviews`, {
       headers: {
@@ -256,6 +261,8 @@ class Home extends Component {
   };
 
   getReturned = () => {
+    const Url = "https://power-brains.herokuapp.com";
+
     fetch(`${Url}/feed/returned`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
@@ -672,7 +679,7 @@ class Home extends Component {
                   name="bookReview"
                   rows="4"
                   cols="50"
-                  maxlength="200"
+                  maxLength="200"
                   placeholder="Write your review here"
                 ></textarea>
               </div>
@@ -812,7 +819,7 @@ class Home extends Component {
                 className={classes.menuBtn}
                 onClick={this.showMenuHandler}
               >
-                <i class="fas fa-bars"></i>
+                <i className="fas fa-bars"></i>
               </button>
 
               <button

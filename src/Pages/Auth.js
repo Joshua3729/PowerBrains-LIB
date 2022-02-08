@@ -252,7 +252,7 @@ class AuthPage extends Component {
               />
             </div>
             <div className={classes.form_input}>
-              <i class="fas fa-lock"></i>
+              <i className="fas fa-lock"></i>
               <input
                 type="password"
                 name="password"
@@ -289,7 +289,7 @@ class AuthPage extends Component {
               The best online library in the world
             </p>
             <div className={classes.form_input}>
-              <i class="fas fa-envelope"></i>
+              <i className="fas fa-envelope"></i>
               <input
                 type="email"
                 name="email"
@@ -298,7 +298,7 @@ class AuthPage extends Component {
               />
             </div>
             <div className={classes.form_input}>
-              <i class="fas fa-lock"></i>
+              <i className="fas fa-lock"></i>
               <input
                 type={this.state.showPassword ? "text" : "password"}
                 name="password"
@@ -319,7 +319,7 @@ class AuthPage extends Component {
             </div>
             <button className={classes.login}>LOG IN</button>
             <button className={classes.admin} onClick={this.adminLoginHandler}>
-              <i class="fas fa-users"></i>USER LOG IN
+              <i className="fas fa-users"></i>USER LOG IN
             </button>
           </form>
         </Fragment>
