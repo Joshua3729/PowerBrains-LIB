@@ -13,23 +13,6 @@ class Loans extends Component {
     document.documentElement.scrollTop = 0;
   }
 
-  getDateHandler = (dateArg) => {
-    const date = new Date(dateArg);
-
-    const day = date.getDate();
-    const month = date.toLocaleString("en-us", { month: "long" });
-    const year = date.getFullYear();
-
-    return `${day} ${month} ${year}`;
-  };
-  getDaysRemaining = (returnDate) => {
-    const today = new Date(Date.now());
-    const target = new Date(returnDate);
-    const differenceInTime = target.getTime() - today.getTime();
-    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-    return Math.floor(differenceInDays) + 1;
-  };
-
   render() {
     let loans = (
       <div className={classes.loadingWrapper}>
@@ -43,6 +26,7 @@ class Loans extends Component {
       loans = this.props.loans.map((loan, i) => {
         return (
           <BookInfoCard
+            key={loan._id}
             loanBook={loan.book}
             key={i}
             returnBook={this.props.returnBook}

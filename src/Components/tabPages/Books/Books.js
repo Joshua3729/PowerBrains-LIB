@@ -58,6 +58,7 @@ class Books extends Component {
       books = booksData.map((book) => {
         return (
           <SingleBook
+            key={book._id}
             imgUrl={book.imageUrl}
             title={book.name}
             rating={book.rating}
