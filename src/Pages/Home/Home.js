@@ -426,7 +426,7 @@ class Home extends Component {
       );
   };
   closeModalHandler = () => {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, requestSent: null });
   };
   deleteItemFromCartHandler = (item) => {
     this.setState((prevState) => {
