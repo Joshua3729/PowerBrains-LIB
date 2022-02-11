@@ -166,7 +166,7 @@ class Home extends Component {
 
   returnBookRouter = (e, bookData) => {
     this.setState({ loading: true });
-    fetch(`${URL.Url}feed/user-reviews`, {
+    fetch(`${URL.Url}/feed/user-reviews`, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
