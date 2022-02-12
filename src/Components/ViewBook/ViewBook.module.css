@@ -109,8 +109,52 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #b3b2b2;
 }
 
+.bookSummaryWrapper {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: 80%;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  display: none;
+  background-color: #050a30;
+  transition: transform 0.5s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+.showSummary {
+  background-color: white;
+  color: #050a30;
+  width: 100%;
+  border-radius: 100px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: none;
+  border-top: 2px lightgray solid;
+  margin-top: 50px;
+}
+.closeSummary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 900;
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+
 @media only screen and (max-width: 400px) {
   .cartTray {
     width: 100%;
+  }
+  .bookSummaryWrapper {
+    display: flex;
+  }
+  .bookSummary {
+    display: none;
+  }
+  .showSummary {
+    display: block;
   }
 }
