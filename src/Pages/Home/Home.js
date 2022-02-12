@@ -465,7 +465,7 @@ class Home extends Component {
     });
   };
   closeBookHandler = () => {
-    this.setState({ viewBook: false });
+    this.setState({ viewBook: false, openSummary: false });
   };
 
   scrollEffectHandler = () => {
