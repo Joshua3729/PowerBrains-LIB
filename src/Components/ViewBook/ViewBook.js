@@ -5,28 +5,8 @@ import StarRating from "../StarRating/StarRating";
 
 class ViewBook extends Component {
   render() {
-    let summary = null;
     let button = null;
-    if (this.props.openSummary) {
-      summary = (
-        <div
-          className={classes.bookSummaryWrapper}
-          style={{
-            transform: this.props.openSummary
-              ? "translateY(0)"
-              : "translateY(100%)",
-          }}
-        >
-          <button
-            className={classes.closeSummary}
-            onClick={this.props.openSummaryHandler}
-          >
-            &times;
-          </button>
-          <p>{this.props.bookData?.summary}</p>
-        </div>
-      );
-    } else {
+    if (!this.props.openSummary) {
       button = (
         <button
           className={classes.showSummary}
