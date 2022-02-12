@@ -515,6 +515,11 @@ class Home extends Component {
       };
     });
   };
+  openSummaryHandler = () => {
+    this.setState((prevState) => {
+      return { openSummary: !prevState.openSummary };
+    });
+  };
 
   render() {
     window.addEventListener("scroll", this.scrollEffectHandler);
@@ -706,6 +711,8 @@ class Home extends Component {
           clicked={this.closeBookHandler}
           openTray={this.state.viewBook}
           bookData={this.state.bookData}
+          openSummary={this.state.openSummary}
+          openSummaryHandler={this.openSummaryHandler}
         />
         <MenuTray
           openTray={this.state.showMenuTray}
