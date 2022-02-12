@@ -114,7 +114,7 @@ html::-webkit-scrollbar-thumb:hover {
   top: 20%;
   left: 0;
   height: 80%;
-  padding: 30px 10px;
+  padding: 40px 10px;
   box-sizing: border-box;
   width: 100%;
   display: none;
@@ -135,13 +135,13 @@ html::-webkit-scrollbar-thumb:hover {
 }
 .closeSummary {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  right: 10px;
   font-weight: 900;
   color: white;
   background-color: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 @media only screen and (max-width: 400px) {
