@@ -4,7 +4,7 @@ import AuthPage from "./Pages/Auth";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Modal from "./Components/Modal/Modal";
-
+import { Url } from "./Util/Url";
 class App extends Component {
   state = {
     createAccount: false,
@@ -55,7 +55,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({ authLoading: true });
     if (userData.formIsValid) {
-      fetch("http://localhost:5000/auth/signup", {
+      fetch(`${Url}/auth/signup`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({ authLoading: true });
     if (authData.formIsValid) {
-      fetch("http://localhost:5000/auth/login", {
+      fetch(`${Url}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
