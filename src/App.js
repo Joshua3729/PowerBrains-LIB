@@ -31,9 +31,12 @@ class App extends Component {
 
     const userId = localStorage.getItem("userId");
     const adminId = localStorage.getItem("adminId");
+    if (!rememberMe) {
+      const remainingMilliseconds =
+        new Date(expiryDate).getTime() - new Date().getTime();
+      this.setAutoLogout(remainingMilliseconds);
+    }
 
-    const remainingMilliseconds =
-      new Date(expiryDate).getTime() - new Date().getTime();
     let isAdmin;
     let isAuth;
     if (userId) {
