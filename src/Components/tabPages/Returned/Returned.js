@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import classes from "./Returned.module.css";
-import StarRating from "../../StarRating/StarRating";
 import EmptyState from "../../EmptyState/EmptyState";
 import Loading from "../../UI/Loading/Loading";
 import BookInfoCard from "../../BookInfoCard/BookInfoCard";
