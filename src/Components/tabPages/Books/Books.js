@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Books.module.css";
 import SingleBook from "./SingleBook/SingleBook";
 import Loading from "../../UI/Loading/Loading";
+import { withRouter } from "react-router-dom";
 
 class Books extends Component {
   state = {
@@ -10,10 +11,29 @@ class Books extends Component {
     cartData: [],
   };
   changeTabHandler = (tab) => {
+    const query = new URLSearchParams(this.props.location.search);
+    let queryParams = [];
+    let attributes = [];
+    for (let param of query.entries()) {
+      queryParams.push(param[1]);
+      attributes.push(param[0]);
+    }
     this.setState({ activeTab: tab });
+    this.props.history.push({
+      search: `${attributes[0]}=${queryParams[0]}&books-tab=${tab}`,
+    });
   };
 
   componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    let queryParams = [];
+    for (let param of query.entries()) {
+      queryParams.push(param[1]);
+    }
+
+    if (queryParams.length > 1) {
+      this.setState({ activeTab: queryParams[1] });
+    }
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) this.setState({ cartData: cartData });
 
@@ -159,4 +179,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default withRouter(Books);
