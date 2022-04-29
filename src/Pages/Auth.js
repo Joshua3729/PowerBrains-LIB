@@ -53,6 +53,18 @@ class AuthPage extends Component {
     formIsValid: false,
   };
 
+  componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    let queryParams = [];
+    for (let param of query.entries()) {
+      queryParams.push(param[1]);
+    }
+
+    if (queryParams.length > 0) {
+      this.setState({ adminlogin: queryParams[0] });
+    }
+  }
+
   inputChangeHandler = (input, value, formType) => {
     this.setState((prevState) => {
       let isValid = true;
