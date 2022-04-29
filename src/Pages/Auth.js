@@ -4,6 +4,7 @@ import Logo from "../Components/UI/Logo";
 import { required, length, email } from "../Util/validators";
 import Modal from "../Components/Modal/Modal";
 import Spinner from "../Components/UI/Spinner/Spinner";
+import { withRouter } from "react-router-dom";
 
 class AuthPage extends Component {
   state = {
@@ -106,7 +107,11 @@ class AuthPage extends Component {
         adminlogin: !prevState.adminlogin,
       };
     });
+    this.props.history({
+      search: `admin=${true}`,
+    });
   };
+
   showPasswordhandler = (e) => {
     e.preventDefault();
     this.setState((prevState) => {
@@ -318,7 +323,7 @@ class AuthPage extends Component {
               )}
             </div>
             <button className={classes.login}>LOG IN</button>
-            <button className={classes.admin} onClick={this.adminLoginHandler}>
+            <button className={classes.admin} onClick={this.userLoginHandler}>
               <i className="fas fa-users"></i>USER LOG IN
             </button>
           </form>
@@ -445,4 +450,4 @@ class AuthPage extends Component {
   }
 }
 
-export default AuthPage;
+export default withRouter(AuthPage);

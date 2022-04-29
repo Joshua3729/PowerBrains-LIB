@@ -265,6 +265,7 @@ class App extends Component {
               createAccount={this.state.createAccount}
               formTypeHandler={this.formTypeHandler}
               rememberMeHandler={this.rememberMeHandler}
+              onAdminLogin={this.adminLoginHandler}
             />
           )}
         />
