@@ -102,13 +102,17 @@ class AuthPage extends Component {
 
   adminLoginHandler = (e) => {
     e.preventDefault();
-    this.setState((prevState) => {
-      return {
-        adminlogin: !prevState.adminlogin,
-      };
+    this.setState({ adadminLoginogin: true });
+    this.props.history.push({
+      search: `?admin=${true}`,
     });
-    this.props.history({
-      search: `admin=${true}`,
+  };
+
+  userLoginHandler = (e) => {
+    e.preventDefault();
+    this.setState({ adminlogin: false });
+    this.props.history.push({
+      search: ``,
     });
   };
 
