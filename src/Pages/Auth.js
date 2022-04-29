@@ -60,7 +60,7 @@ class AuthPage extends Component {
       queryParams.push(param[1]);
     }
 
-    if (queryParams.length > 0) {
+    if (queryParams[0] === "true") {
       this.setState({ adminlogin: queryParams[0] });
     }
   }
