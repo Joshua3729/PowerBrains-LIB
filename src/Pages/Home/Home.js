@@ -55,6 +55,15 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    let queryParams = [];
+    for (let param of query.entries()) {
+      queryParams.push(param[1]);
+    }
+
+    if (queryParams.length > 0) {
+      this.setState({ activeTab: queryParams[0] });
+    }
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     if (cartData) {
       this.setState({ cartData: cartData, numberOfCartItems: cartData.length });
@@ -476,6 +485,9 @@ class Home extends Component {
   };
   tabChangeHandler = (tab) => {
     this.setState({ activeTab: tab, showMenuTray: false });
+    this.props.history.push({
+      search: `?tab=${tab}`,
+    });
   };
 
   setRatingHandler = (rating) => {
