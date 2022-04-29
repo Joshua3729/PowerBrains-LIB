@@ -19,9 +19,14 @@ class Books extends Component {
       attributes.push(param[0]);
     }
     this.setState({ activeTab: tab });
-    this.props.history.push({
-      search: `${attributes[0]}=${queryParams[0]}&books-tab=${tab}`,
-    });
+    if (queryParams.length > 0)
+      this.props.history.push({
+        search: `${attributes[0]}=${queryParams[0]}&books-tab=${tab}`,
+      });
+    else
+      this.props.history.push({
+        search: `tab=books&books-tab=${tab}`,
+      });
   };
 
   componentDidMount() {
@@ -96,7 +101,6 @@ class Books extends Component {
             }}
             book={book}
             addFavorite={this.props.addFavorite}
-            key={book._id}
             alreadyAdded={this.state.cartData.some(
               (bookData) => bookData.id === book._id
             )}
@@ -132,7 +136,6 @@ class Books extends Component {
             </li>
             <li className={classes.tab_wrapper}>
               <button
-                className={classes.tab_buttons}
                 className={
                   this.state.activeTab === "fiction"
                     ? [classes.active, classes.tab_buttons].join(" ")
@@ -145,7 +148,6 @@ class Books extends Component {
             </li>
             <li className={classes.tab_wrapper}>
               <button
-                className={classes.tab_buttons}
                 className={
                   this.state.activeTab === "non-fiction"
                     ? [classes.active, classes.tab_buttons].join(" ")
@@ -158,7 +160,6 @@ class Books extends Component {
             </li>
             <li className={classes.tab_wrapper}>
               <button
-                className={classes.tab_buttons}
                 className={
                   this.state.activeTab === "textbooks"
                     ? [classes.active, classes.tab_buttons].join(" ")
