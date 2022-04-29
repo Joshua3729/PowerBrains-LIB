@@ -17,6 +17,7 @@ import StarRater from "../../Components/StarRater/StarRater";
 import review_icon from "../../Assets/review_icon.png";
 import ReviewsTray from "../../Components/ReviewsTray/ReviewsTray";
 import * as URL from "../../Util/Url";
+import { withRouter } from "react-router-dom";
 
 class Home extends Component {
   state = {
@@ -888,4 +889,4 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+export default withRouter(Home);
