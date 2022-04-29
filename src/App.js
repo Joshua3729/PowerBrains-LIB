@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
+
 import {
   Route,
   BrowserRouter as Router,
@@ -232,6 +233,9 @@ class App extends Component {
     localStorage.removeItem("adminId");
     localStorage.removeItem("adminToken");
     localStorage.removeItem("rememberMe");
+    this.props.history.push({
+      search: "",
+    });
   };
   setAutoLogout = (milliseconds) => {
     setTimeout(() => {
@@ -302,4 +306,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
