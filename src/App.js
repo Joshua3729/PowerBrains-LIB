@@ -59,6 +59,57 @@ class App extends Component {
       adminId: adminId,
     });
   }
+  adminLoginHandler = (event, authData) => {
+    event.preventDefault();
+    this.setState({ authLoading: true });
+    // fetch("http://localhost:5000/admin/login", {
+    fetch("https://power-brains.herokuapp.com/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: authData.email,
+        password: authData.password,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 422) {
+          throw { error: "Validation failed" };
+        }
+        if (res.status !== 200 && res.status !== 201) {
+          console.log("Error!");
+          throw { error: "Could not authenticate you!" };
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        this.setState({
+          isAdmin: true,
+          token: resData.token,
+          authLoading: false,
+          adminId: resData.userId,
+        });
+        localStorage.setItem("token", resData.token);
+        localStorage.setItem("adminId", resData.adminId);
+        const remainingMilliseconds = 60 * 60 * 1000;
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
+        localStorage.setItem("expiryDate", expiryDate.toISOString());
+        this.setAutoLogout(remainingMilliseconds);
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          isAuth: false,
+          authLoading: false,
+          error: err,
+          serverMessage: err.error,
+          showModal: true,
+        });
+      });
+  };
   signupHandler = (event, userData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
