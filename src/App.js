@@ -62,8 +62,7 @@ class App extends Component {
   adminLoginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    // fetch("http://localhost:5000/admin/login", {
-    fetch("https://power-brains.herokuapp.com/admin/login", {
+    fetch(`${Url}/admin/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
