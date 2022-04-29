@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  withRouter,
+  Redirect,
+} from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Modal from "./Components/Modal/Modal";
 import { Url } from "./Util/Url";
@@ -197,12 +202,13 @@ class App extends Component {
   };
   render() {
     let route = (
-      <Routes>
+      <Router>
         <Route
           path="/"
           exact
-          element={
+          render={(props) => (
             <AuthPage
+              {...props}
               onLogin={this.loginHandler}
               onSignup={this.signupHandler}
               loading={this.state.authLoading}
@@ -210,20 +216,25 @@ class App extends Component {
               formTypeHandler={this.formTypeHandler}
               rememberMeHandler={this.rememberMeHandler}
             />
-          }
+          )}
         />
-      </Routes>
+      </Router>
     );
     if (this.state.isAuth) {
       route = (
-        <Routes>
+        <Router>
           <Route
             path="/"
-            element={
-              <Home token={this.state.token} onLogout={this.logoutHandler} />
-            }
+            exact
+            render={(props) => (
+              <Home
+                {...props}
+                token={this.state.token}
+                onLogout={this.logoutHandler}
+              />
+            )}
           />
-        </Routes>
+        </Router>
       );
     }
     return (
