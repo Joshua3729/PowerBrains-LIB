@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
 import AuthPage from "./Pages/Auth";
-
 import {
   Route,
   BrowserRouter as Router,
@@ -11,6 +10,7 @@ import {
 import Home from "./Pages/Home/Home";
 import Modal from "./Components/Modal/Modal";
 import { Url } from "./Util/Url";
+import AdminHome from "./Pages/AdminHome/AdminHome";
 class App extends Component {
   state = {
     createAccount: false,
@@ -22,6 +22,10 @@ class App extends Component {
     serverMessage: null,
     showModal: false,
     rememberMe: false,
+    isAdmin: false,
+    token: null,
+    authLoading: false,
+    adminId: null,
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -283,6 +287,23 @@ class App extends Component {
             exact
             render={(props) => (
               <Home
+                {...props}
+                token={this.state.token}
+                onLogout={this.logoutHandler}
+              />
+            )}
+          />
+        </Router>
+      );
+    }
+    if (this.state.isAdmin) {
+      route = (
+        <Router>
+          <Route
+            path="/"
+            exact
+            render={(props) => (
+              <AdminHome
                 {...props}
                 token={this.state.token}
                 onLogout={this.logoutHandler}

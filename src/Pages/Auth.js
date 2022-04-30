@@ -340,7 +340,7 @@ class AuthPage extends Component {
                   this.inputChangeHandler(
                     "password",
                     e.target.value,
-                    "signupForm"
+                    "loginForm"
                   )
                 }
               />
