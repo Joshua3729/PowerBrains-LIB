@@ -305,7 +305,15 @@ class AuthPage extends Component {
     if (this.state.adminlogin) {
       Auth_form = (
         <Fragment>
-          <form classes={classes.Auth_form}>
+          <form
+            classes={classes.Auth_form}
+            onSubmit={(e) =>
+              this.props.onAdminLogin(e, {
+                email: this.state.loginForm.email.value,
+                password: this.state.loginForm.password.value,
+              })
+            }
+          >
             <p className={classes.siteDescription}>
               The best online library in the world
             </p>
@@ -316,6 +324,9 @@ class AuthPage extends Component {
                 name="email"
                 className={classes.email}
                 placeholder="Enter your email address"
+                onChange={(e) =>
+                  this.inputChangeHandler("email", e.target.value, "loginForm")
+                }
               />
             </div>
             <div className={classes.form_input}>
@@ -325,6 +336,13 @@ class AuthPage extends Component {
                 name="password"
                 className={classes.password}
                 placeholder="Enter your password"
+                onChange={(e) =>
+                  this.inputChangeHandler(
+                    "password",
+                    e.target.value,
+                    "signupForm"
+                  )
+                }
               />
               {this.state.showPassword ? (
                 <i
